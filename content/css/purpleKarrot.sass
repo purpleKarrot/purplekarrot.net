@@ -1,0 +1,439 @@
+---
+---
+
+*
+  :padding 0
+  :margin 0
+
+
+body
+  :margin 0
+  :padding 0
+  :font normal 73%/1.5em 'Trebuchet MS', Tahoma, sans-serif
+  :color #555
+  :background #FFF url(/images/bg.jpg) repeat-x
+  :text-align center
+
+
+a
+  :background inherit
+  :color #72A545
+  :text-decoration none
+
+  &:hover
+    :background inherit
+    :color #006699
+    :text-decoration underline
+
+
+h1
+  :font bold 1em 'Trebuchet MS', Tahoma, Sans-serif
+  :font-size 1.4em
+  :color #65944A
+  :margin 10px 15px
+
+
+h2
+  :font bold 1em 'Trebuchet MS', Tahoma, Sans-serif
+  :font-size 1.2em
+  :text-transform uppercase
+  :margin 10px 15px
+
+
+h3
+  :font bold 1em 'Trebuchet MS', Tahoma, Sans-serif
+  :font-size 1.2em
+  :margin 10px 15px
+
+
+p
+  :margin 10px 15px
+
+
+ul, ol
+  :margin 10px 30px
+  :padding 0 15px
+
+
+img
+  :border 1px solid #DADADA
+  :padding 5px
+  :background #FAFAFA
+
+  &.float-right
+    :margin 5px 0px 5px 15px
+
+  &.float-left
+    :margin 5px 15px 5px 0px
+
+
+code
+  :margin 5px 0
+  :padding 10px
+  :text-align left
+  :display block
+  :overflow auto
+  :font 500 1em/1.5em 'Lucida Console', 'courier new', monospace
+  :background #FAFAFA
+  :border 1px solid #f2f2f2
+  :border-left 3px solid #72A545
+
+
+acronym
+  :cursor help
+  :border-bottom 1px solid #777
+
+
+blockquote
+  :margin 15px
+  :padding 0 0 0 20px
+  :background-color #FAFAFA
+  :background-position 8px 10px
+  :border 1px solid #f2f2f2
+  :border-left 3px solid #72A545
+  :font bold 1.2em/1.5em "Trebuchet MS", Tahoma, sans-serif
+  :color #666666
+
+
+table
+  :border-collapse collapse
+  :margin 10px 15px
+
+
+th
+  :background #74A846
+  :height 29px
+  :padding-left 11px
+  :padding-right 11px
+  :color #fff
+  :text-align left
+  :border-left 1px solid #B6D59A
+  :border-bottom solid 2px #FFF
+
+  strong
+    :color #fff
+
+  &.first
+    :border-left 0px
+
+
+tr
+  :height 30px
+
+  &.row-a
+    :background #F8F8F8
+
+  &.row-b
+    :background #EFEFEF
+
+
+td
+  :padding-left 11px
+  :padding-right 11px
+  :border-left 1px solid #FFF
+  :border-bottom solid 1px #ffffff
+
+  &.first
+    :border-left 0px
+
+
+form
+  :margin 10px 15px
+  :padding 0
+  :border 1px solid #f2f2f2
+  :background-color #FAFAFA
+
+
+label
+  :display block
+  :font-weight bold
+  :margin 5px 0
+
+
+input
+  :padding 2px
+  :border 1px solid #eee
+  :font normal 1em "Trebuchet MS", Tahoma, sans-serif
+  :color #777
+
+  &.button
+    :margin 0
+    :font bold 1em Arial, Sans-serif
+    :background #FFF url(/images/gradientbg.jpg) repeat-x
+    :padding 2px 3px
+    :color #333
+    :border 1px solid #DADADA
+
+
+textarea
+  :width 400px
+  :padding 2px
+  :font normal 1em "Trebuchet MS", Tahoma, sans-serif
+  :border 1px solid #eee
+  :height 100px
+  :display block
+  :color #777
+
+
+.searchform
+  :background-color transparent
+  :border none
+  :margin 0
+  :padding 0
+
+  p
+    :margin 10px
+    :padding 0
+
+  input
+    &.textbox
+      :width 130px
+      :color #333
+      :height 20px
+      :padding 2px
+      :vertical-align top
+
+    &.button
+      :font bold 12px Arial, Sans-serif
+      :color #333
+      :width 60px
+      :height 26px
+      :border 1px solid #DADADA
+      :padding 3px 5px
+      :vertical-align top
+
+
+#header-content
+  :width 760px
+  :margin 0 auto
+  :padding 0
+  :position relative
+
+  h1#logo
+    :position absolute
+    :font bold 45px 'Trebuchet MS', Sans-serif
+    :letter-spacing -2px
+    :color #FFF
+    :margin 0
+    :padding 0
+    :top 0
+    :left 0px
+
+    a
+      :text-decoration none
+      :color #FFF
+
+  #slogan
+    :position absolute
+    :font bold 12px 'Trebuchet Ms', Sans-serif
+    :text-transform none
+    :color #FFF
+    :margin 0
+    :padding 0
+    :top 55px
+    :left 40px
+
+  ul
+    :position absolute
+    :right -5px
+    :top 15px
+    :font bolder 1.3em 'Trebuchet MS', sans-serif
+    :color #FFF
+    :list-style none
+    :margin 0
+    :padding 0
+
+  li
+    :display inline
+
+    a
+      :float left
+      :display block
+      :padding 3px 12px
+      :color #FFF
+      :background-color #333
+      :text-decoration none
+      :border-right 1px solid #272727
+
+      &:hover, &#current
+        :background #65944A
+        :color #FFF
+
+
+#content
+  :width 760px
+  :text-align left
+  :padding 0
+  :margin 0 auto
+
+
+#footer-content
+  :width 760px
+  :border-top 1px solid #EAEAEA
+  :margin 0 auto
+  :padding-left 15px
+
+  a
+    :text-decoration none
+    :color #777
+
+    &:hover
+      :text-decoration underline
+      :color #333
+
+  ul
+    :list-style none
+    :margin 0
+    :padding 0
+
+  .col
+    :width 32%
+    :padding 0 5px 30px 0
+
+  .col2
+    :width 33%
+    :padding 0 0 30px 0
+
+
+#header
+  :height 100px
+  :text-align left
+
+
+.headerphoto
+  :margin 0 auto
+  :width 770px
+  :height 200px
+  :padding 15px 10px 10px 10px
+  :background #FFF url(/images/headerphoto.jpg) no-repeat center
+
+
+#content-wrap
+  :clear both
+  :float left
+  :width 100%
+
+
+#sidebar
+  :float right
+  :width 30%
+  :margin 0 0 10px 0
+  :padding 0
+
+  h1
+    :padding 10px 0px 5px 10px
+    :margin 0
+    :font bold 1.3em 'Trebuchet MS', Tahoma, Sans-serif
+
+  ul.sidemenu
+    :list-style none
+    :margin 10px 0 15px 0
+    :padding 0
+    :background #F2F2F2
+
+    li
+      :padding 0px 10px
+
+    a
+      :display block
+      :font-weight normal
+      :color #333
+      :height 1.5em
+      :padding .3em 0 .3em 15px
+      :line-height 1.5em
+      :border-bottom 1px dashed #D4D4D4
+      :text-decoration none
+
+      &.top
+        :border-top 1px dashed #D4D4D4
+
+      &:hover
+        :padding .3em 0 .3em 10px
+        :border-left 5px solid  #65944A
+        :color #65944A
+
+
+.sidebox
+  :background #F5F5F5
+  :border 1px solid #EFEDED
+  :margin-bottom 10px
+
+
+#main
+  :float left
+  :width 68%
+  :margin 0 0 10px 0
+  :padding 0
+
+  h1
+    :padding 10px 0px 0px 5px
+    :margin 0 0 0 10px
+    :border-bottom 1px solid #f2f2f2
+    :font normal 1.5em 'Trebuchet MS', Tahoma, Sans-serif
+
+  ul li
+    :list-style-image url(/images/bullet.gif)
+
+
+.post
+  :margin 0
+  :padding 0
+  :background #FFF url(/images/gradientbg.jpg) repeat-x
+  :border 1px solid #EFEDED
+
+  .post-footer
+    :background-color #FAFAFA
+    :border 1px solid #f2f2f2
+    :padding 5px
+    :margin-top 20px
+    :font-size 95%
+
+    .date
+      :background url(/images/clock.gif) no-repeat 0 center
+      :padding-left 20px
+      :margin 0 10px 0 5px
+
+    .comments
+      :background url(/images/comment.gif) no-repeat 0 center
+      :padding-left 20px
+      :margin 0 10px 0 5px
+
+    .readmore
+      :background url(/images/page.gif) no-repeat 0 center
+      :padding-left 20px
+      :margin 0 10px 0 5px
+
+
+#footer
+  :clear both
+  :margin 0
+  :padding 0
+  :font normal .95em/1.6em 'Trebuchet MS', Tahoma, Arial, sans-serif
+  :text-align left
+
+  h1, p
+    :margin-left 0
+
+
+.float-left
+  :float left
+
+
+.float-right
+  :float right
+
+
+.align-left
+  :text-align left
+
+
+.align-right
+  :text-align right
+
+
+.clear
+  :clear both
+
+
+.gray
+  :color #BFBFBF

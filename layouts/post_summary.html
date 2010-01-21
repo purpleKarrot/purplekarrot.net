@@ -1,0 +1,16 @@
+---
+filter: erb
+---
+<div class="post">
+ <h1><%= @item[:title] %></h1>
+
+<%= yield %>
+
+ <p class="post-footer align-right">
+  <a href="<%= url_for(@item) %>" class="readmore">Read more</a>
+  <a href="<%= url_for(@item) %>#disqus_thread" class="comments"></a>
+  <span class="date"><%= @item[:created_at] %></span>
+ </p>
+
+</div>
+

@@ -1,5 +1,56 @@
 #!/usr/bin/env ruby
 
+# CSS
+# --------------------------------------------------------------
+
+compile '/css/*' do
+  filter :sass
+end
+
+route 'css/*' do
+  item.identifier.gsub(/\/$/, '') + '.css'
+end
+
+# Blog
+# --------------------------------------------------------------
+ 
+compile '/blog/*' do
+  rep.filter :remove_teaser_tag
+  rep.filter :erb
+  rep.filter :bluecloth
+  rep.layout 'post'
+  rep.layout 'default'
+end
+
+route '/blog/*' do
+  item.identifier.gsub(/\/$/, '') + '.html'
+end
+
+compile '/blog/*', :rep => :summary do
+  rep.filter :teaser
+  rep.filter :erb
+  rep.filter :bluecloth
+  rep.layout 'post_summary'
+end
+
+route '/blog/*', :rep => :summary do
+  nil # Don't create files for summaries
+end
+
+compile '/blog/*', :rep => :feed do
+  rep.filter :remove_teaser_tag
+  rep.filter :erb
+  rep.filter :bluecloth
+  rep.layout 'post_summary'
+end
+
+route '/blog/*', :rep => :feed do
+  nil # Don't create files for feed items
+end
+
+# --------------------------------------------------------------
+
+
 compile '*' do
   filter :erb
   layout 'default'
@@ -10,3 +61,4 @@ route '*' do
 end
 
 layout '*', :erb
+
