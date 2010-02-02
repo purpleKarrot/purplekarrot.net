@@ -1,6 +1,8 @@
----
-filter: erb
----
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+
+<xsl:template name="purple.footer">
+
 <div id="footer">
  <div id="footer-content">
 	
@@ -28,8 +30,8 @@ filter: erb
 
   <div class="col2 float-right">
    <p>
-    &copy; copyright 2010 <strong>purpleKarrot</strong><br /> 
-    Design by: <a href="index.html"><strong>styleshout</strong></a> &nbsp; &nbsp;
+    (c) copyright 2010 <strong>purpleKarrot</strong><br /> 
+    Design by: <a href="index.html"><strong>styleshout</strong></a> _ _
     Valid <a href="http://jigsaw.w3.org/css-validator/check/referer"><strong>CSS</strong></a> | 
     <a href="http://validator.w3.org/check/referer"><strong>XHTML</strong></a>
    </p>
@@ -37,9 +39,11 @@ filter: erb
    <ul>						
     <li><a href="index.html"><strong>Home</strong></a></li>
     <li><a href="index.html"><strong>Sitemap</strong></a></li>
-    <li><a href="index.html"><strong>RSS Feed</strong></a></li>								
+    <li><a href="/feed.atom"><strong>Atom Feed</strong></a></li>								
    </ul>	
   </div>
  </div>
 </div>
 
+</xsl:template>
+</xsl:stylesheet>

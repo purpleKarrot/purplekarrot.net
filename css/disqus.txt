@@ -1,0 +1,1827 @@
+
+#disqus_thread
+  :margin-bottom 10px
+
+
+.dsq-brlink
+  :font-size 10px
+
+
+.logo-disqus
+  :font-family Arial, sans-serif
+  :text-transform uppercase
+  :font-size 9px
+  :font-weight bold
+
+
+#dsq-content
+  :font-size 12px
+  :line-height 1.5
+
+  .dsq-alert-message
+    :background-color #FDF1D0
+    :border 1px solid #FAD163
+    :line-height 1.25
+    :padding 5px 8px
+    :color #817134
+    :margin 10px 0
+
+    a
+      :color #516361
+
+    &.dsq-error
+      :background-color #FCA09A
+      :border-color #90040B
+      :color #341922
+
+      a
+        :color #000
+        :text-decoration underline
+        :font-weight bold
+        :font-size 115%
+
+  iframe
+    :border 0
+    :overflow-y auto
+    :overflow-x hidden
+    :*overflow-x visible
+    :width 100%
+    :background-color transparent
+    :height 160px
+    :border 0
+    :background transparent
+    :width 100%
+    :height 90px
+
+    &.dsq-post-reply
+      :height 300px
+
+    &.dsq-post-reply-authenticated
+      :height 170px
+
+  #dsq-comments
+    :margin-bottom 10px
+
+    .dsq-header-avatar
+      .dsq-drop-profile
+        :color #333
+        :font-size 11px
+        :font-family Arial, Helvetica, sans-serif
+        :float left
+        :left 0px
+        :position relative
+        :background #f0f0f0
+        :z-index 2
+        :border-left 1px solid #888
+        :border-right 1px solid #888
+        :border-bottom 1px solid #888
+        :-moz-border-radius 0px 5px 5px 5px
+        :-webkit-border-top-right-radius 5px
+        :-webkit-border-bottom-right-radius 5px
+        :-webkit-border-bottom-left-radius 5px
+        :display none
+        :min-width 64px
+        :_position absolute
+        :_top 32px
+        :_z-index 9000
+        :background #f5f5f5
+        :float none
+        :position absolute
+        :left auto
+
+      &:hover .dsq-drop-profile
+        :display inline
+
+    .dsq-drop-profile li
+      :float none
+      :clear both
+      :line-height 1.3em
+      :padding 2px 4px
+      :white-space nowrap
+
+      img
+        :float none
+        :height 12px
+        :width 12px
+        :margin 0px 4px 0px 0
+        :vertical-align middle
+
+      a
+        :color #1C5392
+        :vertical-align middle
+
+        &:hover
+          :font-weight bold
+
+      &.dsq-drop-services
+        :height 16px
+        :padding 4px 4px
+
+        &:hover
+          :background-color #ddd
+          :outline-top 1px solid #ccc
+          :outline-bottom 1px solid #ccc
+
+        a
+          :display block
+          :width 100%
+          :height 16px
+
+      &.dsq-drop-sep
+        :border-bottom 1px dotted #aaa
+
+      &.dsq-drop-showlnk
+        :padding 4px 2px
+        :border-bottom 1px solid #ccc
+        :text-align center
+        :height 16px
+        :-moz-border-radius 0px 5px 0px 0px
+        :-webkit-border-top-right-radius 5px
+
+        a
+          :font-weight bold
+          :font-size 95%
+          :display block
+          :width 100%
+          :height 16px
+
+      &.dsq-drop-badge
+        :padding 6px 2px
+        :text-align center
+        :font-size 95%
+        :cursor help
+        :border-bottom 1px solid #ddd
+
+        span
+          :padding 1px 3px
+
+      &.dsq-drop-more
+        :height 16px
+        :background url(http://media.disqus.com/images/drop-more.gif)
+        :background-position 0px 0px
+        :background-repeat repeat-x
+        :background-color #fff
+        :text-align center
+        :border-top 1px solid #ddd
+        :-moz-border-radius 0px 0px 5px 5px
+        :-webkit-border-bottom-right-radius 5px
+        :-webkit-border-bottom-left-radius 5px
+
+        &:hover
+          :background-position 0px -20px
+          :border-top 1px solid #ccc
+
+        a
+          :font-size 95%
+          :height 16px
+          :width 100%
+          :display block
+
+      &.dsq-drop-hidden
+        :display none
+        :padding 0
+
+  .dsq-paginate-append-text, .dsq-paginate-all-button
+    :display none
+
+  .dsq-paginate-append-button
+    :display inline
+
+  ul
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :list-style-type none
+    :list-style-image none
+    :background none
+    :display block
+
+  li
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :list-style-type none
+    :list-style-image none
+    :background none
+    :display block
+
+    &:before
+      :content ""
+
+  ol
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :list-style-type none
+    :list-style-image none
+    :background none
+    :display block
+
+  cite
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :font-style normal
+    :text-align left
+
+  div
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  table
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :border-collapse separate
+    :border-spacing 0
+
+  td
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  th
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :font-style normal
+    :text-align left
+
+  p, a
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  img
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :display inline
+    :width auto
+    :max-width none
+
+  h3
+    :display block
+    :float none
+
+  input
+    :background transparent
+
+  caption
+    :font-style normal
+    :text-align left
+
+  .dsq-panel
+    :background #f5f5f5
+    :padding 4px 8px 4px 4px
+    :border 1px solid #999
+    :-webkit-border-radius 5px
+    :-webkit-border-top-left-radius 0
+    :-moz-border-radius 0 5px 5px 5px
+    :border-radius 0 5px 5px 5px
+    :color #333
+    :z-index 2
+
+  .dsq-remove-message, .dsq-realtime-alert, .dsq-missing-permissions
+    :background-color #FDF1D0
+    :border 1px solid #FAD163
+    :line-height 1.25
+    :padding 5px 8px
+    :color #817134
+    :margin 10px 0
+
+  .dsq-options
+    :clear left
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x bottom
+    :margin-bottom 1em
+    :padding-bottom 1em
+
+    span
+      :margin-right 10px
+
+  .dsq-thread-settings
+    :clear left
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/header-grey.png)
+    :border solid 1px #999
+    :margin-bottom 1em
+    :padding 3px 5px
+    :-webkit-border-radius 3px
+    :-moz-border-radius 3px
+
+    a
+      :margin-right 10px
+
+  .dsq-dc-logo
+    :display none
+
+  .dsq-login-buttons
+    :padding 1em 0
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x bottom
+    :margin-bottom 1em
+
+  .dsq-login-button
+    :display inline
+    :margin-right 3px
+
+  .dsq-request-user-info
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x bottom
+    :padding-bottom 1.5em
+    :margin-bottom 1em
+    :clear right
+
+    td
+      :vertical-align top
+
+  .dsq-request-user-logout
+    :float right
+
+  .dsq-request-user-name
+    :width 100%
+    :font-size 1.167em
+    :padding .25em 0 .25em .5em
+
+    small
+      :font-size 9px
+
+  .dsq-request-user-stats
+    :padding .25em 0 0 .5em
+
+    span
+      :margin-right .75em
+
+    big
+      :font-weight bold
+      :font-size 1.167em
+
+  .dsq-textarea
+    .dsq-textarea-wrapper
+      :border 1px solid #999999
+      :-webkit-border-radius 3px
+      :-moz-border-radius 3px
+      :border-radius 3px
+      :background #ffffff url(http://media.disqus.com/images/themes/narcissus/inputshadow.gif) no-repeat top left
+      :padding 3px 5px
+      :margin 3px 0
+      :padding 5px
+
+    textarea
+      :font-size 12px
+      :font-family Arial, Helvetica, sans-serif
+      :padding 0
+      :border 0
+      :width 100%
+      :height 36px
+      :overflow auto
+
+      &:focus
+        :outline 0
+
+      &.dsq-edit-textarea
+        :height 90px
+
+  .dsq-post-fields
+    .dsq-input-wrapper
+      :border 1px solid #999999
+      :-webkit-border-radius 3px
+      :-moz-border-radius 3px
+      :border-radius 3px
+      :background #ffffff url(http://media.disqus.com/images/themes/narcissus/inputshadow.gif) no-repeat top left
+      :padding 3px 5px
+      :margin 3px 0
+
+    input
+      :font-size 12px
+      :font-family Arial, Helvetica, sans-serif
+      :padding 0
+      :width 100%
+      :border 0
+
+      &:focus
+        :outline 0
+
+    table
+      :width 100%
+      :max-width 700px
+      :position relative
+
+    td
+      :width 50%
+      :padding 0
+
+    .dsq-post-fields-left
+      :padding-right .25em
+
+    .dsq-post-fields-right
+      :padding-left .25em
+
+  .dsq-subscribe-menu
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-15.png)
+    :_background #D0D0D0
+    :-webkit-border-radius 3px
+    :-moz-border-radius 3px
+    :border-radius 3px
+
+  .dsq-subscribe
+    :position relative
+
+    a
+      :text-decoration none
+      :color inherit
+      :display block
+      :padding 6px
+      :-webkit-border-radius 3px
+      :-moz-border-radius 3px
+      :border-radius 3px
+
+      &:hover
+        :background-color #fafafa
+
+    ul
+      :display none
+      :position absolute
+      :top -1px
+      :left -1px
+      :width 100%
+      :padding 0
+      :background #eee
+      :-webkit-border-radius 3px
+      :-moz-border-radius 3px
+      :border-radius 3px
+
+    &:hover ul
+    small
+      :font-size 7px
+
+  .dsq-subscribe-label
+    :text-decoration none
+    :color inherit
+    :display block
+    :padding 6px
+    :-webkit-border-radius 3px
+    :-moz-border-radius 3px
+    :border-radius 3px
+
+    input
+      :width auto
+
+  .dsq-post-footer
+    :height 28px
+    :margin-top .5em
+    :position relative
+
+    .dsq-button
+      :float right
+      :margin-left 3px
+
+    .dsq-post-loading
+      :color #666
+
+      img
+        :height 12px
+        :margin-bottom -2px
+
+  .dsq-sharing-options
+    :float left
+    :margin-top 4px
+    :position relative
+
+    label span
+      :text-transform capitalize
+
+    span
+      &.dsq-share-on-label
+        :display none
+
+      &.dsq-share-on
+        input
+          :margin 0 4px
+
+        img
+          :width 13px
+          :height 13px
+          :margin-bottom -2px
+
+      small
+        :font-size 7px
+
+    &:hover
+      span
+        &.dsq-share-on
+          :display none
+
+        &.dsq-share-on-label
+          :display inline
+
+      button.dsq-button-small
+        :background #f5f5f5 url(http://media.disqus.com/images/themes/narcissus/button-small.gif) repeat-x top
+        :border 1px solid #999
+        :padding 3px 6px 5px
+        :-webkit-border-bottom-left-radius 0
+        :-webkit-border-bottom-right-radius 0
+        :-moz-border-radius 5px 5px 0 0
+        :border-radius 5px 5px 0 0
+        :position relative
+        :z-index 10
+        :border-bottom 0
+        :color #333
+
+      .dsq-panel
+        :display block
+
+    .dsq-configure-options
+      :font-size 11px
+
+    button.dsq-button-small
+      :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-15.png)
+      :_background #F7F7F7
+      :border 0
+      :padding 4px 7px 5px
+      :text-shadow 0
+      :min-width 150px
+      :cursor pointer
+      :text-align left
+
+    .dsq-panel
+      :display none
+      :position absolute
+      :top 20px
+      :left 0
+      :width 233px
+      :padding 6px
+      :z-index 9
+
+      div
+        :line-height 1.33
+        :margin .5em 0 0
+
+        img
+          :width 13px
+          :height 13px
+          :margin-bottom -2px
+
+      input
+        :margin-right .25em
+
+  .dsq-placeholder
+    :color #888
+
+  .dsq-comment-footer-right
+    :width 50%
+    :float right
+    :text-align right
+
+    button
+      :vertical-align top
+
+      &.dsq-button-small
+        :margin-right 3px
+
+    .dsq-like
+      :font-size 11px
+      :vertical-align sub
+
+      img
+        :margin-right 3px
+
+  .dsq-comment-footer-reply
+    :position relative
+
+  .dsq-comment-footer-reply-active
+    :position relative
+
+    .dsq-comment-footer-reply-tab
+      :display inline
+
+    .dsq-button-small
+      :display none
+
+  .dsq-comment-footer-reply-tab
+    :background url(http://media.disqus.com/images/themes/narcissus/reply-active.png) repeat-x top
+    :_background #E6E6E6
+    :_color #333
+    :border 0
+    :display none
+    :padding 4px 7px 18px
+    :#padding 4px 4px 18px
+    :font-size 11px
+    :-webkit-border-top-left-radius 5px
+    :-webkit-border-top-right-radius 5px
+    :-moz-border-radius 5px 5px 0 0
+    :border-radius 5px 5px 0 0
+    :color #fff
+    :margin 0
+    :text-shadow 0 -1px 0 #666
+    :font-family Arial, Helvetica, Calibri, sans-serif
+
+    &::-moz-focus-inner
+      :border none
+
+  .dsq-append-post
+    :clear both
+    :margin-top -1em
+    :position relative
+
+    .dsq-post-area
+      :background url(http://media.disqus.com/images/themes/narcissus/gray-30.png)
+      :_background #E6E6E6
+      :_color #333
+      :padding 10px
+      :margin-bottom 20px
+      :-webkit-border-radius 5px
+      :-webkit-border-top-right-radius 0
+      :-moz-border-radius 5px 0 5px 5px
+      :border-radius 5px 0 5px 5px 5px
+
+  .dsq-comment-header
+    :background url(http://media.disqus.com/images/themes/narcissus/header-grey.png)
+    :_background #F7F7F7
+    :_color #333
+    :-webkit-border-top-left-radius 5px
+    :-webkit-border-top-right-radius 5px
+    :-moz-border-radius 5px 5px 0 0
+    :border-radius 5px 5px
+    :line-height normal
+    :height auto
+
+    table
+      :width 100%
+
+    td
+      :vertical-align middle
+
+    cite
+      :font-weight bold
+      :font-size 110%
+
+    .dsq-comment-header-likes
+      :text-align right
+      :padding-right 8px
+      :font-size .85em
+
+  .dsq-moderator
+    .dsq-comment-header
+      :background-image url(http://media.disqus.com/images/themes/narcissus/header-blue.png)
+      :_background #EBF0F5
+
+    .dsq-moderator-star
+      :display inline
+      :margin-top -3px
+      :vertical-align middle
+
+  .dsq-moderator-star
+    :display none
+
+  .dsq-comment-outline .dsq-comment-header
+    :outline 1px solid #FAD163
+
+  .dsq-header-avatar
+    :width 1%
+    :padding 0
+    :position relative
+
+    a.dsq-avatar
+      :display block
+      :padding 4px
+      :-webkit-border-radius 3px
+      :-moz-border-radius 3px
+      :border-radius 3px
+      :_background #F7F7F7
+
+    img
+      :border 2px solid #fff
+      :width 32px
+      :height 32px
+
+  .dsq-comment
+    &:hover .dsq-header-avatar
+      a.dsq-avatar
+        :padding 3px
+        :background #F5F5F5
+        :border 1px solid #999
+
+      &:hover a.dsq-avatar
+        :border-bottom 1px solid #f5f5f5
+
+    &.dsq-reaction:hover .dsq-header-avatar a.dsq-avatar
+      :padding 3px
+      :background none
+      :border 1px solid transparent
+
+  .dsq-comment-header-meta
+    :padding-left 8px
+
+  .dsq-comment-header-time
+    :padding 0 8px
+
+    a
+      :text-decoration none
+      :color inherit
+
+      &:hover
+        :border-bottom-width 1px
+        :border-bottom-style dotted
+
+  .dsq-comment-message
+    :line-height 1.42
+    :margin 1em 0
+
+  .dsq-comment-footer
+    :_height 1%
+    :overflow hidden
+    :margin 1em 0
+
+  .dsq-comment-footer-left
+    :width 50%
+    :float left
+    :padding-top 4px
+
+    a
+      :margin-right .5em
+
+  .dsq-h3-reactions
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x top
+    :padding-top 10px
+    :margin-top 20px
+
+  .dsq-reaction-header
+    table
+      :width 100%
+      :background url(http://media.disqus.com/images/themes/narcissus/blue-20.png)
+      :_background #EEF9FD
+      :_color #333
+
+    td
+      :padding .5em
+
+  .dsq-reaction-header-right
+    :text-align right
+
+  .dsq-show-more-reactions
+    :padding 1em
+    :text-align center
+    :margin 1em 0
+
+  .dsq-reaction
+    .dsq-comment-cite
+      :padding-left 8px
+
+    .dsq-service-name
+      :text-transform capitalize
+
+  .dsq-pagination
+    :text-align center
+    :padding 1em
+    :margin 1em 0
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x top
+
+    table
+      :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x bottom
+      :width 100%
+
+    td
+      :padding .5em
+
+    span, a
+      :margin 0 .25em
+
+  .dsq-pagination-links
+    :width 100%
+    :text-align center
+
+  .dsq-item-trackback
+    :padding 1em 0
+    :margin 1em 0
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/gray-50.png) repeat-x top
+
+  .dsq-edit
+    :margin 10px 0
+
+  .dsq-drop-profile a
+    :text-decoration none
+
+  .dsq-global-moderator-extras
+    :font-size 11px
+
+    strong
+      :margin-left 10px
+
+      &:first-child
+        :margin-left 0
+
+
+#dsq-popup-alert iframe
+  :border 0
+  :overflow-y auto
+  :overflow-x hidden
+  :*overflow-x visible
+  :width 100%
+  :background-color transparent
+  :height 160px
+
+  &.dsq-post-reply
+    :height 300px
+
+  &.dsq-post-reply-authenticated
+    :height 170px
+
+
+.dsq-overlay
+  :display block
+  :position absolute
+  :top 0
+  :left 0
+  :width 100%
+  :height 100%
+  :z-index 5000
+  :background-color #000
+  :-moz-opacity 0.8
+  :opacity .80
+  :filter alpha(opacity=80)
+
+  &[id]
+    :position fixed
+
+
+.dsq-popup
+  :font-size 13px
+  :color #333
+  :display none
+  :position absolute
+  :z-index 9999
+  :padding 0
+  :border 0
+  :text-align left
+  :font-family Arial, Helvetica, sans-serif
+
+  h4
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  ul
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :list-style-type none
+    :list-style-image none
+    :background none
+    :display block
+    :color #333
+    :line-height 1.22em
+
+    &.dsq-popup-help
+      :margin 0 10px
+
+      li.dsq-help-otheraccts
+        :font-weight bold
+        :font-size 110%
+        :border-bottom-width 2px
+        :border-bottom-style solid
+
+    &.dsq-profile-commentlist
+      :margin-top 10px
+
+  li
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :list-style-type none
+    :list-style-image none
+    :background none
+    :display block
+
+    &:before
+      :content ""
+
+  ol
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :list-style-type none
+    :list-style-image none
+    :background none
+    :display block
+
+  div
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  table
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :border-collapse separate
+    :border-spacing 0
+
+  td, th
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  p
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :margin-bottom 8px
+    :color #333
+    :line-height 1.22em
+
+    &.dsq-popup-notice
+      :padding 5px
+      :margin 20px 0 0 0
+      :background-color #fdf1d0
+      :border 1px solid #fad163
+
+    &.dsq-profile-label
+      :font-family Trebuchet MS, Trebuchet, Verdana, sans-serif
+      :font-size 95%
+      :color #aaa
+
+  a
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :color #1C5392
+
+    &:hover
+      :color #869AAD
+
+    &.dsq-profile-follow
+      :color #7aa5d5
+
+  cite
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+
+  img
+    :border 0
+    :padding 0
+    :margin 0
+    :float none
+    :text-indent 0
+    :background none
+    :max-width none
+
+  &[id]
+    :position fixed
+
+  .dsq-popup-top
+    :position relative
+    :text-align right
+    :width 520px
+    :height 20px
+    :background transparent url(http://media.disqus.com/images/embed/popup-top.png) no-repeat
+
+    img
+      :margin 12px 13px 0 0
+      :*margin 12px 13px 0 0
+
+  .dsq-popup-bottom
+    :text-align right
+    :width 520px
+    :height 20px
+    :background transparent url(http://media.disqus.com/images/embed/popup-bottom.png) no-repeat
+
+  .powered-by
+    :font-size 90%
+    :text-align right
+    :margin-top 10px
+    :padding-top 10px
+    :border-top 1px solid #ddd
+
+  .dsq-popup-body
+    div
+      &.powered-by a
+        :color #888
+        :text-decoration none
+
+      &.show-more
+        :padding-left 10px
+        :font-size 95%
+        :color #7aa5d5
+
+    .dsq-popup-header
+      :background-color #e5ebed
+      :padding 0 10px
+      :position relative
+      :padding-bottom 10px
+      :border-bottom 1px solid #445460
+
+      a.dsq-close-link
+        :color #7aa5d5
+        :position absolute
+        :top -8px
+        :right 5px
+        :text-decoration none
+
+        img
+          :width 23px
+          :height 24px
+          :border 0
+
+      img
+        :border 1px solid #fff
+        :width 32px
+        :height 32px
+        :vertical-align middle
+
+    .dsq-popup-body-padding
+      :padding 0 10px
+      :font-size 13px
+
+      cite
+        :margin-left 5px
+        :font-style normal
+        :vertical-align middle
+
+        span
+          :font-weight bold
+          :font-size 150%
+          :font-style normal
+          :margin-right 10px
+          :vertical-align middle
+
+      .dsq-popuplink
+        :margin 0 0 0 5px
+        :font-size 90%
+
+  .dsq-popup-body
+    :width 520px
+    :background transparent url(http://media.disqus.com/images/embed/popup-body.png) repeat-y
+
+  .dsq-subscribe-submit
+    :margin 0 auto
+    :padding 0 10px
+    :color #222
+
+    input
+      :font-size 110%
+      :width 200px
+
+  .dsq-popup-container
+    :position relative
+
+  .dsq-blacklist-option
+    :padding 5px 10px
+    :border-bottom 1px dotted #E5EBED
+
+  iframe
+    &#dsq-popup-login
+      :margin-top 10px
+      :height 310px
+      :width 100%
+
+    &#dsq-popup-account-settings
+      :width 100%
+      :height 400px
+
+  .dsq-popup .dsq-popup-body .dsq-popup-body-padding cite
+    :position static
+    :margin 0
+
+  .dsq-clout
+    :float left
+    :width 72px
+    :height 32px
+    :line-height 32px
+    :background url('http://media.disqus.com/images/embed/clout-background.png') no-repeat top left
+
+    &.unverified
+      :background url('http://media.disqus.com/images/embed/unverified-background.png') no-repeat top left
+      :line-height 24px
+
+      a
+        :font-size 11px
+        :font-weight normal
+
+    a
+      :float left
+      :width 100%
+      :text-align center
+      :color #FFF
+      :font-size 16px
+      :font-weight bold
+      :text-decoration none
+
+      &:hover
+        :color #fff
+
+  .dsq-profile-services
+    :padding 10px
+    :background-color #f0f0f0
+    :border-bottom 1px solid #aaa
+    :height auto
+    :overflow hidden
+
+    .dsq-profile-userlvl
+      :padding-bottom 10px
+      :margin-bottom 15px
+      :border-bottom 1px solid #ddd
+
+    span
+      &.dsq-profile-ontheweb
+        :float left
+        :font-family Trebuchet MS, Trebuchet, Verdana, sans-serif
+        :font-size 95%
+        :color #aaa
+
+      &.dsq-services-description
+        :font-size 85%
+        :color #555
+        :position absolute
+        :top 25px
+        :left 5px
+        :display none
+        :white-space nowrap
+
+    ul
+      :margin-left 15px
+      :display inline
+
+      li
+        :display inline
+        :margin-right 15px
+
+        &.dsq-service-labeltxt
+          :margin 0
+          :margin 0
+
+    img
+      :border 2px solid #fff
+
+  .dsq-profile-status, .dsq-profile-recentcomments
+    :clear both
+    :padding 10px
+
+    p
+      :padding 0
+
+    h4
+      :font-size 110%
+      :border-bottom 2px solid #D7DBDD
+      :margin-bottom 10px
+
+      span
+        :background-color #D7DBDD
+        :padding 2px 5px
+        :color #555
+        :font-weight bold
+
+  .dsq-profile-commentlist
+    li
+      :padding 5px 0
+      :border-bottom 2px solid #e9ebed
+
+      img.avatar-small
+        :width 24px
+        :height 24px
+        :border 1px solid #DDD
+        :float left
+
+      .comment-message
+        :margin-left 30px !important
+        :*float left !important
+        :*margin-left 5px !important
+
+      span.comment-meta
+        :clear both !important
+        :margin-left 30px !important
+        :display block !important
+        :font-size 90% !important
+        :background none !important
+        :float none !important
+        :width auto !important
+
+    span
+      :color #666
+      :font-size 95%
+
+
+.dsq-popup-container
+  .dsq-popup-b
+    :background url(http://media.disqus.com/images/facebox/b.png)
+
+  .dsq-popup-tl
+    :background url(http://media.disqus.com/images/facebox/tl.png)
+    :height 10px
+    :width 10px
+    :overflow hidden
+    :padding 0
+
+  .dsq-popup-tr
+    :background url(http://media.disqus.com/images/facebox/tr.png)
+    :height 10px
+    :width 10px
+    :overflow hidden
+    :padding 0
+
+  .dsq-popup-bl
+    :background url(http://media.disqus.com/images/facebox/bl.png)
+    :height 10px
+    :width 10px
+    :overflow hidden
+    :padding 0
+
+  .dsq-popup-br
+    :background url(http://media.disqus.com/images/facebox/br.png)
+    :height 10px
+    :width 10px
+    :overflow hidden
+    :padding 0
+
+  table
+    :border-collapse collapse
+
+  td
+    :border-bottom 0
+    :padding 0
+
+  .dsq-popup-body
+    :padding 10px
+    :background #fff
+    :width 370px
+
+  .dsq-popup-title
+    :position static
+    :text-align left
+    :background none
+    :height auto
+    :width auto
+    :background-color #E5EBED
+    :margin -10px -10px 10px
+    :padding 10px
+    :border-bottom 1px solid #2F414B
+
+    img
+      :margin 0
+
+    h3
+      :font-size 18px
+      :font-weight bold
+      :margin 0
+
+  h4
+    :font-size 14px
+    :font-weight bold
+    :margin 0
+
+
+#dsq-popup-message
+  &.dsq-popup ul.dsq-popup-help li
+    :margin 0 0 15px 0
+    :padding 0 0 10px 0
+    :border-bottom 1px dotted #E5EBED
+
+  ul
+    &.dsq-list-tick li
+      :list-style none inside url(http://media.disqus.com/images/tick.png) !important
+      :display list-item
+
+    &.dsq-list-bluebullet li
+      :list-style none inside url(http://media.disqus.com/images/bullet_blue.png)
+      :display list-item
+
+    &.dsq-thread-help
+      :margin 0
+      :padding 0
+
+      li
+        :margin 10px 0
+        :padding 0
+        :list-style disc inside
+        :display list-item
+
+        p
+          :font-size 11px
+          :color #555
+          :padding-left 5px
+
+  li
+    :margin 10px 0
+    :padding 0 10px
+    :border-bottom 1px dotted #E5EBED
+
+    li
+      :padding-left 10px
+
+
+.dsq-popup-login .dsq-popup-content
+  :width 420px
+
+
+.dsq-popup-account-settings .dsq-popup-content
+  :width 500px
+
+
+.dsq-lightbox
+  .dsq-popup-content
+    :width 550px
+
+  .powered-by
+    :display none
+
+  img
+    :border 0 !important
+    :height auto !important
+    :width auto !important
+
+  .dsq-lightbox-register-reasons
+    :padding 0 10px !important
+
+    li
+      :background url(http://media.disqus.com/images/small-tick.png) no-repeat
+      :padding-left 12px !important
+      :margin 0 0 0 6px !important
+      :display inline !important
+      :font-size 11px !important
+      :color #555
+
+      img
+        :margin-bottom -1px !important
+
+  .dsq-lightbox-auth-fields table
+    :padding 8px
+    :background-color #EDFFC9
+    :border 1px solid #A5C469
+    :-moz-border-radius 4px
+    :-webkit-border-radius 4px
+    :-webkit-border-radius 4px
+    :width 400px
+    :margin 10px auto
+
+    td
+      :padding 4px
+
+      input
+        :font-size 13px
+        :padding 2px
+
+  .dsq-lightbox-submit
+    :height 1%
+    :overflow auto
+    :padding 0 5px
+    :margin-top 20px
+
+  .dsq-lightbox-auth-post
+    :float right
+    :padding 4px
+    :background-color #EAFFCD
+    :-moz-border-radius 4px
+    :-webkit-border-radius 4px
+    :-webkit-border-radisu 4px
+
+  .dsq-lightbox-auth-skip
+    :float left
+    :margin-top 5px
+    :padding 2px
+
+  .dsq-lightbox-switch-auth
+    :width 400px
+    :font-size 11px
+    :text-align right
+    :margin 0 auto
+
+  .errorlist
+    :color #c03000 !important
+    :font-size 11px
+    :font-weight bold
+    :margin 0
+    :padding 0
+
+    li
+      :margin 5px 0 !important
+      :padding 0 !important
+
+
+.dsq-lightbox-errors p
+  :color #c03000 !important
+  :font-size 11px
+  :font-weight bold
+
+
+.dsq-lightbox-recognized table
+  :width 400px
+  :margin 10px auto
+
+  td
+    :padding 4px
+
+
+.dsq-popup-profile
+  .dsq-popup-content
+    :width 500px
+
+  .dsq-popup-title
+    :height 1%
+    :overflow auto
+
+    td
+      :vertical-align top
+
+    img.dsq-popup-profile-avatar
+      :width 48px
+      :height 48px
+
+  .dsq-popup-profile-user
+    :padding 0 10px
+
+    h3
+      :font-size 20px
+      :font-weight bold
+      :margin 0
+
+  .dsq-popup-profile-user-stats
+    span
+      :margin-right 10px
+
+    big
+      :font-weight bold
+      :font-size 16px
+
+  .dsq-popup-profile-state
+    :clear both
+    :padding 15px
+    :background-color #f0f0f0
+    :border-bottom 1px solid #aaa
+    :height auto
+    :overflow hidden
+    :margin -10px -10px 0px
+    :border-bottom 1px solid #B2B2B2
+
+  .dsq-popup-profile-status
+    :padding 10px
+    :margin 0 -10px 0
+    :background-color #EEF9FD
+    :border-bottom 1px solid #9FCDE3
+
+  .dsq-popup-profile-snapshot
+    :padding 15px 0
+
+    table
+      :width 100%
+
+      td
+        :width 50%
+        :vertical-align top
+
+        h4
+          :margin-bottom 5px
+
+        ul
+          :margin-bottom 15px
+          :max-height 200px
+          :overflow auto
+
+          img
+            :vertical-align text-top
+            :margin-right 5px
+
+          li
+            :margin-bottom 5px
+
+            a
+              :font-size 12px
+              :text-decoration none
+              :text-transform capitalize
+
+
+.dsq-menu
+  :margin 0 !important
+  :left 0px
+  :position absolute
+  :_position absolute
+  :background #f0f0f0 !important
+  :z-index 2 !important
+  :border-width 1px !important
+  :border-color #888 !important
+  :border-style solid !important
+  :-moz-border-radius 0px 0px 4px 4px
+  :-webkit-border-bottom-right-radius 4px
+  :-webkit-border-bottom-left-radius 4px
+  :display inline
+  :padding 5px 10px 5px 0 !important
+  :list-style none !important
+
+  li
+    :margin 0 !important
+    :padding 0 !important
+    :clear both
+    :line-height 1.3em !important
+    :font-size 12px !important
+    :margin-bottom 2px !important
+    :margin-left 4px !important
+    :white-space nowrap !important
+    :list-style none !important
+    :float none
+    :background none
+    :text-align left
+
+    &:before
+      :content ""
+
+    a
+      :text-decoration none
+      :color #333
+
+      &.dsq-admin-toggle
+        :font-weight bold
+
+      &:hover
+        :color #869AAD
+
+    &.dsq-admin-email, &.dsq-admin-ip
+      :color #555
+      :font-style italic
+      :cursor default
+
+    &.dsq-menu-sep
+      :border-bottom 1px dotted #aaa
+      :font-size 1pt !important
+
+
+select
+  :display inline
+  :width auto
+
+
+#dsq-ontent td
+  :font-style normal
+  :text-align left
+
+
+#dsq-comments-title
+  :clear left
+
+
+.dsq-comment-footer-reply-active span
+  :position absolute
+  :bottom -21px
+  :left -10px
+  :width 10px
+  :height 10px
+  :background url(http://media.disqus.com/images/themes/narcissus/reply-corner.png) no-repeat bottom left
+  :background none
+
+
+button
+  &.dsq-button
+    :color inherit
+    :border 1px solid #999
+    :margin 0
+    :#margin 0 3px
+    :font-family Arial, Helvetica, Calibri, sans-serif
+    :-webkit-border-radius 5px
+    :-moz-border-radius 5px
+    :border-radius 5px
+    :overflow visible
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/button-large.png) repeat-x top
+    :_background-image url(http://media.disqus.com/images/themes/narcissus/button-large.png)
+    :padding 6px 8px 6px
+    :font-size 12px
+    :font-weight bold
+
+    &:hover
+      :cursor pointer
+
+  &.dsq-button-small
+    :color inherit
+    :border 1px solid #999
+    :margin 0
+    :#margin 0 3px
+    :font-family Arial, Helvetica, Calibri, sans-serif
+    :-webkit-border-radius 5px
+    :-moz-border-radius 5px
+    :border-radius 5px
+    :overflow visible
+    :background transparent url(http://media.disqus.com/images/themes/narcissus/button-large.png) repeat-x top
+    :_background-image url(http://media.disqus.com/images/themes/narcissus/button-large.png)
+    :padding 3px 6px 4px
+    :font-size 11px
+
+    &:hover
+      :cursor pointer
+
+
+.dsq-badge
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+
+
+.dsq-badge-verified
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #92C72A
+  :border 1px solid #6CA300
+  :color #fff
+
+
+.dsq-badge-registered
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #FFFE98
+  :border 1px solid #EAE800
+  :color #333
+
+
+.dsq-badge-guest
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #DDDDDD
+  :border 1px solid #bbb
+  :color #333
+
+
+.dsq-badge-facebook
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #46639D
+  :border 1px solid #2D3F65
+  :color #fff
+
+
+.dsq-badge-twitter
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #31CEFF
+  :border 1px solid #2BB5E0
+  :color #fff
+
+
+.dsq-badge-openid
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #F9F9F9
+  :border 1px solid #AAAAAA
+  :color #F89B1E
+
+
+.dsq-badge-yahoo
+  :padding 2px 4px
+  :-webkit-border-top-right-radius 5px
+  :-webkit-border-bottom-left-radius 5px
+  :-moz-border-radius 0 5px 0 5px
+  :border-radius 0 5px 0 5px
+  :vertical-align middle
+  :font-size 12px
+  :text-transform capitalize
+  :background #8516A2
+  :border 1px solid #530068
+  :color #fff
+
+
+.dsq-badge-small, li.dsq-drop-badge span
+  :font-size 10px
+  :padding 1px 2px
+  :-webkit-border-top-right-radius 3px
+  :-webkit-border-bottom-left-radius 3px
+  :-moz-border-radius 0 3px 0 3px
+  :border-radius 0 3px 0 3px
+
+
+.dsq-moderate-options table
+  :background-color #E5EBED
+  :padding 10px
+  :width 400px
+  :margin 10px auto
+  :-moz-border-radius 4px
+  :-webkit-border-radius 4px
+  :-webkit-border-radius 4px
+
+  td
+    :padding 4px
+
+  ul
+    :margin 0
+    :padding 0
+
+  li
+    :margin-bottom 5px
+
+
+table.dsq-moderator-settings td
+  :vertical-align top
+  :border-bottom solid 1px #fff
+  :padding 10px 6px
+
+  &.last
+    :border-bottom none
+
+  p.dsq-form-actions
+    :text-align right
+    :margin-top 5px
+
+
+span.dsq-options-status
+  :margin-left 10px
+  :color #799c42

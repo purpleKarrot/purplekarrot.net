@@ -1,0 +1,12 @@
+[article Second!
+  [quickbook 1.5]
+]
+
+Some C++ code...
+
+  int main(int argc, char* argv[])
+  {
+     std::cout << "hello world!" << std::endl;
+     return 0;
+  }
+

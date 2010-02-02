@@ -1,0 +1,11 @@
+[article First!
+  [quickbook 1.5]
+]
+
+Maybe some introduction would be appropriate for a new website...[footnote maybe not]
+
+But the most interesting thing is this: [*First!][footnote Am I a firstposter or what?]
+
+[note 
+ This page is written in [@http://www.boost.org/doc/libs/1_41_0/doc/html/quickbook/ref.html QuickBook].
+]
