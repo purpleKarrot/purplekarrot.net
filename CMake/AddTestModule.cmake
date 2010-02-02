@@ -22,6 +22,7 @@ find_package(Boost 1.40.0 REQUIRED
 #   NAME_LOG_XML     location of the xml file containing the test log
 #   NAME_REPORT_XML  location of the xml file containing the test report
 #
+
 macro(ADD_TEST_MODULE NAME)
 
   set(MAIN_CPP ${CMAKE_CURRENT_BINARY_DIR}/${NAME}_main.cpp)

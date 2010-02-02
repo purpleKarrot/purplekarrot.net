@@ -26,7 +26,11 @@ macro(doxygen_to_boostbook OUTPUT)
   # Create a Doxygen configuration file template
   get_filename_component(DOXYFILE_PATH ${OUTPUT} PATH)
   get_filename_component(DOXYFILE_NAME ${OUTPUT} NAME_WE)
-  set(DOXYFILE ${DOXYFILE_PATH}/${DOXYFILE_NAME}.doxyfile)
+  if(DOXYFILE_PATH STREQUAL "")
+    set(DOXYFILE ${CMAKE_CURRENT_BINARY_DIR}/${DOXYFILE_NAME}.doxyfile)
+  else(DOXYFILE_PATH STREQUAL "")
+    set(DOXYFILE ${DOXYFILE_PATH}/${DOXYFILE_NAME}.doxyfile)
+  endif(DOXYFILE_PATH STREQUAL "")
 
   execute_process(
     COMMAND ${DOXYGEN_EXECUTABLE} -s -g ${DOXYFILE}
@@ -37,7 +41,7 @@ macro(doxygen_to_boostbook OUTPUT)
   endforeach(PARAM)
 
   # Update the Doxygen configuration file for XML generation
-  file(APPEND ${DOXYFILE} "OUTPUT_DIRECTORY = ${CMAKE_CURRENT_BINARY_DIR}\n")
+  file(APPEND ${DOXYFILE} "OUTPUT_DIRECTORY = \"${CMAKE_CURRENT_BINARY_DIR}\"\n")
   file(APPEND ${DOXYFILE} "GENERATE_LATEX = NO\n")
   file(APPEND ${DOXYFILE} "GENERATE_HTML = NO\n")
   file(APPEND ${DOXYFILE} "GENERATE_XML = YES\n")
@@ -48,8 +52,7 @@ macro(doxygen_to_boostbook OUTPUT)
   set(THIS_DOXY_HEADERS)
   foreach(HDR ${THIS_DOXY_DEFAULT_ARGS})
     list(APPEND THIS_DOXY_HEADERS ${THIS_DOXY_HEADER_PATH}/${HDR})
-    set(THIS_DOXY_HEADER_LIST 
-      "${THIS_DOXY_HEADER_LIST} ${THIS_DOXY_HEADER_PATH}/${HDR}")
+    set(THIS_DOXY_HEADER_LIST "${THIS_DOXY_HEADER_LIST} \\\n  \"${HDR}\"")
   endforeach(HDR)
   file(APPEND ${DOXYFILE} "INPUT = ${THIS_DOXY_HEADER_LIST}\n")
 

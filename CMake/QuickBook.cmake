@@ -7,6 +7,7 @@ add_external(QUICKBOOK_SRC_DIR quickbook SVN
 find_package(Boost 1.40.0 REQUIRED
   COMPONENTS filesystem system program_options
   )
+include_directories(${Boost_INCLUDE_DIRS})
 
 add_executable(quickbook
   ${QUICKBOOK_SRC_DIR}/detail/actions.cpp
@@ -35,6 +36,6 @@ macro(quickbook_to_boostbook OUTPUT INPUT)
   add_custom_command(OUTPUT ${OUTPUT}
     COMMAND quickbook "--output-file=${OUTPUT}" ${INPUT_PATH}
     COMMENT "Generating BoostBook XML from ${INPUT}."
-    DEPENDS ${INPUT})
+    DEPENDS ${INPUT} ${ARGN})
 
 endmacro(quickbook_to_boostbook OUTPUT INPUT)
