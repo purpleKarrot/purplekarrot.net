@@ -8,7 +8,7 @@
 
 <xsl:template name = "disqus.script">
 	<script type="text/javascript">
-	//<![CDATA[
+	<![CDATA[//<![CDATA[
 	(function() {
 		var links = document.getElementsByTagName('a');
 		var query = '?';
@@ -19,7 +19,7 @@
 		}
 		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/purplekarrot/get_num_replies.js' + query + '"></' + 'script>');
 	})();
-	//]]>
+	//]]]]><![CDATA[>]]>
 	</script>
 </xsl:template>
 

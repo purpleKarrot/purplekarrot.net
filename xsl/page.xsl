@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 
-<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/docbook.xsl"/>
+<xsl:import href="http://docbook.sourceforge.net/release/xsl/current/xhtml/chunk.xsl"/>
 
 <xsl:import href="admon.xsl"/>
 <xsl:import href="footnote.xsl"/>
@@ -44,7 +44,7 @@
         </div>
         <xsl:call-template name="purple.footer"/>
       </div>
-      <!-- disqus.script -->
+      <xsl:call-template name="disqus.script"/>
     </body>
   </html>
 

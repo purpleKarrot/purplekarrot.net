@@ -50,6 +50,17 @@ xsl_transform(website.docbook website.xml
   COMMENT "Generating DocBook from website.xml."
   DEPENDS website.xml)
 
+
+xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
+  STYLESHEET ${BOOSTBOOK_XSL_DIR}/html.xsl
+  CATALOG ${BOOSTBOOK_CATALOG}
+  DIRECTORY HTML.manifest
+  PARAMETERS admon.graphics.path=images
+             navig.graphics.path=images
+             boost.image.src=boost.png
+  COMMENT "Generating Website HTML."
+  MAKE_ALL_TARGET website-html)
+
 add_custom_target(website ALL DEPENDS website.docbook)
 
 
