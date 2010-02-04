@@ -53,6 +53,7 @@ xsl_transform(website.docbook website.xml
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
+# STYLESHEET ${DOCBOOK_XSL_DIR}/xhtml-1_1/chunk.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
   DIRECTORY HTML.manifest
   COMMENT "Generating Website HTML."

@@ -430,7 +430,7 @@
 <xsl:template match="thead|tfoot">
   <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
     <xsl:if test="@align">
-      <xsl:attribute name="align">
+      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
         <xsl:value-of select="@align"/>
       </xsl:attribute>
     </xsl:if>
@@ -464,7 +464,7 @@
 <xsl:template match="tbody">
   <tbody>
     <xsl:if test="@align">
-      <xsl:attribute name="align">
+      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
         <xsl:value-of select="@align"/>
       </xsl:attribute>
     </xsl:if>
@@ -568,7 +568,7 @@
     </xsl:if>
 
     <xsl:if test="$bgcolor != ''">
-      <xsl:attribute name="bgcolor">
+      <xsl:attribute name="style"><xsl:text>background-color: </xsl:text>
         <xsl:value-of select="$bgcolor"/>
       </xsl:attribute>
     </xsl:if>
@@ -590,7 +590,7 @@
     </xsl:if>
 
     <xsl:if test="@align">
-      <xsl:attribute name="align">
+      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
         <xsl:value-of select="@align"/>
       </xsl:attribute>
     </xsl:if>
@@ -774,7 +774,7 @@
 
       <xsl:element name="{$cellgi}" namespace="http://www.w3.org/1999/xhtml">
         <xsl:if test="$bgcolor != ''">
-          <xsl:attribute name="bgcolor">
+          <xsl:attribute name="style"><xsl:text>background-color: </xsl:text>
             <xsl:value-of select="$bgcolor"/>
           </xsl:attribute>
         </xsl:if>
@@ -820,7 +820,7 @@
         </xsl:if>
 
         <xsl:if test="$align != ''">
-          <xsl:attribute name="align">
+          <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
             <xsl:value-of select="$align"/>
           </xsl:attribute>
         </xsl:if>
@@ -1028,13 +1028,13 @@
 
             <xsl:choose>
               <xsl:when test="$colspec/@align">
-                <xsl:attribute name="align">
+                <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
                   <xsl:value-of select="$colspec/@align"/>
                 </xsl:attribute>
               </xsl:when>
               <!-- Suggested by Pavel ZAMPACH <zampach@nemcb.cz> -->
               <xsl:when test="$colspecs/ancestor::tgroup/@align">
-                <xsl:attribute name="align">
+                <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
                   <xsl:value-of select="$colspecs/ancestor::tgroup/@align"/>
                 </xsl:attribute>
               </xsl:when>

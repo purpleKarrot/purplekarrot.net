@@ -152,14 +152,14 @@
       <xsl:when test="attribution">
         <table border="0" width="100%" cellspacing="0" cellpadding="0" class="blockquote" summary="Block quote">
           <tr>
-            <td width="10%" valign="top">&#160;</td>
-            <td width="80%" valign="top">
+            <td valign="top">&#160;</td>
+            <td valign="top">
               <xsl:apply-templates select="child::*[local-name(.)!='attribution']"/>
             </td>
-            <td width="10%" valign="top">&#160;</td>
+            <td valign="top">&#160;</td>
           </tr>
           <tr>
-            <td width="10%" valign="top">&#160;</td>
+            <td valign="top">&#160;</td>
             <td colspan="2" align="{$direction.align.end}" valign="top">
               <xsl:text>--</xsl:text>
               <xsl:apply-templates select="attribution"/>

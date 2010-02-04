@@ -238,7 +238,7 @@ linkend/id: <xsl:value-of select="@linkend"/>
   <xsl:if test="count($footnotes)&gt;count($table.footnotes)">
     <div class="footnotes">
       <br/>
-      <hr width="100" align="{$direction.align.start}"/>
+      <hr/>
       <xsl:apply-templates select="$footnotes" mode="process.footnote.mode"/>
     </div>
   </xsl:if>

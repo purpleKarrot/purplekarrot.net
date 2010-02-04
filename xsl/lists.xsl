@@ -29,16 +29,10 @@
     <ul>
       <xsl:call-template name="generate.class.attribute"/>
       <xsl:if test="$css.decoration != 0">
-        <xsl:attribute name="type">
-          <xsl:call-template name="list.itemsymbol"/>
-        </xsl:attribute>
+        
       </xsl:if>
 
-      <xsl:if test="@spacing='compact'">
-        <xsl:attribute name="compact">
-          <xsl:value-of select="@spacing"/>
-        </xsl:attribute>
-      </xsl:if>
+      <xsl:if test="@spacing='compact'"><xsl:message><xsl:text>Compact spacing via @spacing attribute cannot be set in strict XHTML output for listitem: </xsl:text><xsl:value-of select="@spacing"/></xsl:message></xsl:if>
       <xsl:apply-templates select="listitem                     |comment()[preceding-sibling::listitem]                     |processing-instruction()[preceding-sibling::listitem]"/>
     </ul>
   </div>
@@ -155,21 +149,11 @@
       <xsl:otherwise>
         <ol>
           <xsl:call-template name="generate.class.attribute"/>
-          <xsl:if test="$start != '1'">
-            <xsl:attribute name="start">
-              <xsl:value-of select="$start"/>
-            </xsl:attribute>
-          </xsl:if>
+          <xsl:if test="$start != '1'"><xsl:message><xsl:text>Strict XHTML does not allow setting @start attribute for lists! </xsl:text></xsl:message></xsl:if>
           <xsl:if test="$numeration != ''">
-            <xsl:attribute name="type">
-              <xsl:value-of select="$type"/>
-            </xsl:attribute>
+            
           </xsl:if>
-          <xsl:if test="@spacing='compact'">
-            <xsl:attribute name="compact">
-              <xsl:value-of select="@spacing"/>
-            </xsl:attribute>
-          </xsl:if>
+          <xsl:if test="@spacing='compact'"><xsl:message><xsl:text>Compact spacing via @spacing attribute cannot be set in strict XHTML output for listitem: </xsl:text><xsl:value-of select="@spacing"/></xsl:message></xsl:if>
           <xsl:apply-templates select="listitem                         |comment()[preceding-sibling::listitem]                         |processing-instruction()[preceding-sibling::listitem]"/>
         </ol>
       </xsl:otherwise>
@@ -184,11 +168,7 @@
 <xsl:template match="orderedlist/listitem">
   <li>
     <xsl:call-template name="common.html.attributes"/>
-    <xsl:if test="@override">
-      <xsl:attribute name="value">
-        <xsl:value-of select="@override"/>
-      </xsl:attribute>
-    </xsl:if>
+    <xsl:if test="@override"><xsl:message><xsl:text>@override attribute cannot be set in strict XHTML output for listitem: </xsl:text><xsl:value-of select="@override"/></xsl:message></xsl:if>
 
     <!-- we can't just drop the anchor in since some browsers (Opera)
          get confused about line breaks if we do. So if the first child
@@ -725,9 +705,7 @@
       <xsl:otherwise>
         <ol>
           <xsl:call-template name="generate.class.attribute"/>
-          <xsl:attribute name="type">
-            <xsl:value-of select="substring($procedure.step.numeration.formats,1,1)"/>
-          </xsl:attribute>
+          
           <xsl:apply-templates select="step                     |comment()[preceding-sibling::step]                     |processing-instruction()[preceding-sibling::step]"/>
         </ol>
       </xsl:otherwise>
@@ -743,18 +721,7 @@
   <!-- nop -->
 </xsl:template>
 
-<xsl:template match="substeps">
-  <xsl:variable name="numeration">
-    <xsl:call-template name="procedure.step.numeration"/>
-  </xsl:variable>
-
-  <xsl:call-template name="anchor"/>
-
-  <ol type="{$numeration}">
-    <xsl:call-template name="common.html.attributes"/>
-    <xsl:apply-templates/>
-  </ol>
-</xsl:template>
+<xsl:template match="substeps"><xsl:variable name="numeration"><xsl:call-template name="procedure.step.numeration"/></xsl:variable><xsl:variable name="cssstyle"><xsl:choose><xsl:when test="$numeration = '1'">decimal</xsl:when><xsl:when test="$numeration = 'a'">lower-alpha</xsl:when><xsl:when test="$numeration = 'i'">lower-roman</xsl:when><xsl:when test="$numeration = 'A'">upper-alpha</xsl:when><xsl:when test="$numeration = 'I'">upper-roman</xsl:when><xsl:otherwise><xsl:message>Warning: unknown procedure.step.numeration value: <xsl:value-of select="$numeration"/></xsl:message></xsl:otherwise></xsl:choose></xsl:variable><xsl:call-template name="anchor"/><ol><xsl:attribute name="style"><xsl:text>list-style-type: </xsl:text><xsl:value-of select="$cssstyle"/></xsl:attribute><xsl:apply-templates/></ol></xsl:template>
 
 <xsl:template match="step">
   <li>
@@ -972,7 +939,7 @@
           </xsl:with-param>
         </xsl:call-template>
 
-        <td width="5%" valign="top" align="{$direction.align.start}">
+        <td valign="top" align="{$direction.align.start}">
           <p>
             <xsl:call-template name="anchor"/>
             <xsl:call-template name="callout.arearefs">

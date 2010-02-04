@@ -507,7 +507,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             <xsl:with-param name="viewport" select="$viewport"/>
           </xsl:call-template>
           <xsl:if test="@align">
-            <xsl:attribute name="align">
+            <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
                 <xsl:choose>
                   <xsl:when test="@align = 'center'">middle</xsl:when>
                   <xsl:otherwise>
@@ -577,7 +577,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
           </xsl:attribute>
 
           <xsl:if test="@align">
-            <xsl:attribute name="align">
+            <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
               <xsl:choose>
                 <xsl:when test="@align = 'center'">middle</xsl:when>
                 <xsl:otherwise>
@@ -618,7 +618,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     </xsl:call-template>
   </xsl:variable>
 
-  <xsl:variable name="use.viewport" select="$viewport != 0                         and ($html.width != ''                              or ($html.depth != '' and $depth-units != '%')                              or $bgcolor != ''                              or @valign)"/>
+  <xsl:variable name="use.viewport" select="0"/>
 
   <xsl:choose>
     <xsl:when test="$use.viewport">
@@ -656,14 +656,14 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
                   </xsl:attribute>
                 </xsl:when>
                 <xsl:otherwise>
-                  <xsl:attribute name="bgcolor">
+                  <xsl:attribute name="style"><xsl:text>background-color: </xsl:text>
                     <xsl:value-of select="$bgcolor"/>
                   </xsl:attribute>
                 </xsl:otherwise>
               </xsl:choose>
             </xsl:if>
             <xsl:if test="@align">
-              <xsl:attribute name="align">
+              <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
                 <xsl:value-of select="@align"/>
               </xsl:attribute>
             </xsl:if>
@@ -961,7 +961,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   </xsl:if>
 
   <xsl:if test="@align and $viewport = 0">
-    <xsl:attribute name="align">
+    <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
       <xsl:choose>
         <xsl:when test="@align = 'center'">middle</xsl:when>
         <xsl:otherwise>
@@ -983,7 +983,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
     <xsl:otherwise>
       <div>
         <xsl:if test="@align">
-          <xsl:attribute name="align">
+          <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
             <xsl:value-of select="@align"/>
           </xsl:attribute>
         </xsl:if>
@@ -1062,7 +1062,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:if test="$align != '' ">
-      <xsl:attribute name="align">
+      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
         <xsl:value-of select="$align"/>
       </xsl:attribute>
     </xsl:if>
@@ -1375,7 +1375,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:if test="@align = 'right' or @align = 'left' or @align='center'">
-      <xsl:attribute name="align"><xsl:value-of select="@align"/></xsl:attribute>
+      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text><xsl:value-of select="@align"/></xsl:attribute>
     </xsl:if>
     <xsl:apply-templates/>
   </div>

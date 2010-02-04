@@ -147,7 +147,7 @@
 
   <xsl:choose>
     <xsl:when test="$callout.graphics != 0                     and $conum &lt;= $callout.graphics.number.limit">
-      <img src="{$callout.graphics.path}{$conum}{$callout.graphics.extension}" alt="{$conum}" border="0"/>
+      <img src="{$callout.graphics.path}{$conum}{$callout.graphics.extension}" alt="{$conum}"/>
     </xsl:when>
     <xsl:when test="$callout.unicode != 0                     and $conum &lt;= $callout.unicode.number.limit">
       <xsl:choose>

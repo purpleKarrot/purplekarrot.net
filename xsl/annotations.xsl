@@ -110,7 +110,7 @@
       <xsl:value-of select="generate-id(.)"/>
       <xsl:text>'); return false;</xsl:text>
     </xsl:attribute>
-    <img src="{$annotation.graphic.open}" border="0" alt="{$title}"/>
+    <img src="{$annotation.graphic.open}" alt="{$title}"/>
   </a>
 </xsl:template>
 
@@ -136,7 +136,7 @@
     <div class="annotation-close">
       <a href="#" onclick="popup_{generate-id(.)}.hidePopup();return false;">
         <xsl:apply-templates select="." mode="class.attribute"/>
-        <img src="{$annotation.graphic.close}" alt="X" border="0"/>
+        <img src="{$annotation.graphic.close}" alt="X"/>
       </a>
     </div>
   </div>

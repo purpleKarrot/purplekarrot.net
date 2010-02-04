@@ -79,9 +79,7 @@
       </xsl:attribute>
       <tr>
         <td rowspan="2" align="center" valign="top">
-          <xsl:attribute name="width">
-            <xsl:apply-templates select="." mode="admon.graphic.width"/>
-          </xsl:attribute>
+          
           <img alt="[{$alt}]">
             <xsl:attribute name="src">
               <xsl:call-template name="admon.graphic"/>

@@ -24,8 +24,8 @@
 <xsl:param name="chunker.output.indent" select="'no'"/>
 <xsl:param name="chunker.output.omit-xml-declaration" select="'no'"/>
 <xsl:param name="chunker.output.standalone" select="'no'"/>
-<xsl:param name="chunker.output.doctype-public" select="'-//W3C//DTD XHTML 1.0 Transitional//EN'"/>
-<xsl:param name="chunker.output.doctype-system" select="'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'"/>
+<xsl:param name="chunker.output.doctype-public" select="'-//W3C//DTD XHTML 1.1//EN'"/>
+<xsl:param name="chunker.output.doctype-system" select="'http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd'"/>
 <xsl:param name="chunker.output.media-type" select="''"/>
 <xsl:param name="chunker.output.cdata-section-elements" select="''"/>
 <xsl:param name="chunker.output.quiet" select="0"/>

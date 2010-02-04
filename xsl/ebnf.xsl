@@ -52,7 +52,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="productionset">
   <table width="100%" cellpadding="5">
     <xsl:if test="$ebnf.table.bgcolor != ''">
-      <xsl:attribute name="bgcolor">
+      <xsl:attribute name="style"><xsl:text>background-color: </xsl:text>
         <xsl:value-of select="$ebnf.table.bgcolor"/>
       </xsl:attribute>
     </xsl:if>
@@ -82,7 +82,7 @@ to be incomplete. Don't forget to read the source, too :-)</para>
       <td>
         <table border="0" width="99%" cellpadding="0">
           <xsl:if test="$ebnf.table.bgcolor != ''">
-            <xsl:attribute name="bgcolor">
+            <xsl:attribute name="style"><xsl:text>background-color: </xsl:text>
               <xsl:value-of select="$ebnf.table.bgcolor"/>
             </xsl:attribute>
           </xsl:if>
@@ -104,12 +104,12 @@ to be incomplete. Don't forget to read the source, too :-)</para>
 <xsl:template match="production">
   <xsl:param name="recap" select="false()"/>
   <tr>
-    <td align="{$direction.align.start}" valign="top" width="3%">
+    <td align="{$direction.align.start}" valign="top">
       <xsl:text>[</xsl:text>
       <xsl:number count="production" level="any"/>
       <xsl:text>]</xsl:text>
     </td>
-    <td align="{$direction.align.end}" valign="top" width="10%">
+    <td align="{$direction.align.end}" valign="top">
       <xsl:choose>
         <xsl:when test="$recap">
           <a>
@@ -127,14 +127,14 @@ to be incomplete. Don't forget to read the source, too :-)</para>
         </xsl:otherwise>
       </xsl:choose>
     </td>
-    <td valign="top" width="5%" align="center">
+    <td valign="top" align="center">
       <xsl:copy-of select="$ebnf.assignment"/>
     </td>
-    <td valign="top" width="52%">
+    <td valign="top">
       <xsl:apply-templates select="rhs"/>
       <xsl:copy-of select="$ebnf.statement.terminator"/>
     </td>
-    <td align="{$direction.align.start}" valign="top" width="30%">
+    <td align="{$direction.align.start}" valign="top">
       <xsl:choose>
         <xsl:when test="rhs/lineannotation|constraint">
           <xsl:apply-templates select="rhs/lineannotation" mode="rhslo"/>

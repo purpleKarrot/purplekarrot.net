@@ -110,7 +110,7 @@ http://docbook.sourceforge.net/release/images/annot-close.png</xsl:param>
 <xsl:param name="collect.xref.targets">no</xsl:param>
 <xsl:param name="component.label.includes.part.label" select="0"/>
 <xsl:param name="contrib.inline.enabled">1</xsl:param>
-<xsl:param name="css.decoration" select="1"/>
+<xsl:param name="css.decoration" select="0"/>
 <xsl:param name="current.docid"/>
 <xsl:param name="default.float.class">
   <xsl:choose>
@@ -208,7 +208,7 @@ set       toc,title
 <xsl:param name="html.extra.head.links" select="0"/>
 <xsl:param name="html.head.legalnotice.link.types">copyright</xsl:param>
 <xsl:param name="html.head.legalnotice.link.multiple" select="1"/>
-<xsl:param name="html.longdesc" select="1"/>
+<xsl:param name="html.longdesc" select="0"/>
 <xsl:param name="html.longdesc.link" select="$html.longdesc"/>
 <xsl:param name="html.stylesheet"/>
 <xsl:param name="html.stylesheet.type">text/css</xsl:param>
@@ -370,7 +370,7 @@ set       toc,title
 <xsl:param name="shade.verbatim" select="0"/>
 <xsl:attribute-set name="shade.verbatim.style">
   <xsl:attribute name="border">0</xsl:attribute>
-  <xsl:attribute name="bgcolor">#E0E0E0</xsl:attribute>
+  <xsl:attribute name="style"><xsl:text>background-color: </xsl:text>#E0E0E0</xsl:attribute>
 </xsl:attribute-set>
 
 <xsl:param name="show.comments" select="1"/>
@@ -402,7 +402,7 @@ set       toc,title
 <xsl:param name="toc.list.type">dl</xsl:param>
 <xsl:param name="toc.section.depth">2</xsl:param>
 <xsl:param name="toc.max.depth">8</xsl:param>
-<xsl:param name="ulink.target">_top</xsl:param>
+<xsl:param name="ulink.target"><xsl:text/></xsl:param>
 <xsl:param name="use.embed.for.svg" select="0"/>
 <xsl:param name="use.extensions" select="0"/>
 <xsl:param name="use.id.as.filename" select="0"/>
