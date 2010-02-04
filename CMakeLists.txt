@@ -52,12 +52,9 @@ xsl_transform(website.docbook website.xml
 
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
-  STYLESHEET ${BOOSTBOOK_XSL_DIR}/html.xsl
+  STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
   DIRECTORY HTML.manifest
-  PARAMETERS admon.graphics.path=images
-             navig.graphics.path=images
-             boost.image.src=boost.png
   COMMENT "Generating Website HTML."
   MAKE_ALL_TARGET website-html)
 
