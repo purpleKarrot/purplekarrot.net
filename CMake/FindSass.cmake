@@ -3,6 +3,8 @@ find_program(SASS_EXECUTABLE sass)
 
 macro(add_css OUTPUT)
 
+if(SASS_EXECUTABLE)
+
   get_filename_component(NAME ${OUTPUT} NAME_WE)
   set(SASS_FILE ${CMAKE_CURRENT_BINARY_DIR}/${NAME}.sass)
 
@@ -20,5 +22,7 @@ macro(add_css OUTPUT)
     )
 
   add_custom_target(${NAME}-css ALL DEPENDS ${OUTPUT})
+
+endif(SASS_EXECUTABLE)
 
 endmacro(add_css OUTPUT)

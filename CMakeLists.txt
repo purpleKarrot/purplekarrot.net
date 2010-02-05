@@ -14,6 +14,7 @@ if(MSVC)
   add_definitions(-D_SCL_SECURE_NO_WARNINGS)
 endif(MSVC)
 
+include(AddExternal)
 include(BoostBook)
 include(Doxygen)
 include(QuickBook)
@@ -21,6 +22,9 @@ include(AddQuickBook)
 include(XSLTransform)
 
 find_package(Sass)
+
+add_external(MAONI_DIR libMaoni
+  GIT git://github.com/purpleKarrot/libMaoni.git)
 
 add_css(purplekarrot.css
   css/pixelGreen.sass

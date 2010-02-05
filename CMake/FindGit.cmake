@@ -1,7 +1,10 @@
 SET(Git_FOUND FALSE)
  
 FIND_PROGRAM(Git_EXECUTABLE git
-  DOC "git command line client")
+  PATHS $ENV{ProgramFiles}/Git/bin
+  DOC "git command line client"
+  )
+
 MARK_AS_ADVANCED(Git_EXECUTABLE)
  
 IF(Git_EXECUTABLE)

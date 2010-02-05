@@ -12,13 +12,18 @@ macro(add_external SOURCE_VAR NAME VCS URL)
   set(${SOURCE_VAR} ${DIRECTORY})
 
   string(TOUPPER ${VCS} VCS)
-  if(VCS STREQUAL "SVN")
+  if(VCS STREQUAL "GIT")
     set(EXTERNAL_CO_COMMAND
-      ${Subversion_SVN_EXECUTABLE} --quiet checkout ${URL} ${DIRECTORY})
+      ${Git_EXECUTABLE} clone ${URL} ${DIRECTORY})
     set(EXTERNAL_UP_COMMAND
-      ${Subversion_SVN_EXECUTABLE} --quiet update)
+      ${Git_EXECUTABLE} rebase)
+  elseif(VCS STREQUAL "SVN")
+    set(EXTERNAL_CO_COMMAND
+      ${Subversion_SVN_EXECUTABLE} checkout ${URL} ${DIRECTORY})
+    set(EXTERNAL_UP_COMMAND
+      ${Subversion_SVN_EXECUTABLE} update)
   else()
-    MESSAGE(FATAL_ERROR "Invalid VCS: ${VCS}. Supported values are: SVN.")
+    MESSAGE(FATAL_ERROR "Invalid VCS: ${VCS}. Supported values are: GIT and SVN.")
   endif()
 
   if(NOT EXISTS ${DIRECTORY})
