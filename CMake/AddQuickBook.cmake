@@ -70,7 +70,8 @@ macro(add_quickbook OUTPUT)
     endif()
 
     if(POST_PATH)
-      file(APPEND ${QBK_FILE} "[xinclude ${POST_PATH}]\n")
+      file(RELATIVE_PATH POST_PATH_REL ${CMAKE_CURRENT_BINARY_DIR} ${POST_PATH})
+      file(APPEND ${QBK_FILE} "[xinclude ${POST_PATH_REL}]\n")
       set(DEPENDENCIES ${DEPENDENCIES} ${POST_PATH})
     endif(POST_PATH)
 

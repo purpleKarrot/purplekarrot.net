@@ -5,7 +5,7 @@ if(NOT XSLTPROC_EXECUTABLE)
   message(SEND_ERROR "xsltproc could not be found!")
 endif(NOT XSLTPROC_EXECUTABLE)
 
-set(XSLTPROC_FLAGS "--xinclude" CACHE STRING 
+set(XSLTPROC_FLAGS " --xinclude" CACHE STRING 
   "Flags to pass to xsltproc to transform XML documents")
 
 include(ParseArguments)
@@ -63,7 +63,11 @@ macro(xsl_transform OUTPUT INPUT)
   # that we could provide explicit remappings to the xsl_transform
   # macro, and it could generate a temporary XML catalog file.
   if (THIS_XSL_CATALOG)
-    set(THIS_XSL_CATALOG "XML_CATALOG_FILES=${THIS_XSL_CATALOG}")
+    if(WIN32)
+      set(THIS_XSL_CATALOG "")
+    else(WIN32)
+      set(THIS_XSL_CATALOG "XML_CATALOG_FILES=${THIS_XSL_CATALOG}")
+    endif(WIN32)
   endif ()
 
   # Translate XSL parameters into a form that xsltproc can use.
