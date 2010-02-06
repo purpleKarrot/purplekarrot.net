@@ -16,7 +16,7 @@ macro(add_external SOURCE_VAR NAME VCS URL)
     set(EXTERNAL_CO_COMMAND
       ${Git_EXECUTABLE} clone ${URL} ${DIRECTORY})
     set(EXTERNAL_UP_COMMAND
-      ${Git_EXECUTABLE} rebase)
+      ${Git_EXECUTABLE} pull origin master)
   elseif(VCS STREQUAL "SVN")
     set(EXTERNAL_CO_COMMAND
       ${Subversion_SVN_EXECUTABLE} checkout ${URL} ${DIRECTORY})
