@@ -3,6 +3,10 @@
 <!--from the HTML stylesheets.-->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0" xmlns:ng="http://docbook.org/docbook-ng" xmlns:db="http://docbook.org/ns/docbook" xmlns="http://www.w3.org/1999/xhtml" version="1.0" exclude-result-prefixes="exsl cf ng db">
 
+<xsl:import href="templates/header.xsl"/>
+<xsl:import href="templates/footer.xsl"/>
+<xsl:import href="templates/sidebar.xsl"/>
+
 <!-- ********************************************************************
      $Id: chunk-common.xsl 8420 2009-05-04 02:17:33Z bobstayton $
      ********************************************************************
@@ -1478,6 +1482,14 @@
 
     <body>
       <xsl:call-template name="body.attributes"/>
+
+      <div id="wrap">
+        <xsl:call-template name="purple.header"/>
+        <div id="content-wrap">
+          <div id="content">
+            <xsl:call-template name="purple.sidebar"/>
+            <div id="main">
+
       <xsl:call-template name="user.header.navigation"/>
 
       <xsl:call-template name="header.navigation">
@@ -1499,6 +1511,13 @@
       </xsl:call-template>
 
       <xsl:call-template name="user.footer.navigation"/>
+
+            </div>
+          </div>
+        </div>
+        <xsl:call-template name="purple.footer"/>
+      </div>
+
     </body>
   </html>
   <xsl:value-of select="$chunk.append"/>
