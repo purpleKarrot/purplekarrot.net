@@ -19,9 +19,9 @@ macro(add_external SOURCE_VAR NAME VCS URL)
       ${Git_EXECUTABLE} pull origin master)
   elseif(VCS STREQUAL "SVN")
     set(EXTERNAL_CO_COMMAND
-      ${Subversion_SVN_EXECUTABLE} checkout ${URL} ${DIRECTORY})
+      ${Subversion_SVN_EXECUTABLE} --quiet checkout ${URL} ${DIRECTORY})
     set(EXTERNAL_UP_COMMAND
-      ${Subversion_SVN_EXECUTABLE} update)
+      ${Subversion_SVN_EXECUTABLE} --quiet update)
   else()
     MESSAGE(FATAL_ERROR "Invalid VCS: ${VCS}. Supported values are: GIT and SVN.")
   endif()

@@ -5,7 +5,7 @@ if(NOT XSLTPROC_EXECUTABLE)
   message(SEND_ERROR "xsltproc could not be found!")
 endif(NOT XSLTPROC_EXECUTABLE)
 
-set(XSLTPROC_FLAGS " --xinclude" CACHE STRING 
+set(XSLTPROC_FLAGS "--xinclude" CACHE STRING 
   "Flags to pass to xsltproc to transform XML documents")
 
 include(ParseArguments)
