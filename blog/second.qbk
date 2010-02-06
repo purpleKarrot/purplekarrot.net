@@ -1,6 +1,27 @@
-[article Second!
+[article
   [quickbook 1.5]
 ]
+[#topanchor] 
+[h2 Examples]
+
+[*this is bold]
+['this is italic]
+[_underline] or _underline_
+[^teletype] or =teletype= 
+[~replaceable]
+[-strikethrough] 
+
+[:sometext in block quote ...]
+
+[note This is a note]
+[tip This is a tip]
+[important This is important]
+[caution This is a caution]
+[warning This is a warning]
+
+
+
+[h2 Source Code(H2)]
 
 Some C++ code...
 
@@ -10,3 +31,85 @@ Some C++ code...
      return 0;
   }
 
+Python's [python] `import` is rather like C++'s [c++] `#include`. A
+C++ comment `// looks like this` whereas a Python comment [python]
+`# looks like this`.
+
+Some python code...
+
+ import datetime
+
+ def in_the_future(months=1):
+    year, month, day = datetime.date.today().timetuple()[:3]
+    new_month = month + months
+    return datetime.date(year + (new_month / 12), new_month % 12, day)
+
+
+[h2 Lists(H2)]
+
+[h3 Itemize(H3)]
+[variablelist A Variable List
+    [[term 1] [The definition of term 1]]
+    [[term 2] [The definition of term 2]]
+    [[term 3] [
+    The definition of term 3.
+
+    Definitions may contain paragraphs.
+    ]]
+]
+
+[h6 Table(H6)]
+[table Table with code
+    [[Comment] [Code]]
+    [
+        [My first program]
+        [``
+            #include <iostream>
+
+            int main()
+            {
+                std::cout << "Hello, World!" << std::endl;
+                return 0;
+            }
+        ``]
+    ]
+
+    [
+        [i would say]
+        [NOTHING]
+    ]
+    [
+        [nothing the less]
+        [next line]
+    ]
+]
+
+[h5 Numbered list(H5)]
+
+# heaven 
+# middleearth
+# hell
+
+[h5 Bullet list(H5)]
+
+* list entry
+* list entry
+* list entry
+
+[h5 Mixed list(H5)]
+
+# list entry
+ * first sub 
+ * second sub
+# list entry
+ * list entry sub 
+   # first list entry sub sub
+   # second list entry sub sub
+# list entry
+
+[h2 Links(H2)]
+
+In chapter "Daily Hit" of his book [@http://www.amazon.com/gp/product/0976694018?ie=UTF8&tag=myseclifasasp-20&linkCode=as2&camp=1789&creative=9325&creativeASIN=0976694018 MJWTI] Chad Fowler recommends "setting a goal (daily, weekly, or whatever you're capable of) and tracking this type of accomplishment."  
+
+
+[link topanchor back to top]
