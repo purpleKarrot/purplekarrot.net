@@ -29,6 +29,7 @@ add_external(MAONI_DIR libMaoni
 add_css(purplekarrot.css
   css/pixelGreen.sass
   css/admonition.sass
+  css/navigation.sass
   css/disqus.sass
   css/code.sass
   )
