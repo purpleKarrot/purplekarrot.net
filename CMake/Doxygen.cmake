@@ -46,12 +46,9 @@ macro(doxygen_to_boostbook OUTPUT)
   file(APPEND ${DOXYFILE} "GENERATE_HTML = NO\n")
   file(APPEND ${DOXYFILE} "GENERATE_XML = YES\n")
 
-# set(THIS_DOXY_HEADER_PATH ${CMAKE_SOURCE_DIR}/libs/${libname}/include)
-
   set(THIS_DOXY_HEADER_LIST "")
-  set(THIS_DOXY_HEADERS)
   foreach(HDR ${THIS_DOXY_DEFAULT_ARGS})
-    list(APPEND THIS_DOXY_HEADERS ${THIS_DOXY_HEADER_PATH}/${HDR})
+    get_filename_component(HDR ${HDR} ABSOLUTE)
     set(THIS_DOXY_HEADER_LIST "${THIS_DOXY_HEADER_LIST} \\\n  \"${HDR}\"")
   endforeach(HDR)
   file(APPEND ${DOXYFILE} "INPUT = ${THIS_DOXY_HEADER_LIST}\n")
@@ -60,7 +57,7 @@ macro(doxygen_to_boostbook OUTPUT)
   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/xml/index.xml
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
     COMMENT "Generating Doxygen XML output for ${OUTPUT}."
-    DEPENDS ${THIS_DOXY_HEADERS})
+    DEPENDS ${THIS_DOXY_DEFAULT_ARGS})
 
   # Collect Doxygen XML into a single XML file
   set_source_files_properties(

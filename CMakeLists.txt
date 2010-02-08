@@ -15,6 +15,7 @@ if(MSVC)
 endif(MSVC)
 
 include(AddExternal)
+include(AddProject)
 include(BoostBook)
 include(Doxygen)
 include(QuickBook)
@@ -22,9 +23,6 @@ include(AddQuickBook)
 include(XSLTransform)
 
 find_package(Sass)
-
-add_external(MAONI_DIR libMaoni
-  GIT git://github.com/purpleKarrot/libMaoni.git)
 
 add_css(purplekarrot.css
   css/pixelGreen.sass
@@ -42,29 +40,40 @@ add_quickbook(blog.xml "part Blog"
   XINCLUDE ${BLOG}
   )
 
+add_project(libMaoni
+  REPOSITORY GIT git://github.com/purpleKarrot/libMaoni.git
+  DOCUMENTATION maoni-doc.xml
+  )
+
+#add_quickbook(projects.xml "part Projects"
+#  ID projects
+#  DIRNAME projects
+#  COPYRIGHT "2010 Daniel Pfeifer"
+#  AUTHORS "[Pfeifer, Daniel]"
+#  XINCLUDE build/build/external/libMaoni/doc/maoni-doc.xml
+#  )
+
 add_quickbook(website.xml "book purpleKarrot Website"
   COPYRIGHT "2010 Daniel Pfeifer"
   AUTHORS "[Pfeifer, Daniel]"
-  XINCLUDE ${CMAKE_BINARY_DIR}/blog.xml
+  XINCLUDE
+    ${CMAKE_BINARY_DIR}/blog.xml
+#   ${CMAKE_BINARY_DIR}/projects.xml
   )
 
 xsl_transform(website.docbook website.xml
   STYLESHEET ${BOOSTBOOK_XSL_DIR}/docbook.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
   COMMENT "Generating DocBook from website.xml."
-  DEPENDS website.xml)
-
+  DEPENDS website.xml
+  )
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
-# STYLESHEET ${DOCBOOK_XSL_DIR}/xhtml-1_1/chunk.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
   DIRECTORY HTML.manifest
   COMMENT "Generating Website HTML."
-  MAKE_ALL_TARGET website-html)
+  MAKE_ALL_TARGET website-html
+  )
 
 add_custom_target(website ALL DEPENDS website.docbook)
-
-
-
-set(OUTPUT_PATH /home/daniel/Desktop/purple)
