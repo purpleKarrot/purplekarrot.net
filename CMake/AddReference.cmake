@@ -4,7 +4,7 @@ find_package(Doxygen REQUIRED)
 
 # Use Doxygen to parse header files and produce BoostBook output.
 #
-#   doxygen_to_boostbook(output header1 header2 ...
+#   add_reference(output header1 header2 ...
 #     [PARAMETERS param1=value1 param2=value2 ... ])
 #
 # This macro sets up rules to transform a set of C/C++ header files
@@ -19,9 +19,9 @@ find_package(Doxygen REQUIRED)
 # following the PARAMETERS argument. These parameters will be added to
 # the Doxygen configuration file.
 
-macro(doxygen_to_boostbook OUTPUT)
+macro(add_reference OUTPUT)
 
-  parse_arguments(THIS_DOXY "PARAMETERS" "" ${ARGN})
+  parse_arguments(THIS_DOXY "DIRECTORY;FILES;PARAMETERS" "" ${ARGN})
 
   # Create a Doxygen configuration file template
   get_filename_component(DOXYFILE_PATH ${OUTPUT} PATH)
@@ -47,15 +47,15 @@ macro(doxygen_to_boostbook OUTPUT)
   file(APPEND ${DOXYFILE} "GENERATE_XML = YES\n")
 
   set(THIS_DOXY_HEADER_LIST "")
-  foreach(HDR ${THIS_DOXY_DEFAULT_ARGS})
-    get_filename_component(HDR ${HDR} ABSOLUTE)
-    set(THIS_DOXY_HEADER_LIST "${THIS_DOXY_HEADER_LIST} \\\n  \"${HDR}\"")
-  endforeach(HDR)
+  foreach(FILE ${THIS_DOXY_FILES})
+    set(THIS_DOXY_HEADER_LIST "${THIS_DOXY_HEADER_LIST} \\\n  \"${FILE}\"")
+  endforeach(FILE ${THIS_DOXY_FILES})
   file(APPEND ${DOXYFILE} "INPUT = ${THIS_DOXY_HEADER_LIST}\n")
 
   # Generate Doxygen XML
   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/xml/index.xml
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${THIS_DOXY_DIRECTORY}
     COMMENT "Generating Doxygen XML output for ${OUTPUT}."
     DEPENDS ${THIS_DOXY_DEFAULT_ARGS})
 
@@ -76,4 +76,4 @@ macro(doxygen_to_boostbook OUTPUT)
     STYLESHEET ${BOOSTBOOK_XSL_DIR}/doxygen/doxygen2boostbook.xsl
     COMMENT "Transforming Doxygen XML into BoostBook XML for ${OUTPUT}.")
 
-endmacro(doxygen_to_boostbook)
+endmacro(add_reference)

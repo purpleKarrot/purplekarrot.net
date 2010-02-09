@@ -14,12 +14,12 @@ if(MSVC)
   add_definitions(-D_SCL_SECURE_NO_WARNINGS)
 endif(MSVC)
 
+include(QuickBook)
 include(AddCSS)
 include(AddExternal)
 include(AddProject)
+include(AddReference)
 include(BoostBook)
-include(Doxygen)
-include(QuickBook)
 include(AddQuickBook)
 include(XSLTransform)
 
@@ -40,25 +40,24 @@ add_quickbook(blog.xml "part Blog"
   XINCLUDE ${BLOG}
   )
 
-add_project(libMaoni
-  REPOSITORY GIT git://github.com/purpleKarrot/libMaoni.git
-  DOCUMENTATION maoni-doc.xml
+set(MAONI_BUILD_DOCUMENTATION ON)
+add_projects(projects.xml
+  PROJECT libMaoni GIT git://github.com/purpleKarrot/libMaoni.git
   )
 
-#add_quickbook(projects.xml "part Projects"
-#  ID projects
-#  DIRNAME projects
-#  COPYRIGHT "2010 Daniel Pfeifer"
-#  AUTHORS "[Pfeifer, Daniel]"
-#  XINCLUDE build/build/external/libMaoni/doc/maoni-doc.xml
-#  )
+xsl_transform(projects.docbook projects.xml
+  STYLESHEET ${BOOSTBOOK_XSL_DIR}/docbook.xsl
+  CATALOG ${BOOSTBOOK_CATALOG}
+  COMMENT "Generating DocBook from projects.xml."
+  DEPENDS projects.xml
+  )
 
 add_quickbook(website.xml "book purpleKarrot Website"
   COPYRIGHT "2010 Daniel Pfeifer"
   AUTHORS "[Pfeifer, Daniel]"
   XINCLUDE
     ${CMAKE_BINARY_DIR}/blog.xml
-#   ${CMAKE_BINARY_DIR}/projects.xml
+    ${CMAKE_BINARY_DIR}/projects.xml
   )
 
 xsl_transform(website.docbook website.xml
@@ -76,4 +75,6 @@ xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
   MAKE_ALL_TARGET website-html
   )
 
-add_custom_target(website ALL DEPENDS website.docbook)
+add_custom_target(website ALL DEPENDS
+  projects.docbook
+  )
