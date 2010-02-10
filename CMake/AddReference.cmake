@@ -74,6 +74,7 @@ macro(add_reference OUTPUT)
   xsl_transform(${OUTPUT}
     ${CMAKE_CURRENT_BINARY_DIR}/xml/all.xml
     STYLESHEET ${BOOSTBOOK_XSL_DIR}/doxygen/doxygen2boostbook.xsl
+    PARAMETERS boost.doxygen.header.prefix=Maoni
     COMMENT "Transforming Doxygen XML into BoostBook XML for ${OUTPUT}.")
 
 endmacro(add_reference)
