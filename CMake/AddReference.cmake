@@ -21,7 +21,7 @@ find_package(Doxygen REQUIRED)
 
 macro(add_reference OUTPUT)
 
-  parse_arguments(THIS_DOXY "DIRECTORY;FILES;PARAMETERS" "" ${ARGN})
+  parse_arguments(THIS_DOXY "HEADER_PREFIX;PARAMETERS" "" ${ARGN})
 
   # Create a Doxygen configuration file template
   get_filename_component(DOXYFILE_PATH ${OUTPUT} PATH)
@@ -47,15 +47,15 @@ macro(add_reference OUTPUT)
   file(APPEND ${DOXYFILE} "GENERATE_XML = YES\n")
 
   set(THIS_DOXY_HEADER_LIST "")
-  foreach(FILE ${THIS_DOXY_FILES})
+  foreach(FILE ${THIS_DOXY_DEFAULT_ARGS})
+    get_filename_component(FILE ${FILE} ABSOLUTE)
     set(THIS_DOXY_HEADER_LIST "${THIS_DOXY_HEADER_LIST} \\\n  \"${FILE}\"")
-  endforeach(FILE ${THIS_DOXY_FILES})
+  endforeach(FILE ${THIS_DOXY_DEFAULT_ARGS})
   file(APPEND ${DOXYFILE} "INPUT = ${THIS_DOXY_HEADER_LIST}\n")
 
   # Generate Doxygen XML
   add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/xml/index.xml
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${THIS_DOXY_DIRECTORY}
     COMMENT "Generating Doxygen XML output for ${OUTPUT}."
     DEPENDS ${THIS_DOXY_DEFAULT_ARGS})
 
@@ -74,7 +74,7 @@ macro(add_reference OUTPUT)
   xsl_transform(${OUTPUT}
     ${CMAKE_CURRENT_BINARY_DIR}/xml/all.xml
     STYLESHEET ${BOOSTBOOK_XSL_DIR}/doxygen/doxygen2boostbook.xsl
-    PARAMETERS boost.doxygen.header.prefix=Maoni
+    PARAMETERS boost.doxygen.header.prefix=${THIS_DOXY_HEADER_PREFIX}
     COMMENT "Transforming Doxygen XML into BoostBook XML for ${OUTPUT}.")
 
 endmacro(add_reference)
