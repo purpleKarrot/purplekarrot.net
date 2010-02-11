@@ -19,6 +19,7 @@ include(AddCSS)
 include(AddExternal)
 include(AddProject)
 include(AddReference)
+include(AddXSLTdoc)
 include(BoostBook)
 include(AddQuickBook)
 include(XSLTransform)
@@ -30,6 +31,11 @@ add_css(purplekarrot.css
   css/disqus.sass
   css/code.sass
   )
+
+#add_xsltdoc(stylesheet-doc chunk.xsl
+#  TARGET_DIR "stylesheet-doc"
+#  SOURCE_DIR "${CMAKE_SOURCE_DIR}/xsl"
+#  )
 
 file(GLOB BLOG blog/*)
 add_quickbook(blog.xml "part Blog"
