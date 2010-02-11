@@ -1,6 +1,7 @@
 
 include(AddExternal)
 include(ParseArguments)
+find_package(Java)
 
 add_external(XSLTDOC_DIR XSLTdoc SVN
   https://xsltdoc.svn.sourceforge.net/svnroot/xsltdoc/1.2.2/)
@@ -30,6 +31,11 @@ macro(add_xsltdoc NAME)
   parse_arguments(THIS_XSLTDOC
     "TITLE;INTRODUCTION;TARGET_DIR;SOURCE_DIR" "" ${ARGN})
 
+  if(IS_ABSOLUTE ${THIS_XSLTDOC_SOURCE_DIR})
+    file(RELATIVE_PATH THIS_XSLTDOC_SOURCE_DIR
+      ${CMAKE_CURRENT_BINARY_DIR} ${THIS_XSLTDOC_SOURCE_DIR})
+  endif(IS_ABSOLUTE ${THIS_XSLTDOC_SOURCE_DIR})
+
   set(ROOT_STYLESHEETS)
   foreach(FILE ${THIS_XSLTDOC_DEFAULT_ARGS})
     set(ROOT_STYLESHEETS "${ROOT_STYLESHEETS}    <File href=\"${FILE}\"/>\n")
@@ -46,10 +52,11 @@ macro(add_xsltdoc NAME)
     "  <RootStylesheets>\n${ROOT_STYLESHEETS}  </RootStylesheets>\n"
     "</XSLTdocConfig>\n")
 
-  xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/${NAME} ${CONFIG_FILE}
-    STYLESHEET ${XSLTDOC_DIR}/xsl/xsltdoc.xsl
-    CATALOG ${BOOSTBOOK_CATALOG}
-    MAKE_ALL_TARGET ${NAME}-html
-    )
+  add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${NAME}
+    COMMAND ${JAVA_RUNTIME} -jar ${XSLTDOC_DIR}/lib/saxon8.jar
+            ${CONFIG_FILE} ${XSLTDOC_DIR}/xsl/xsltdoc.xsl)
+
+  add_custom_target(${NAME}-html ALL
+    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/${NAME})
 
 endmacro(add_xsltdoc NAME)
