@@ -14,13 +14,13 @@ if(MSVC)
   add_definitions(-D_SCL_SECURE_NO_WARNINGS)
 endif(MSVC)
 
+include(BoostBook)
 include(QuickBook)
 include(AddCSS)
 include(AddExternal)
 include(AddProject)
 include(AddReference)
 include(AddXSLTdoc)
-include(BoostBook)
 include(AddQuickBook)
 include(XSLTransform)
 
@@ -32,10 +32,7 @@ add_css(purplekarrot.css
   css/code.sass
   )
 
-#add_xsltdoc(stylesheet-doc chunk.xsl
-#  TARGET_DIR "stylesheet-doc"
-#  SOURCE_DIR "${CMAKE_SOURCE_DIR}/xsl"
-#  )
+add_subdirectory(doc)
 
 file(GLOB BLOG blog/*)
 add_quickbook(blog.xml "part Blog"
