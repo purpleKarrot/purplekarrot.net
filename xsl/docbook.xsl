@@ -17,7 +17,6 @@
 
 <!-- ==================================================================== -->
 
-<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/VERSION"/>
 <xsl:include href="param.xsl"/>
 <xsl:include href="http://docbook.sourceforge.net/release/xsl/current/lib/lib.xsl"/>
 <xsl:include href="http://docbook.sourceforge.net/release/xsl/current/common/l10n.xsl"/>
@@ -53,8 +52,6 @@
 <xsl:include href="math.xsl"/>
 <xsl:include href="admon.xsl"/>
 <xsl:include href="component.xsl"/>
-<xsl:include href="biblio.xsl"/>
-<xsl:include href="biblio-iso690.xsl"/>
 <xsl:include href="glossary.xsl"/>
 <xsl:include href="block.xsl"/>
 <xsl:include href="task.xsl"/>
@@ -67,7 +64,6 @@
 <xsl:include href="chunker.xsl"/>
 <xsl:include href="html-rtf.xsl"/>
 <xsl:include href="annotations.xsl"/>
-<xsl:include href="http://docbook.sourceforge.net/release/xsl/current/common/stripns.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'xhtml'"/>
 <xsl:param name="htmlhelp.output" select="0"/>
@@ -135,8 +131,6 @@
   <xsl:if test="$html.base != ''">
     <base href="{$html.base}"/>
   </xsl:if>
-
-  <meta name="generator" content="DocBook {$DistroTitle} V{$VERSION}"/>
 
   <xsl:if test="$generate.meta.abstract != 0">
     <xsl:variable name="info" select="(articleinfo                                       |bookinfo                                       |prefaceinfo                                       |chapterinfo                                       |appendixinfo                                       |sectioninfo                                       |sect1info                                       |sect2info                                       |sect3info                                       |sect4info                                       |sect5info                                       |referenceinfo                                       |refentryinfo                                       |partinfo                                       |info                                       |docinfo)[1]"/>

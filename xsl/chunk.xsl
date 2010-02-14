@@ -1,52 +1,58 @@
 <?xml version="1.0" encoding="ASCII"?>
-<!--This file was created automatically by html2xhtml-->
-<!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" xmlns="http://www.w3.org/1999/xhtml" version="1.0" exclude-result-prefixes="exsl">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:exsl="http://exslt.org/common" xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
+  xmlns="http://www.w3.org/1999/xhtml" version="1.0" exclude-result-prefixes="cf exsl">
 
-<!-- ********************************************************************
-     $Id: chunk.xsl 6910 2007-06-28 23:23:30Z xmldoc $
-     ********************************************************************
+  <xsl:import href="docbook.xsl" />
+  <xsl:import href="chunk-common.xsl" />
+  <xsl:include href="chunk-code.xsl" />
 
-     This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://docbook.sf.net/release/xsl/current/ for
-     copyright and other information.
+  <xsl:param name="chunk.fast" select="1" />
 
-     ******************************************************************** -->
+  <xsl:variable name="chunks" select="exsl:node-set($chunk.hierarchy)//cf:div" />
 
-<!-- ==================================================================== -->
+  <xsl:template name="process-chunk-element">
+    <xsl:choose>
+      <xsl:when test="$chunk.fast != 0 and $exsl.node.set.available != 0">
+        <xsl:variable name="genid" select="generate-id()" />
 
-<!-- First import the non-chunking templates that format elements
-     within each chunk file. In a customization, you should
-     create a separate non-chunking customization layer such
-     as mydocbook.xsl that imports the original docbook.xsl and
-     customizes any presentation templates. Then your chunking
-     customization should import mydocbook.xsl instead of
-     docbook.xsl.  -->
-<xsl:import href="docbook.xsl"/>
+        <xsl:variable name="div" select="$chunks[@id=$genid or @xml:id=$genid]" />
 
-<!-- chunk-common.xsl contains all the named templates for chunking.
-     In a customization file, you import chunk-common.xsl, then
-     add any customized chunking templates of the same name. 
-     They will have import precedence over the original 
-     chunking templates in chunk-common.xsl. -->
-<xsl:import href="chunk-common.xsl"/>
+        <xsl:variable name="prevdiv" select="($div/preceding-sibling::cf:div|$div/preceding::cf:div|$div/parent::cf:div)[last()]" />
+        <xsl:variable name="prev" select="key('genid', ($prevdiv/@id|$prevdiv/@xml:id)[1])" />
 
-<!-- The manifest.xsl module is no longer imported because its
-     templates were moved into chunk-common and chunk-code -->
+        <xsl:variable name="nextdiv" select="($div/following-sibling::cf:div|$div/following::cf:div|$div/cf:div)[1]" />
+        <xsl:variable name="next" select="key('genid', ($nextdiv/@id|$nextdiv/@xml:id)[1])" />
 
-<!-- chunk-code.xsl contains all the chunking templates that use
-     a match attribute.  In a customization it should be referenced
-     using <xsl:include> instead of <xsl:import>, and then add
-     any customized chunking templates with match attributes. But be sure
-     to add a priority="1" to such customized templates to resolve
-     its conflict with the original, since they have the
-     same import precedence.
-     
-     Using xsl:include prevents adding another layer
-     of import precedence, which would cause any
-     customizations that use xsl:apply-imports to wrongly
-     apply the chunking version instead of the original
-     non-chunking version to format an element.  -->
-<xsl:include href="chunk-code.xsl"/>
+        <xsl:choose>
+          <xsl:when test="$onechunk != 0 and parent::*">
+            <xsl:apply-imports />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="process-chunk">
+              <xsl:with-param name="prev" select="$prev" />
+              <xsl:with-param name="next" select="$next" />
+            </xsl:call-template>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$onechunk != 0 and not(parent::*)">
+            <xsl:call-template name="chunk-all-sections" />
+          </xsl:when>
+          <xsl:when test="$onechunk != 0">
+            <xsl:apply-imports />
+          </xsl:when>
+          <xsl:when test="$chunk.first.sections = 0">
+            <xsl:call-template name="chunk-first-section-with-parent" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:call-template name="chunk-all-sections" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
 
 </xsl:stylesheet>
