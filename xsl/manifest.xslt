@@ -13,11 +13,7 @@
       <xsl:call-template name="chunk" />
     </xsl:variable>
     <xsl:if test="$ischunk='1'">
-      <xsl:call-template name="make-relative-filename">
-        <xsl:with-param name="base.name">
-          <xsl:apply-templates select="." mode="chunk-filename" />
-        </xsl:with-param>
-      </xsl:call-template>
+      <xsl:apply-templates select="." mode="chunk-filename" />
       <xsl:text>
 </xsl:text>
     </xsl:if>

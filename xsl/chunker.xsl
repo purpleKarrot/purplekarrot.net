@@ -20,18 +20,4 @@
     </exsl:document>
   </xsl:template>
 
-  <xsl:template name="write.text.chunk">
-    <xsl:param name="filename" select="''" />
-    <xsl:param name="content" />
-    <xsl:message>
-      <xsl:text> -- </xsl:text>
-      <xsl:value-of select="$filename" />
-    </xsl:message>
-    <exsl:document href="{$filename}" method="text" encoding="UTF-8"
-      indent="no" omit-xml-declaration="no" cdata-section-elements=""
-      standalone="no">
-      <xsl:copy-of select="$content" />
-    </exsl:document>
-  </xsl:template>
-
 </xsl:stylesheet>
