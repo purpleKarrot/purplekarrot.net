@@ -165,7 +165,6 @@ task before
 <xsl:param name="generate.index" select="1"/>
 <xsl:param name="generate.legalnotice.link" select="0"/>
 <xsl:param name="generate.revhistory.link" select="0"/>
-<xsl:param name="generate.manifest" select="0"/>
 <xsl:param name="generate.meta.abstract" select="1"/>
 <xsl:param name="generate.section.toc.level" select="0"/>
 <xsl:param name="generate.toc">

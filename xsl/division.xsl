@@ -38,15 +38,6 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:call-template name="make.lots">
-      <xsl:with-param name="toc.params" select="$toc.params"/>
-      <xsl:with-param name="toc">
-        <xsl:call-template name="set.toc">
-          <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
-
     <xsl:apply-templates/>
   </div>
 </xsl:template>
@@ -79,15 +70,6 @@
         <xsl:with-param name="table" select="normalize-space($generate.toc)"/>
       </xsl:call-template>
     </xsl:variable>
-
-    <xsl:call-template name="make.lots">
-      <xsl:with-param name="toc.params" select="$toc.params"/>
-      <xsl:with-param name="toc">
-        <xsl:call-template name="division.toc">
-          <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
 
     <xsl:apply-templates/>
   </div>

@@ -358,15 +358,6 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:call-template name="make.lots">
-      <xsl:with-param name="toc.params" select="$toc.params"/>
-      <xsl:with-param name="toc">
-        <xsl:call-template name="component.toc">
-          <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
-        </xsl:call-template>
-      </xsl:with-param>
-    </xsl:call-template>
-
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
   </div>

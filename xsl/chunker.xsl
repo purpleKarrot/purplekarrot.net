@@ -3,19 +3,6 @@
   xmlns:exsl="http://exslt.org/common" xmlns="http://www.w3.org/1999/xhtml"
   version="1.0">
 
-  <xsl:template name="make-relative-filename">
-    <xsl:param name="base.dir" select="'./'" />
-    <xsl:param name="base.name" select="''" />
-    <xsl:choose>
-      <xsl:when test="count(parent::*) = 0">
-        <xsl:value-of select="concat($base.dir,$base.name)" />
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$base.name" />
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:template>
-
   <xsl:template name="write.chunk">
     <xsl:param name="filename" select="''" />
     <xsl:param name="content" />

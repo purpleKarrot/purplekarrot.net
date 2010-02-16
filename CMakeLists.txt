@@ -48,13 +48,6 @@ add_projects(projects.xml
   PROJECT libMaoni GIT git://github.com/purpleKarrot/libMaoni.git
   )
 
-xsl_transform(projects.docbook projects.xml
-  STYLESHEET ${BOOSTBOOK_XSL_DIR}/docbook.xsl
-  CATALOG ${BOOSTBOOK_CATALOG}
-  COMMENT "Generating DocBook from projects.xml."
-  DEPENDS projects.xml
-  )
-
 add_quickbook(website.xml "book purpleKarrot Website"
   COPYRIGHT "2010 Daniel Pfeifer"
   AUTHORS "[Pfeifer, Daniel]"
@@ -70,14 +63,21 @@ xsl_transform(website.docbook website.xml
   DEPENDS website.xml
   )
 
+xsl_transform(website.manifest website.docbook
+  STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/manifest.xslt
+  CATALOG ${BOOSTBOOK_CATALOG}
+  COMMENT "Generating Manifest."
+  DEPENDS website.docbook ${CMAKE_SOURCE_DIR}/xsl/manifest.xslt
+  )
+
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
-  DIRECTORY HTML.manifest
+  DIRECTORY index.html
   COMMENT "Generating Website HTML."
   MAKE_ALL_TARGET website-html
   )
 
 add_custom_target(website ALL DEPENDS
-  projects.docbook
+  website.manifest
   )
