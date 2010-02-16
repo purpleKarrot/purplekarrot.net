@@ -1144,14 +1144,6 @@
       </xsl:for-each>
     </xsl:if>
 
-    <!-- * if we have a legalnotice and user wants it output as a -->
-    <!-- * separate page and $html.head.legalnotice.link.types is -->
-    <!-- * non-empty, we generate a link or links for each value in -->
-    <!-- * $html.head.legalnotice.link.types -->
-    <xsl:if test="//legalnotice                   and not($generate.legalnotice.link = 0)                   and not($html.head.legalnotice.link.types = '')">
-      <xsl:call-template name="make.legalnotice.head.links"/>
-    </xsl:if>
-
     <xsl:call-template name="user.head.content"/>
   </head>
 </xsl:template>

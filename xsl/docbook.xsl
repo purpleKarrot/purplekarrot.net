@@ -44,7 +44,6 @@
 <xsl:include href="footnote.xsl"/>
 <xsl:include href="html.xsl"/>
 <xsl:include href="info.xsl"/>
-<xsl:include href="keywords.xsl"/>
 <xsl:include href="division.xsl"/>
 <xsl:include href="toc.xsl"/>
 <xsl:include href="index.xsl"/>
@@ -52,7 +51,6 @@
 <xsl:include href="math.xsl"/>
 <xsl:include href="admon.xsl"/>
 <xsl:include href="component.xsl"/>
-<xsl:include href="glossary.xsl"/>
 <xsl:include href="block.xsl"/>
 <xsl:include href="task.xsl"/>
 <xsl:include href="qandaset.xsl"/>
@@ -88,16 +86,6 @@
     </xsl:if>
     <xsl:text>, but no template matches.</xsl:text>
   </xsl:message>
-
-  <span style="color: red">
-    <xsl:text>&lt;</xsl:text>
-    <xsl:value-of select="name(.)"/>
-    <xsl:text>&gt;</xsl:text>
-    <xsl:apply-templates/>
-    <xsl:text>&lt;/</xsl:text>
-    <xsl:value-of select="name(.)"/>
-    <xsl:text>&gt;</xsl:text>
-  </span>
 </xsl:template>
 
 <xsl:template match="text()">
@@ -117,156 +105,12 @@
   <title>
     <xsl:copy-of select="$title"/>
   </title>
-
-  <xsl:if test="$html.stylesheet != ''">
-    <xsl:call-template name="output.html.stylesheets">
-      <xsl:with-param name="stylesheets" select="normalize-space($html.stylesheet)"/>
-    </xsl:call-template>
-  </xsl:if>
-
-  <xsl:if test="$link.mailto.url != ''">
-    <link rev="made" href="{$link.mailto.url}"/>
-  </xsl:if>
-
-  <xsl:if test="$html.base != ''">
-    <base href="{$html.base}"/>
-  </xsl:if>
-
-  <xsl:if test="$generate.meta.abstract != 0">
-    <xsl:variable name="info" select="(articleinfo                                       |bookinfo                                       |prefaceinfo                                       |chapterinfo                                       |appendixinfo                                       |sectioninfo                                       |sect1info                                       |sect2info                                       |sect3info                                       |sect4info                                       |sect5info                                       |referenceinfo                                       |refentryinfo                                       |partinfo                                       |info                                       |docinfo)[1]"/>
-    <xsl:if test="$info and $info/abstract">
-      <meta name="description">
-        <xsl:attribute name="content">
-          <xsl:for-each select="$info/abstract[1]/*">
-            <xsl:value-of select="normalize-space(.)"/>
-            <xsl:if test="position() &lt; last()">
-              <xsl:text> </xsl:text>
-            </xsl:if>
-          </xsl:for-each>
-        </xsl:attribute>
-      </meta>
-    </xsl:if>
-  </xsl:if>
-
-  <xsl:if test="($draft.mode = 'yes' or                 ($draft.mode = 'maybe' and                 ancestor-or-self::*[@status][1]/@status = 'draft'))                 and $draft.watermark.image != ''">
-    <style type="text/css"><xsl:text>
-body { background-image: url('</xsl:text>
-<xsl:value-of select="$draft.watermark.image"/><xsl:text>');
-       background-repeat: no-repeat;
-       background-position: top left;
-       /* The following properties make the watermark "fixed" on the page. */
-       /* I think that's just a bit too distracting for the reader... */
-       /* background-attachment: fixed; */
-       /* background-position: center center; */
-     }</xsl:text>
-    </style>
-  </xsl:if>
-  <xsl:apply-templates select="." mode="head.keywords.content"/>
-</xsl:template>
-
-<xsl:template name="output.html.stylesheets">
-  <xsl:param name="stylesheets" select="''"/>
-
-  <xsl:choose>
-    <xsl:when test="contains($stylesheets, ' ')">
-      <link rel="stylesheet" href="{substring-before($stylesheets, ' ')}">
-        <xsl:if test="$html.stylesheet.type != ''">
-          <xsl:attribute name="type">
-            <xsl:value-of select="$html.stylesheet.type"/>
-          </xsl:attribute>
-        </xsl:if>
-      </link>
-      <xsl:call-template name="output.html.stylesheets">
-        <xsl:with-param name="stylesheets" select="substring-after($stylesheets, ' ')"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:when test="$stylesheets != ''">
-      <link rel="stylesheet" href="{$stylesheets}">
-        <xsl:if test="$html.stylesheet.type != ''">
-          <xsl:attribute name="type">
-            <xsl:value-of select="$html.stylesheet.type"/>
-          </xsl:attribute>
-        </xsl:if>
-      </link>
-    </xsl:when>
-  </xsl:choose>
-</xsl:template>
-
-<!-- ============================================================ -->
-
-<xsl:template match="*" mode="head.keywords.content">
-  <xsl:apply-templates select="chapterinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="appendixinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="prefaceinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="bookinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="setinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="articleinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="artheader/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="sect1info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="sect2info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="sect3info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="sect4info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="sect5info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="sectioninfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="refsect1info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="refsect2info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="refsect3info/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="bibliographyinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="glossaryinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="indexinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="refentryinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="partinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="referenceinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="docinfo/keywordset" mode="html.header"/>
-  <xsl:apply-templates select="info/keywordset" mode="html.header"/>
-
-  <xsl:if test="$inherit.keywords != 0                 and parent::*">
-    <xsl:apply-templates select="parent::*" mode="head.keywords.content"/>
-  </xsl:if>
 </xsl:template>
 
 <!-- ============================================================ -->
 
 <xsl:template name="system.head.content">
   <xsl:param name="node" select="."/>
-
-  <!-- FIXME: When chunking, only the annotations actually used
-              in this chunk should be referenced. I don't think it
-              does any harm to reference them all, but it adds
-              unnecessary bloat to each chunk. -->
-  <xsl:if test="$annotation.support != 0 and //annotation">
-    <xsl:call-template name="add.annotation.links"/>
-    <script type="text/javascript">
-      <xsl:text>
-// Create PopupWindow objects</xsl:text>
-      <xsl:for-each select="//annotation">
-        <xsl:text>
-var popup_</xsl:text>
-        <xsl:value-of select="generate-id(.)"/>
-        <xsl:text> = new PopupWindow("popup-</xsl:text>
-        <xsl:value-of select="generate-id(.)"/>
-        <xsl:text>");
-</xsl:text>
-        <xsl:text>popup_</xsl:text>
-        <xsl:value-of select="generate-id(.)"/>
-        <xsl:text>.offsetY = 15;
-</xsl:text>
-        <xsl:text>popup_</xsl:text>
-        <xsl:value-of select="generate-id(.)"/>
-        <xsl:text>.autoHide();
-</xsl:text>
-      </xsl:for-each>
-    </script>
-
-    <style type="text/css">
-      <xsl:value-of select="$annotation.css"/>
-    </style>
-  </xsl:if>
-
-  <!-- system.head.content is like user.head.content, except that
-       it is called before head.content. This is important because it
-       means, for example, that <style> elements output by system.head.content
-       have a lower CSS precedence than the users stylesheet. -->
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -281,46 +125,9 @@ var popup_</xsl:text>
   <link rel="stylesheet" href="../purplekarrot.css" type="text/css"/>
 </xsl:template>
 
-<xsl:template match="*" mode="process.root">
-  <xsl:variable name="doc" select="self::*"/>
-
-  <xsl:call-template name="user.preroot"/>
-  <xsl:call-template name="root.messages"/>
-
-  <html>
-    <head>
-      <xsl:call-template name="system.head.content">
-        <xsl:with-param name="node" select="$doc"/>
-      </xsl:call-template>
-      <xsl:call-template name="head.content">
-        <xsl:with-param name="node" select="$doc"/>
-      </xsl:call-template>
-      <xsl:call-template name="user.head.content">
-        <xsl:with-param name="node" select="$doc"/>
-      </xsl:call-template>
-    </head>
-    <body>
-      <xsl:call-template name="body.attributes"/>
-      <xsl:apply-templates select="."/>
-    </body>
-  </html>
-  <xsl:value-of select="$html.append"/>
-</xsl:template>
-
 <xsl:template name="root.messages">
   <!-- redefine this any way you'd like to output messages -->
   <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
 </xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template name="chunk">
-  <xsl:param name="node" select="."/>
-
-  <!-- The default is that we are not chunking... -->
-  <xsl:text>0</xsl:text>
-</xsl:template>
-
-<!-- ==================================================================== -->
 
 </xsl:stylesheet>

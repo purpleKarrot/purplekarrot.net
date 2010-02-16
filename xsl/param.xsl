@@ -405,7 +405,7 @@ set       toc,title
 <xsl:param name="ulink.target"><xsl:text/></xsl:param>
 <xsl:param name="use.embed.for.svg" select="0"/>
 <xsl:param name="use.extensions" select="0"/>
-<xsl:param name="use.id.as.filename" select="0"/>
+<xsl:param name="use.id.as.filename" select="1"/>
 <xsl:param name="use.local.olink.style" select="0"/> 
 <xsl:param name="use.role.as.xrefstyle" select="1"/>
 <xsl:param name="use.role.for.mediaobject" select="1"/>
