@@ -203,8 +203,6 @@
 
 <!-- ==================================================================== -->
 
-<!-- ==================================================================== -->
-
 <xsl:template name="make.lots">
   <xsl:param name="toc.params" select="''"/>
   <xsl:param name="toc"/>
@@ -1253,62 +1251,6 @@
 
 <!-- ==================================================================== -->
 
-<!-- * The following template assumes that the first legalnotice -->
-<!-- * instance found in a document applies to the contents of the -->
-<!-- * entire document. It generates an HTML link in each chunk, back -->
-<!-- * to the file containing the contents of the first legalnotice. -->
-<!-- * -->
-<!-- * Actually, it may generate multiple link instances in each chunk, -->
-<!-- * because it walks through the space-separated list of link -->
-<!-- * types specified in the $html.head.legalnotice.link.types param, -->
-<!-- * popping off link types and generating links for them until it -->
-<!-- * depletes the list. -->
-  
-<xsl:template name="make.legalnotice.head.links">
-  <!-- * the following ID is used as part of the legalnotice filename; -->
-  <!-- * we need it in order to construct the filename for use in the -->
-  <!-- * value of the href attribute on the link -->
-
-  <xsl:param name="ln-node" select="(//legalnotice)[1]"/>
-  
-  <xsl:param name="linktype">
-    <xsl:choose>
-      <xsl:when test="contains($html.head.legalnotice.link.types, ' ')">
-        <xsl:value-of select="normalize-space(                     substring-before($html.head.legalnotice.link.types, ' '))"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:value-of select="$html.head.legalnotice.link.types"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:param>
-  <xsl:param name="remaining.linktypes" select="concat(               normalize-space(               substring-after($html.head.legalnotice.link.types, ' ')),' ')"/>
-  <xsl:if test="not($linktype = '')">
-
-    <!-- Compute name of legalnotice file (see titlepage.xsl) -->
-    <xsl:variable name="file">
-      <xsl:call-template name="ln.or.rh.filename">
-	<xsl:with-param name="node" select="$ln-node"/>
-      </xsl:call-template>
-    </xsl:variable>
-   
-    <link rel="{$linktype}">
-      <xsl:attribute name="href">
-        <xsl:value-of select="$file"/>
-      </xsl:attribute>
-      <xsl:attribute name="title">
-        <xsl:apply-templates select="(//legalnotice)[1]" mode="object.title.markup.textonly"/>
-      </xsl:attribute>
-    </link>
-    <xsl:call-template name="make.legalnotice.head.links">
-      <!-- * pop the next value off the list of link types -->
-      <xsl:with-param name="linktype" select="substring-before($remaining.linktypes, ' ')"/>
-      <!-- * remove the link type from the list of remaining link types -->
-      <xsl:with-param name="remaining.linktypes" select="substring-after($remaining.linktypes, ' ')"/>
-    </xsl:call-template>
-  </xsl:if>
-</xsl:template>
-
-<!-- ==================================================================== -->
 <xsl:template name="chunk-element-content">
   <xsl:param name="prev"/>
   <xsl:param name="next"/>
@@ -1361,6 +1303,7 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
+
 <xsl:template name="generate.manifest">
   <xsl:param name="node" select="/"/>
   <xsl:call-template name="write.text.chunk">
@@ -1370,11 +1313,9 @@
       </xsl:if>
       <xsl:value-of select="$manifest"/>
     </xsl:with-param>
-    <xsl:with-param name="method" select="'text'"/>
     <xsl:with-param name="content">
       <xsl:apply-templates select="$node" mode="enumerate-files"/>
     </xsl:with-param>
-    <xsl:with-param name="encoding" select="$chunker.output.encoding"/>
   </xsl:call-template>
 </xsl:template>
 
