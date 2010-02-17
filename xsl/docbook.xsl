@@ -103,22 +103,6 @@
 
 <!-- ============================================================ -->
 
-<xsl:template name="system.head.content">
-  <xsl:param name="node" select="."/>
-</xsl:template>
-
-<!-- ============================================================ -->
-
-<xsl:template name="user.preroot">
-  <!-- Pre-root output, can be used to output comments and PIs. -->
-  <!-- This must not output any element content! -->
-</xsl:template>
-
-<xsl:template name="user.head.content">
-  <xsl:param name="node" select="."/>
-  <link rel="stylesheet" href="../purplekarrot.css" type="text/css"/>
-</xsl:template>
-
 <xsl:template name="root.messages">
   <!-- redefine this any way you'd like to output messages -->
   <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->

@@ -1233,14 +1233,11 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
       <xsl:with-param name="filename" select="$filename"/>
       <xsl:with-param name="quiet" select="$chunk.quietly"/>
       <xsl:with-param name="content">
-      <xsl:call-template name="user.preroot"/>
         <html>
           <head>
-            <xsl:call-template name="system.head.content"/>
             <xsl:call-template name="head.content">
               <xsl:with-param name="title" select="'Long Description'"/>
             </xsl:call-template>
-            <xsl:call-template name="user.head.content"/>
           </head>
           <body>
             <xsl:call-template name="body.attributes"/>

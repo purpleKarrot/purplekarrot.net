@@ -14,21 +14,13 @@
 <xsl:template match="*" mode="process.root">
   <xsl:variable name="doc" select="self::*"/>
 
-  <xsl:call-template name="user.preroot"/>
   <xsl:call-template name="root.messages"/>
 
   <html>
     <head>
-      <xsl:call-template name="system.head.content">
-        <xsl:with-param name="node" select="$doc"/>
-      </xsl:call-template>
       <xsl:call-template name="head.content">
         <xsl:with-param name="node" select="$doc"/>
       </xsl:call-template>
-      <xsl:call-template name="user.head.content">
-        <xsl:with-param name="node" select="$doc"/>
-      </xsl:call-template>
-      <link rel="stylesheet" href="/css/purpleKarrot.css" type="text/css"/>
     </head>
     <body>
       <div id="wrap">
