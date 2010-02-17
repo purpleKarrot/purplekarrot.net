@@ -98,7 +98,6 @@ http://docbook.sourceforge.net/release/images/annot-close.png</xsl:param>
 <xsl:param name="callout.unicode.start.character">10102</xsl:param>
 <xsl:param name="callouts.extension" select="1"/>
 <xsl:param name="chapter.autolabel" select="1"/>
-<xsl:param name="chunk.append"/>
 <xsl:param name="chunk.first.sections" select="0"/>
 <xsl:param name="chunk.quietly" select="0"/>
 <xsl:param name="chunk.section.depth" select="1"/>

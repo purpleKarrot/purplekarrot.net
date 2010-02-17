@@ -21,12 +21,6 @@
 
      ******************************************************************** -->
 
-<!-- ==================================================================== -->
-
-<xsl:template match="processing-instruction('dbhtml')"/>
-
-<!-- ==================================================================== -->
-
 <xsl:template match="*" mode="find.chunks">
   <xsl:variable name="chunk">
     <xsl:call-template name="chunk"/>
@@ -56,14 +50,7 @@
 <!-- ====================================================================== -->
 
 <xsl:template match="set|book|part|preface|chapter|appendix|article|reference|refentry|book/glossary|article/glossary|part/glossary|book/bibliography|article/bibliography|part/bibliography|colophon">
-  <xsl:choose>
-    <xsl:when test="$onechunk != 0 and parent::*">
-      <xsl:apply-imports/>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="process-chunk-element"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:call-template name="process-chunk-element"/>
 </xsl:template>
 
 <xsl:template match="sect1|sect2|sect3|sect4|sect5|section">

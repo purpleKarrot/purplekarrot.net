@@ -22,7 +22,6 @@
 
 <!-- ==================================================================== -->
 
-<xsl:param name="onechunk" select="0"/>
 <xsl:param name="refentry.separator" select="0"/>
 <xsl:param name="chunk.fast" select="0"/>
 
@@ -689,7 +688,6 @@
 
     </body>
   </html>
-  <xsl:value-of select="$chunk.append"/>
 </xsl:template>
 
 <!-- ==================================================================== -->
