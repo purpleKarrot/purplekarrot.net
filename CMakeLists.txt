@@ -24,15 +24,15 @@ include(AddXSLTdoc)
 include(AddQuickBook)
 include(XSLTransform)
 
-add_css(purplekarrot.css
-  css/pixelGreen.sass
-  css/admonition.sass
-  css/navigation.sass
-  css/disqus.sass
-  css/code.sass
-  )
+#add_css(purplekarrot.css
+#  css/pixelGreen.sass
+#  css/admonition.sass
+#  css/navigation.sass
+#  css/disqus.sass
+#  css/code.sass
+#  )
 
-add_subdirectory(doc)
+#add_subdirectory(doc)
 
 file(GLOB BLOG blog/*)
 add_quickbook(blog.xml "part Blog"
@@ -64,10 +64,17 @@ xsl_transform(website.docbook website.xml
   )
 
 xsl_transform(website.manifest website.docbook
-  STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/manifest.xslt
+  STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/manifest.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
   COMMENT "Generating Manifest."
-  DEPENDS website.docbook ${CMAKE_SOURCE_DIR}/xsl/manifest.xslt
+  DEPENDS website.docbook ${CMAKE_SOURCE_DIR}/xsl/manifest.xsl
+  )
+
+xsl_transform(sitemap.xml website.docbook
+  STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/sitemap.xsl
+  CATALOG ${BOOSTBOOK_CATALOG}
+  COMMENT "Generating Sitemap."
+  DEPENDS website.docbook ${CMAKE_SOURCE_DIR}/xsl/sitemap.xsl
   )
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
@@ -80,4 +87,5 @@ xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
 
 add_custom_target(website ALL DEPENDS
   website.manifest
+  sitemap.xml
   )
