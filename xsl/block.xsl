@@ -71,17 +71,7 @@
       <xsl:copy-of select="$content"/>
     </p>
   </xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$html.cleanup != 0">
-      <xsl:call-template name="unwrap.p">
-        <xsl:with-param name="p" select="$p"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:copy-of select="$p"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:copy-of select="$p"/>
 </xsl:template>
 
 <xsl:template match="simpara">

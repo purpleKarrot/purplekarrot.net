@@ -55,7 +55,6 @@
 <xsl:include href="titlepage.templates.xsl"/>
 <xsl:include href="pi.xsl"/>
 <xsl:include href="chunker.xsl"/>
-<xsl:include href="html-rtf.xsl"/>
 <xsl:include href="annotations.xsl"/>
 
 <xsl:param name="stylesheet.result.type" select="'xhtml'"/>
