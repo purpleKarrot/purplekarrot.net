@@ -1,6 +1,6 @@
-##############################################################
-# Copyright (c) 2010 Daniel Pfeifer                          #
-##############################################################
+################################################################################
+# Copyright (c) 2010 Daniel Pfeifer                                            #
+################################################################################
 
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 project(purplekarrot.net)
@@ -24,15 +24,25 @@ include(AddXSLTdoc)
 include(AddQuickBook)
 include(XSLTransform)
 
-#add_css(purplekarrot.css
-#  css/pixelGreen.sass
-#  css/admonition.sass
-#  css/navigation.sass
-#  css/disqus.sass
-#  css/code.sass
-#  )
+add_css(purplekarrot.css
+  css/pixelGreen.sass
+  css/admonition.sass
+  css/navigation.sass
+  css/disqus.sass
+  css/code.sass
+  )
 
-#add_subdirectory(doc)
+################################################################################
+
+add_external(FANCYBOX_DIR fancybox ZIP
+  http://fancybox.googlecode.com/files/jquery.fancybox-1.3.0.zip)
+
+# install(DIRECTORY ${FANCYBOX_DIR}/jquery.fancybox-1.3.0/fancybox
+#   DESTINATION ... )
+
+################################################################################
+
+add_subdirectory(doc)
 
 file(GLOB BLOG blog/*)
 add_quickbook(blog.xml "part Blog"
@@ -80,7 +90,7 @@ xsl_transform(sitemap.xml website.docbook
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
-  DIRECTORY index.html
+  DIRECTORY index-html
   COMMENT "Generating Website HTML."
   MAKE_ALL_TARGET website-html
   )

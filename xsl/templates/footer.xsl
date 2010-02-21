@@ -31,7 +31,7 @@
   <div class="col2 float-right">
    <p>
     (c) copyright 2010 <strong>purpleKarrot</strong><br /> 
-    Design by: <a href="index.html"><strong>styleshout</strong></a> _ _
+    Design by: <a href="http://www.styleshout.com/"><strong>styleshout</strong></a> &#160; &#160;
     Valid <a href="http://jigsaw.w3.org/css-validator/check/referer"><strong>CSS</strong></a> | 
     <a href="http://validator.w3.org/check/referer"><strong>XHTML</strong></a>
    </p>

@@ -47,7 +47,7 @@
 <xsl:include href="index.xsl"/>
 <xsl:include href="refentry.xsl"/>
 <xsl:include href="math.xsl"/>
-<xsl:include href="admon.xsl"/>
+<xsl:include href="match/admonition.xsl"/>
 <xsl:include href="component.xsl"/>
 <xsl:include href="block.xsl"/>
 <xsl:include href="synop.xsl"/>

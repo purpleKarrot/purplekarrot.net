@@ -1,5 +1,6 @@
 [article some quickbook examples
   [quickbook 1.5]
+  [purpose This article is a summary of QuickBook examples.]
 ]
 [#topanchor] 
 [h2 Examples]

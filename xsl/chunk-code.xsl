@@ -11,6 +11,8 @@
   exclude-result-prefixes="exsl cf ng db"
   version="1.0">
 
+<xsl:include href="blog/main.xsl"/>
+
 <!-- ********************************************************************
      $Id: chunk-code.xsl 8345 2009-03-16 06:44:07Z bobstayton $
      ********************************************************************
@@ -40,6 +42,7 @@
 </xsl:template>
 
 <xsl:template match="/">
+  <xsl:apply-templates select="book/part[@id='blog']" mode="make.blog" />
   <xsl:apply-templates select="/" mode="process.root" />
 </xsl:template>
 

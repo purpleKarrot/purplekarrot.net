@@ -13,9 +13,8 @@
       <xsl:value-of select="$filename" />
     </xsl:message>
     <exsl:document href="{$filename}" method="xml" encoding="UTF-8"
-      indent="no" omit-xml-declaration="no" cdata-section-elements=""
-      doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"
-      standalone="no">
+      indent="yes" omit-xml-declaration="no" cdata-section-elements=""
+      doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
       <xsl:copy-of select="$content" />
     </exsl:document>
   </xsl:template>

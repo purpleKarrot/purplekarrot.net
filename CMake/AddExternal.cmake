@@ -1,6 +1,7 @@
 
 find_package(Git REQUIRED)
 find_package(Subversion REQUIRED)
+find_program(UNZIP unzip)
 
 macro(add_external SOURCE_VAR NAME VCS URL)
 
@@ -11,30 +12,23 @@ macro(add_external SOURCE_VAR NAME VCS URL)
   set(DIRECTORY ${CMAKE_BINARY_DIR}/external/${NAME})
   set(${SOURCE_VAR} ${DIRECTORY})
 
-  string(TOUPPER ${VCS} VCS)
-  if(VCS STREQUAL "GIT")
-    set(EXTERNAL_CO_COMMAND
-      ${Git_EXECUTABLE} clone ${URL} ${DIRECTORY})
-    set(EXTERNAL_UP_COMMAND
-      ${Git_EXECUTABLE} pull origin master)
-  elseif(VCS STREQUAL "SVN")
-    set(EXTERNAL_CO_COMMAND
-      ${Subversion_SVN_EXECUTABLE} --quiet checkout ${URL} ${DIRECTORY})
-    set(EXTERNAL_UP_COMMAND
-      ${Subversion_SVN_EXECUTABLE} --quiet update)
-  else()
-    MESSAGE(FATAL_ERROR "Invalid VCS: ${VCS}. Supported values are: GIT and SVN.")
-  endif()
-
   if(NOT EXISTS ${DIRECTORY})
-    message(STATUS "Fetching ${NAME} from ${VCS}.")
-    execute_process(COMMAND ${EXTERNAL_CO_COMMAND})
+    message(STATUS "Fetching external: ${NAME}.")
+    string(TOUPPER ${VCS} VCS)
+    if(VCS STREQUAL "GIT")
+      execute_process(COMMAND
+        ${Git_EXECUTABLE} clone ${URL} ${DIRECTORY})
+    elseif(VCS STREQUAL "SVN")
+      execute_process(COMMAND
+        ${Subversion_SVN_EXECUTABLE} --quiet checkout ${URL} ${DIRECTORY})
+    elseif(VCS STREQUAL "ZIP")
+      file(DOWNLOAD ${URL} ${CMAKE_BINARY_DIR}/${NAME}.zip TIMEOUT 60)
+      execute_process(COMMAND
+        ${UNZIP} -d ${DIRECTORY} -q ${CMAKE_BINARY_DIR}/${NAME}.zip)
+      file(REMOVE ${CMAKE_BINARY_DIR}/${NAME}.zip)
+    else()
+      MESSAGE(FATAL_ERROR "Invalid VCS: ${VCS}. Supported values are: GIT, SVN and ZIP.")
+    endif()
   endif(NOT EXISTS ${DIRECTORY})
-
-  add_custom_target(${NAME}-update 
-    COMMAND ${EXTERNAL_UP_COMMAND}
-    WORKING_DIRECTORY ${DIRECTORY}
-    COMMENT "Update ${NAME} to latest revision."
-    )
 
 endmacro(add_external SOURCE_VAR NAME VCS URL)

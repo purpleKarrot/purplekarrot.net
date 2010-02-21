@@ -69,35 +69,4 @@
   </div>
 </xsl:template>
 
-<xsl:template name="footer.navigation">
-  <xsl:param name="prev" select="/foo"/>
-  <xsl:param name="next" select="/foo"/>
-  <xsl:param name="nav.context"/>
-
-  <div class="navigation2">
-    <!-- prev -->
-    <xsl:if test="count($prev)>0">
-      <a class="prev">
-        <xsl:attribute name="href">
-          <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$prev" />
-          </xsl:call-template>
-        </xsl:attribute>
-        <xsl:apply-templates select="$prev" mode="object.title.markup"/>
-      </a>
-    </xsl:if>
-    <!-- next -->
-    <xsl:if test="count($next)>0">
-      <a class="next">
-        <xsl:attribute name="href">
-          <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$next" />
-          </xsl:call-template>
-        </xsl:attribute>
-        <xsl:apply-templates select="$next" mode="object.title.markup"/>
-      </a>
-    </xsl:if>
-  </div>
-</xsl:template>
-
 </xsl:stylesheet>

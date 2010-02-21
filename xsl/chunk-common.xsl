@@ -674,12 +674,6 @@
 
       <xsl:copy-of select="$content"/>
 
-      <xsl:call-template name="footer.navigation">
-        <xsl:with-param name="prev" select="$prev"/>
-        <xsl:with-param name="next" select="$next"/>
-        <xsl:with-param name="nav.context" select="$nav.context"/>
-      </xsl:call-template>
-
             </div>
           </div>
         </div>

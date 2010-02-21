@@ -375,7 +375,6 @@ set       toc,title
 <xsl:param name="show.revisionflag" select="0"/>
 <xsl:param name="simplesect.in.toc" select="0"/>
 <xsl:param name="spacing.paras" select="0"/>
-<xsl:param name="suppress.footer.navigation">0</xsl:param>
 <xsl:param name="suppress.header.navigation" select="0"/>
 <xsl:param name="suppress.navigation" select="0"/>
 <xsl:param name="table.borders.with.css" select="0"/>

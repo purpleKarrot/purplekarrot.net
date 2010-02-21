@@ -12,7 +12,6 @@
    <li><a href="/index.html" id="current">News</a></li>
    <li><a href="/index.html">Projects</a></li>
    <li><a href="/index.html">Downloads</a></li>
-   <li><a href="/index.html">Support</a></li>
    <li><a href="/index.html">About</a></li>
   </ul>
 
