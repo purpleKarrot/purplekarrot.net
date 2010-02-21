@@ -359,64 +359,6 @@
 </xsl:template>
 
 <!-- ==================================================================== -->
-<!-- some special cases -->
-
-<xsl:template match="author">
-  <xsl:param name="content">
-    <xsl:call-template name="anchor"/>
-    <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:call-template name="apply-annotations"/>
-  </xsl:param>
-
-  <span>
-    <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
-  </span>
-</xsl:template>
-
-<xsl:template match="editor">
-  <xsl:param name="content">
-    <xsl:call-template name="anchor"/>
-    <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:call-template name="apply-annotations"/>
-  </xsl:param>
-
-  <span>
-    <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
-  </span>
-</xsl:template>
-
-<xsl:template match="othercredit">
-  <xsl:param name="content">
-    <xsl:call-template name="anchor"/>
-    <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:call-template name="person.name"/>
-      </xsl:with-param>
-    </xsl:call-template>
-    <xsl:call-template name="apply-annotations"/>
-  </xsl:param>
-
-  <span>
-    <xsl:call-template name="common.html.attributes"/>
-    <xsl:copy-of select="$content"/>
-  </span>
-</xsl:template>
-
-<xsl:template match="authorinitials">
-  <xsl:call-template name="inline.charseq"/>
-</xsl:template>
-
-<!-- ==================================================================== -->
 
 <xsl:template match="accel">
   <xsl:call-template name="inline.charseq"/>

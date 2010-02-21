@@ -44,7 +44,6 @@
 <xsl:include href="footnote.xsl"/>
 <xsl:include href="html.xsl"/>
 <xsl:include href="division.xsl"/>
-<xsl:include href="index.xsl"/>
 <xsl:include href="refentry.xsl"/>
 <xsl:include href="math.xsl"/>
 <xsl:include href="match/admonition.xsl"/>
@@ -99,13 +98,6 @@
   <title>
     <xsl:copy-of select="$title"/>
   </title>
-</xsl:template>
-
-<!-- ============================================================ -->
-
-<xsl:template name="root.messages">
-  <!-- redefine this any way you'd like to output messages -->
-  <!-- DO NOT OUTPUT ANYTHING FROM THIS TEMPLATE -->
 </xsl:template>
 
 </xsl:stylesheet>

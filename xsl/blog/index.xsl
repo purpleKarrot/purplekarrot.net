@@ -10,7 +10,7 @@
     <xsl:call-template name="write.chunk">
 
       <xsl:with-param name="filename">
-        <xsl:text>blog1.html</xsl:text>
+        <xsl:text>index.html</xsl:text>
       </xsl:with-param>
       <xsl:with-param name="content">
         <html>

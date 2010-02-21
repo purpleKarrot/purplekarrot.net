@@ -43,11 +43,7 @@
 
 <xsl:template match="/">
   <xsl:apply-templates select="book/part[@id='blog']" mode="make.blog" />
-  <xsl:apply-templates select="/" mode="process.root" />
-</xsl:template>
-
-<xsl:template match="*" mode="process.root">
-  <xsl:apply-templates select="."/>
+  <xsl:apply-templates select="book/part[@id='projects']" />
 </xsl:template>
 
 <!-- ====================================================================== -->

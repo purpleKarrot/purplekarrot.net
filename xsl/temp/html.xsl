@@ -14,8 +14,6 @@
 <xsl:template match="*" mode="process.root">
   <xsl:variable name="doc" select="self::*"/>
 
-  <xsl:call-template name="root.messages"/>
-
   <html>
     <head>
       <xsl:call-template name="head.content">
