@@ -35,7 +35,7 @@
                       <xsl:value-of select="@title" />
                     </h1>
 
-                    <xsl:copy-of select="content" />
+                    <xsl:copy-of select="content/*" />
 
                     <xsl:call-template name="blog.navigation">
                       <xsl:with-param name="prev" select="preceding-sibling::*[1]" />

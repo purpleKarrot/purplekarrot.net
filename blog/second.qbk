@@ -2,22 +2,32 @@
   [quickbook 1.5]
   [purpose This article is a summary of QuickBook examples.]
 ]
+
 [#topanchor] 
 [h2 Examples]
 
 [*this is bold]
+
 ['this is italic]
+
 [_underline] or _underline_
+
 [^teletype] or =teletype= 
+
 [~replaceable]
+
 [-strikethrough] 
 
 [:sometext in block quote ...]
 
 [note This is a note]
+
 [tip This is a tip]
+
 [important This is important]
+
 [caution This is a caution]
+
 [warning This is a warning]
 
 

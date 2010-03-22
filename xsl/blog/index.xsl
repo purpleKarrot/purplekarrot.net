@@ -31,7 +31,7 @@
                     <xsl:for-each select="$nodes">
 
                       <xsl:variable name="link">
-                        <xsl:text>blog1/</xsl:text>
+                        <xsl:text>blog/</xsl:text>
                         <xsl:value-of select="@id" />
                         <xsl:text>.html</xsl:text>
                       </xsl:variable>
@@ -47,7 +47,7 @@
                           <xsl:value-of select="@title" />
                         </h1>
 
-                        <xsl:copy-of select="summary" />
+                        <xsl:copy-of select="summary/*" />
 
                         <p class="post-footer align-right">
                           <a href="{$link}" class="readmore">Read more</a>
