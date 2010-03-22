@@ -14,13 +14,12 @@ if(MSVC)
   add_definitions(-D_SCL_SECURE_NO_WARNINGS)
 endif(MSVC)
 
-include(BoostBook)
+find_package(BoostBook)
 include(QuickBook)
 include(AddCSS)
 include(AddExternal)
 include(AddProject)
 include(AddReference)
-include(AddXSLTdoc)
 include(AddQuickBook)
 include(XSLTransform)
 include(FetchRepositories)
@@ -35,15 +34,13 @@ add_css(purplekarrot.css
 
 ################################################################################
 
-add_external(FANCYBOX_DIR fancybox ZIP
-  http://fancybox.googlecode.com/files/jquery.fancybox-1.3.0.zip)
+# add_external(FANCYBOX_DIR fancybox ZIP
+#   http://fancybox.googlecode.com/files/jquery.fancybox-1.3.0.zip)
 
 # install(DIRECTORY ${FANCYBOX_DIR}/jquery.fancybox-1.3.0/fancybox
 #   DESTINATION ... )
 
 ################################################################################
-
-add_subdirectory(doc)
 
 file(GLOB BLOG blog/*)
 add_quickbook(blog.xml "part Blog"
@@ -54,10 +51,7 @@ add_quickbook(blog.xml "part Blog"
   XINCLUDE ${BLOG}
   )
 
-set(MAONI_BUILD_DOCUMENTATION ON)
-add_projects(projects.xml
-  PROJECT libMaoni GIT git://github.com/purpleKarrot/libMaoni.git
-  )
+add_projects(projects.xml purpleKarrot)
 
 add_quickbook(website.xml "book purpleKarrot Website"
   COPYRIGHT "2010 Daniel Pfeifer"

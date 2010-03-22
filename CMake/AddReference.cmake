@@ -1,6 +1,7 @@
 
 include(XSLTransform)
 find_package(Doxygen REQUIRED)
+find_package(BoostBook)
 
 # Use Doxygen to parse header files and produce BoostBook output.
 #
@@ -41,9 +42,11 @@ macro(add_reference OUTPUT)
   endforeach(PARAM)
 
   # Update the Doxygen configuration file for XML generation
+  file(APPEND ${DOXYFILE} "QUIET = YES\n")
   file(APPEND ${DOXYFILE} "OUTPUT_DIRECTORY = \"${CMAKE_CURRENT_BINARY_DIR}\"\n")
   file(APPEND ${DOXYFILE} "GENERATE_LATEX = NO\n")
   file(APPEND ${DOXYFILE} "GENERATE_HTML = NO\n")
+  file(APPEND ${DOXYFILE} "SEARCHENGINE = NO\n")
   file(APPEND ${DOXYFILE} "GENERATE_XML = YES\n")
 
   set(THIS_DOXY_HEADER_LIST "")

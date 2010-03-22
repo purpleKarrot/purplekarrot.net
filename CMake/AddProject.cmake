@@ -2,6 +2,7 @@
 include(AddExternal)
 include(ParseArguments)
 
+
 # Transform Quickbook into BoostBook XML
 macro(add_documentation INPUT)
 
@@ -32,30 +33,53 @@ macro(add_documentation INPUT)
 
 endmacro(add_documentation INPUT)
 
-# add_project(libMaoni
-#   REPOSITORY GIT git://github.com/purpleKarrot/libMaoni.git
-#   DOCUMENTATION maoni-doc.xml
-#   )
-macro(add_project NAME VCS REPOSITORY)
 
-  add_external(THIS_EXTERNAL ${NAME} ${VCS} ${REPOSITORY})
+set(GITHUB_ARGS
+  DESCRIPTION
+  OPEN_ISSUES
+  HOMEPAGE
+  URL
+  FORK
+  WATCHERS
+  FORKS
+  PRIVATE
+  NAME
+  OWNER
+  )
 
-  set(THIS_PROJECT_NAME ${NAME})
+macro(add_repository)
+
+  parse_arguments(THIS_PROJ "${GITHUB_ARGS}" "" ${ARGN})
+  add_external(THIS_EXTERNAL ${THIS_PROJ_NAME} GIT ${THIS_PROJ_URL}.git)
+
+  set(THIS_PROJECT_NAME ${THIS_PROJ_NAME})
 
   set(PROJECT_SOURCE_DIR ${THIS_EXTERNAL})
-  set(PROJECT_BINARY_DIR ${CMAKE_BINARY_DIR}/${NAME})
+  set(PROJECT_BINARY_DIR ${CMAKE_BINARY_DIR}/${THIS_PROJ_NAME})
 
-  add_subdirectory(${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR}
+  add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_BINARY_DIR}
     EXCLUDE_FROM_ALL)
     
-  get_target_property(LOC ${NAME}-doc LOCATION)
-  set(DEPENDENCIES ${DEPENDENCIES} ${LOC})
+  get_target_property(LOC ${THIS_PROJECT_NAME}-doc LOCATION)
+  if(LOC)
+    set(DEPENDENCIES ${DEPENDENCIES} ${LOC})
+  endif(LOC)
 
-endmacro(add_project NAME VCS REPOSITORY)
+endmacro(add_repository)
 
 
 # collect external projects to documentation
-macro(add_projects OUTPUT)
+macro(add_projects OUTPUT NAME)
+
+  set(REPOSITORIES_URL http://github.com/api/v2/xml/repos/show/${NAME})
+  set(REPOSITORIES_XML ${CMAKE_BINARY_DIR}/repositories.xml)
+  set(REPOSITORIES_XSL ${CMAKE_SOURCE_DIR}/xsl/repositories/main.xsl)
+  set(REPOSITORIES_CMK ${CMAKE_BINARY_DIR}/repositories.cmake)
+
+  file(DOWNLOAD ${REPOSITORIES_URL} ${REPOSITORIES_XML})
+
+  execute_process(COMMAND ${XSLTPROC_EXECUTABLE}
+    -o ${REPOSITORIES_CMK} ${REPOSITORIES_XSL} ${REPOSITORIES_XML})
 
   set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/projects.qbk)
   file(WRITE ${QBK_FILE}
@@ -66,24 +90,10 @@ macro(add_projects OUTPUT)
     "]\n\n")
 
   set(DEPENDENCIES)
-
-  set(PROJ)
-  foreach(ITER ${ARGN})
-    if(ITER STREQUAL "PROJECT")
-      if(PROJ)
-        add_project(${PROJ})
-        set(PROJ)
-      endif(PROJ)
-    else(ITER STREQUAL "PROJECT")
-      set(PROJ ${PROJ} ${ITER})
-    endif(ITER STREQUAL "PROJECT")
-  endforeach(ITER ${ARGN})
-
-  if(PROJ)
-    add_project(${PROJ})
-  endif(PROJ)
+  include(${REPOSITORIES_CMK})
 
   foreach(DEP ${DEPENDENCIES})
+    message(STATUS ${DEP})
     file(RELATIVE_PATH DEP_REL ${CMAKE_CURRENT_BINARY_DIR} ${DEP})
     file(APPEND ${QBK_FILE} "[xinclude ${DEP_REL}]\n")
   endforeach(DEP ${DEPENDENCIES})

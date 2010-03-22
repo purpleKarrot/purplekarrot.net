@@ -1,6 +1,11 @@
 
+include(FindPackageHandleStandardArgs)
+
 find_program(SASS_EXECUTABLE sass)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(Sass DEFAULT_MSG SASS_EXECUTABLE)
+
 find_program(CSSTIDY_EXECUTABLE csstidy)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(csstidy DEFAULT_MSG CSSTIDY_EXECUTABLE)
 set(CSSTIDY_PARAMETERS --silent=true --template=highest)
 
 macro(add_css OUTPUT)
