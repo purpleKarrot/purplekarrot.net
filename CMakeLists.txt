@@ -22,7 +22,6 @@ include(AddProject)
 include(AddReference)
 include(AddQuickBook)
 include(XSLTransform)
-include(FetchRepositories)
 
 add_css(purplekarrot.css
   css/pixelGreen.sass

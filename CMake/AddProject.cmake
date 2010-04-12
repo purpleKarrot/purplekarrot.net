@@ -53,17 +53,17 @@ macro(add_repository)
   add_external(THIS_EXTERNAL ${THIS_PROJ_NAME} GIT ${THIS_PROJ_URL}.git)
 
   set(THIS_PROJECT_NAME ${THIS_PROJ_NAME})
-
   set(PROJECT_SOURCE_DIR ${THIS_EXTERNAL})
-  set(PROJECT_BINARY_DIR ${CMAKE_BINARY_DIR}/${THIS_PROJ_NAME})
 
-  add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_BINARY_DIR}
-    EXCLUDE_FROM_ALL)
+  if(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/bin
+      EXCLUDE_FROM_ALL)
     
-  get_target_property(LOC ${THIS_PROJECT_NAME}-doc LOCATION)
-  if(LOC)
-    set(DEPENDENCIES ${DEPENDENCIES} ${LOC})
-  endif(LOC)
+    get_target_property(LOC ${THIS_PROJECT_NAME}-doc LOCATION)
+    if(LOC)
+      set(DEPENDENCIES ${DEPENDENCIES} ${LOC})
+    endif(LOC)
+  endif(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
 
 endmacro(add_repository)
 
