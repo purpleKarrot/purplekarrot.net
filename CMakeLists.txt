@@ -7,6 +7,9 @@ project(purplekarrot.net)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
+set(CMAKE_INSTALL_PREFIX /home/daniel/Desktop/website)
+message(STATUS ${CMAKE_INSTALL_PREFIX})
+
 if(MSVC)
   set(Boost_USE_STATIC_LIBS ON)
   add_definitions(-DBOOST_ALL_NO_LIB)
@@ -16,32 +19,20 @@ endif(MSVC)
 
 find_package(BoostBook)
 include(QuickBook)
-include(AddCSS)
 include(AddExternal)
 include(AddProject)
 include(AddReference)
 include(AddQuickBook)
 include(XSLTransform)
 
-add_css(purplekarrot.css
-  css/pixelGreen.sass
-  css/admonition.sass
-  css/navigation.sass
-  css/disqus.sass
-  css/code.sass
-  )
+################################################################################
+
+add_subdirectory(css)
+add_subdirectory(js)
 
 ################################################################################
 
-# add_external(FANCYBOX_DIR fancybox ZIP
-#   http://fancybox.googlecode.com/files/jquery.fancybox-1.3.0.zip)
-
-# install(DIRECTORY ${FANCYBOX_DIR}/jquery.fancybox-1.3.0/fancybox
-#   DESTINATION ... )
-
-################################################################################
-
-file(GLOB BLOG blog/*)
+file(GLOB BLOG blog/*.qbk)
 add_quickbook(blog.xml "part Blog"
   ID blog
   DIRNAME blog
@@ -93,3 +84,5 @@ add_custom_target(website ALL DEPENDS
   website.manifest
   sitemap.xml
   )
+
+install(DIRECTORY images DESTINATION www)

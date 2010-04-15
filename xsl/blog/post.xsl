@@ -20,7 +20,7 @@
             <title>
               <xsl:value-of select="@title" />
             </title>
-            <link rel="stylesheet" href="../../purplekarrot.css" type="text/css" />
+            <link rel="stylesheet" href="/stylesheet.css" type="text/css" />
             <script type="text/javascript">  var disqus_developer = true; </script> 
           </head>
           <body>

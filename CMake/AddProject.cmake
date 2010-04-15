@@ -56,7 +56,7 @@ macro(add_repository)
   set(PROJECT_SOURCE_DIR ${THIS_EXTERNAL})
 
   if(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
-    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/bin
+    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/build/doc
       EXCLUDE_FROM_ALL)
     
     get_target_property(LOC ${THIS_PROJECT_NAME}-doc LOCATION)
