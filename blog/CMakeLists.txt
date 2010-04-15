@@ -26,6 +26,6 @@ xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/www blog.docbook
   MAKE_ALL_TARGET blog
   )
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/www
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/www
   DESTINATION .
   )
