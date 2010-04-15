@@ -27,6 +27,7 @@ include(XSLTransform)
 
 ################################################################################
 
+add_subdirectory(blog)
 add_subdirectory(css)
 add_subdirectory(js)
 
@@ -75,7 +76,7 @@ xsl_transform(sitemap.xml website.docbook
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html website.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
   CATALOG ${BOOSTBOOK_CATALOG}
-  DIRECTORY index-html
+  DIRECTORY index.html
   COMMENT "Generating Website HTML."
   MAKE_ALL_TARGET website-html
   )

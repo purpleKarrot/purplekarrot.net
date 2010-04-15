@@ -37,7 +37,7 @@
                       </xsl:variable>
 
                       <xsl:variable name="commentslink">
-                        <xsl:text>blog1/</xsl:text>
+                        <xsl:text>blog/</xsl:text>
                         <xsl:value-of select="@id" />
                         <xsl:text>.html#disqus_thread</xsl:text>
                       </xsl:variable>

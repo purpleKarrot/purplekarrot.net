@@ -9,9 +9,10 @@
   <h2 id="slogan">Put your site slogan here...</h2>
 
   <ul>
-   <li><a href="/index.html" id="current">News</a></li>
+   <li><a href="/index.html" id="current">Blog</a></li>
    <li><a href="/index.html">Projects</a></li>
    <li><a href="/index.html">Downloads</a></li>
+   <li><a href="/index.html">Search</a></li>
    <li><a href="/index.html">About</a></li>
   </ul>
 
