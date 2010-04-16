@@ -2,21 +2,21 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
-file(GLOB_RECURSE BLOG_POSTS *.qbk)
-add_quickbook(blog.xml "part Blog"
-  ID blog
-  DIRNAME blog
-  COPYRIGHT "2010 Daniel Pfeifer"
-  AUTHORS "[Pfeifer, Daniel]"
-  XINCLUDE ${BLOG_POSTS}
-  )
+set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
+file(WRITE ${QBK_FILE} "[part Blog\n  [quickbook 1.5]\n]\n\n")
 
-xsl_transform(blog.docbook blog.xml
-  STYLESHEET ${BOOSTBOOK_XSL_DIR}/docbook.xsl
-  CATALOG ${BOOSTBOOK_CATALOG}
-  COMMENT "Generating DocBook from blog.xml."
-  DEPENDS blog.xml
-  )
+file(GLOB_RECURSE BLOG_POSTS *.qbk)
+set(DEPENDENCIES)
+
+foreach(POST ${BLOG_POSTS})
+  get_filename_component(POST_NAME ${POST} NAME_WE)
+  set(POST_PATH ${CMAKE_CURRENT_BINARY_DIR}/${POST_NAME}.xml)
+  quickbook_to_boostbook(${POST_PATH} ${POST})
+  set(DEPENDENCIES ${DEPENDENCIES} ${POST_PATH})
+  file(APPEND ${QBK_FILE} "[xinclude ${POST_PATH}]\n")
+endforeach(POST ${BLOG_POSTS})
+
+quickbook_to_docbook(blog.docbook ${QBK_FILE} ${DEPENDENCIES})
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/www blog.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/blog.xsl
