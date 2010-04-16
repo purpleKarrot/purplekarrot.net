@@ -45,5 +45,9 @@
  </div>
 </div>
 
+<div id="fork-me">
+  <p><a href="http://github.com/purpleKarrot" title="Fork me on GitHub!" rel="me">Fork me on GitHub!</a></p>
+</div>
+
 </xsl:template>
 </xsl:stylesheet>
