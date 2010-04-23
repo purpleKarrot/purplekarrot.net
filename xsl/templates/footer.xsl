@@ -32,8 +32,8 @@
    <p>
     (c) copyright 2010 <strong>purpleKarrot</strong><br /> 
     Design by: <a href="http://www.styleshout.com/"><strong>styleshout</strong></a> &#160; &#160;
-    Valid <a href="http://jigsaw.w3.org/css-validator/check/referer"><strong>CSS</strong></a> | 
-    <a href="http://validator.w3.org/check/referer"><strong>XHTML</strong></a>
+    Valid <a href="http://validator.w3.org/check/referer"><strong>HTML5</strong></a> | 
+    <a href="http://jigsaw.w3.org/css-validator/check/referer"><strong>CSS</strong></a>
    </p>
 
    <ul>

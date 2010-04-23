@@ -3,17 +3,7 @@
 
 <xsl:template name="purple.sidebar">
 
-<div id="sidebar" >
-
- <div class="sidebox">
-  <h1>Search Box</h1>
-  <form action="#" class="searchform">
-   <p>
-    <input name="search_query" class="textbox" type="text" />
-    <input name="search" class="button" value="Search" type="submit" />
-   </p>
-  </form>
- </div>
+<div id="sidebar">
 
  <div class="sidebox">
   <h1>Short About</h1>

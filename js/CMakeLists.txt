@@ -22,3 +22,6 @@ extract(${FANCYBOX_FILE_PATH} ${CMAKE_CURRENT_BINARY_DIR})
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/jquery.fancybox-1.3.1/fancybox
   DESTINATION www/js)
+
+
+install(FILES search.js DESTINATION www/js)

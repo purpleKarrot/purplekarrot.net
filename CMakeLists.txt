@@ -27,6 +27,7 @@ include(XSLTransform)
 add_subdirectory(blog)
 add_subdirectory(css)
 add_subdirectory(js)
+add_subdirectory(other)
 add_subdirectory(projects)
 
 install(DIRECTORY images DESTINATION www)
