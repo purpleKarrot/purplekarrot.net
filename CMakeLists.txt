@@ -7,6 +7,12 @@ project(purplekarrot.net)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
+set(CTOOLBOX_USE_FILE ${CMAKE_BINARY_DIR}/UseCToolBox.cmake)
+file(DOWNLOAD
+  http://github.com/purpleKarrot/CToolBox/raw/master/UseCToolBox.cmake
+  ${CTOOLBOX_USE_FILE})
+include(${CTOOLBOX_USE_FILE})
+
 set(CMAKE_INSTALL_PREFIX /home/daniel/Desktop/website)
 
 if(MSVC)

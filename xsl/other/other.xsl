@@ -9,8 +9,7 @@
   <xsl:include href="../templates/footer.xsl" />
 
   <xsl:template match="/">
-    <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;
-</xsl:text>
+    <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;&#10;</xsl:text>
     <html>
       <head>
         <meta charset="utf-8" />

@@ -1,7 +1,7 @@
-
 include(AddExternal)
 include(ParseArguments)
-
+include(XSLTransform)
+find_package(BoostBook)
 
 # Transform Quickbook into BoostBook XML
 macro(add_documentation INPUT)
@@ -15,7 +15,7 @@ macro(add_documentation INPUT)
   endif(INPUT_PATH STREQUAL "")
 
   set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}.qbk)
-  set(XML_FILE ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}.xml)
+  set(DBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}.docbook)
 
   # copy to destination directory because quickbook screws up xinclude paths 
   # when the output is not in the source directory
@@ -23,13 +23,17 @@ macro(add_documentation INPUT)
     COMMAND ${CMAKE_COMMAND} -E copy ${INPUT_PATH} ${QBK_FILE}
     DEPENDS ${INPUT_PATH})
 
-  add_custom_command(OUTPUT ${XML_FILE}
-    COMMAND quickbook "--output-file=${XML_FILE}" ${QBK_FILE}
-    DEPENDS ${QBK_FILE} ${ARGN})
-    
-  add_custom_target(${THIS_PROJECT_NAME}-doc DEPENDS ${XML_FILE})
-  set_target_properties(${THIS_PROJECT_NAME}-doc PROPERTIES 
-    LOCATION ${XML_FILE})
+  quickbook_to_docbook(${DBK_FILE} ${QBK_FILE} ${ARGN})
+
+  xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME} ${DBK_FILE}
+    STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
+    CATALOG ${BOOSTBOOK_CATALOG}
+    DIRECTORY index.html
+    MAKE_ALL_TARGET ${THIS_PROJECT_NAME}-doc
+    )
+
+  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
+    DESTINATION www/doc)
 
 endmacro(add_documentation INPUT)
 
@@ -56,13 +60,12 @@ macro(add_repository)
   set(PROJECT_SOURCE_DIR ${THIS_EXTERNAL})
 
   if(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
-    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/build/doc
-      EXCLUDE_FROM_ALL)
-    
-    get_target_property(LOC ${THIS_PROJECT_NAME}-doc LOCATION)
-    if(LOC)
-      set(DEPENDENCIES ${DEPENDENCIES} ${LOC})
-    endif(LOC)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/build/doc)
   endif(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
+
+#    get_target_property(LOC ${THIS_PROJECT_NAME}-doc LOCATION)
+#    if(LOC)
+#      set(DEPENDENCIES ${DEPENDENCIES} ${LOC})
+#    endif(LOC)
 
 endmacro(add_repository)
