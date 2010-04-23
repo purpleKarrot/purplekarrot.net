@@ -260,7 +260,6 @@ set       toc,title
 <xsl:param name="htmlhelp.use.hhk" select="0"/>
 <xsl:param name="htmlhelp.window.geometry"/>
 <xsl:param name="img.src.path"/>
-<xsl:param name="id.warnings" select="0"/>
 <xsl:param name="index.method">basic</xsl:param>
 <xsl:param name="index.on.role" select="0"/>
 <xsl:param name="index.links.to.section" select="1"/>

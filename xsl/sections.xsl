@@ -17,9 +17,6 @@
 
 <xsl:template match="section">
   <xsl:variable name="depth" select="count(ancestor::section)+1"/>
-
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -87,8 +84,6 @@
 </xsl:template>
 
 <xsl:template match="sect1">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -134,8 +129,6 @@
 </xsl:template>
 
 <xsl:template match="sect2">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -181,8 +174,6 @@
 </xsl:template>
 
 <xsl:template match="sect3">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -228,8 +219,6 @@
 </xsl:template>
 
 <xsl:template match="sect4">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -275,8 +264,6 @@
 </xsl:template>
 
 <xsl:template match="sect5">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -322,8 +309,6 @@
 </xsl:template>
 
 <xsl:template match="simplesect">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>

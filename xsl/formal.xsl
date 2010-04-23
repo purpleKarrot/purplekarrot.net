@@ -21,8 +21,6 @@
     <xsl:apply-templates select="." mode="class.value"/>
   </xsl:param>
 
-  <xsl:call-template name="id.warning"/>
-
   <xsl:variable name="content">
     <div class="{$class}">
       <xsl:call-template name="anchor">

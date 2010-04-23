@@ -233,44 +233,6 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template name="id.warning">
-  <xsl:if test="$id.warnings != 0 and not(@id) and not(@xml:id) and parent::*">
-    <xsl:variable name="title">
-      <xsl:choose>
-        <xsl:when test="title">
-          <xsl:value-of select="title[1]"/>
-        </xsl:when>
-        <xsl:when test="substring(local-name(*[1]),                                   string-length(local-name(*[1])-3) = 'info')                         and *[1]/title">
-          <xsl:value-of select="*[1]/title[1]"/>
-        </xsl:when>
-        <xsl:when test="refmeta/refentrytitle">
-          <xsl:value-of select="refmeta/refentrytitle"/>
-        </xsl:when>
-        <xsl:when test="refnamediv/refname">
-          <xsl:value-of select="refnamediv/refname[1]"/>
-        </xsl:when>
-      </xsl:choose>
-    </xsl:variable>
-
-    <xsl:message>
-      <xsl:text>ID recommended on </xsl:text>
-      <xsl:value-of select="local-name(.)"/>
-      <xsl:if test="$title != ''">
-        <xsl:text>: </xsl:text>
-        <xsl:choose>
-          <xsl:when test="string-length($title) &gt; 40">
-            <xsl:value-of select="substring($title,1,40)"/>
-            <xsl:text>...</xsl:text>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$title"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:if>
-    </xsl:message>
-  </xsl:if>
-</xsl:template>
-
 <xsl:template name="generate.class.attribute">
   <xsl:param name="class" select="local-name(.)"/>
   <xsl:apply-templates select="." mode="class.attribute">

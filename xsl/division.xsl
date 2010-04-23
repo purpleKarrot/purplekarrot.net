@@ -14,8 +14,6 @@
      ******************************************************************** -->
 
 <xsl:template match="part">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:apply-templates select="." mode="common.html.attributes"/>
     <xsl:if test="$generate.id.attributes != 0">
@@ -54,8 +52,6 @@
 <xsl:template match="part/subtitle"/>
 
 <xsl:template match="partintro">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes"/>
     <xsl:if test="$generate.id.attributes != 0">

@@ -16,8 +16,6 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="reference">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
@@ -83,8 +81,6 @@
 </xsl:template>
 
 <xsl:template match="refentry">
-  <xsl:call-template name="id.warning"/>
-
   <div>
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
