@@ -41,9 +41,9 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="/">
+<!-- xsl:template match="/">
   <xsl:apply-templates select="part[@id='projects']" />
-</xsl:template>
+</xsl:template -->
 
 <!-- ====================================================================== -->
 

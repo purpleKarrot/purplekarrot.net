@@ -13,7 +13,7 @@ file(DOWNLOAD
   ${CTOOLBOX_USE_FILE})
 include(${CTOOLBOX_USE_FILE})
 
-set(CMAKE_INSTALL_PREFIX /home/daniel/Desktop/website)
+set(CMAKE_INSTALL_PREFIX /var)
 
 if(MSVC)
   set(Boost_USE_STATIC_LIBS ON)

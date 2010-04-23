@@ -9,6 +9,7 @@
   <xsl:variable name="up" select="parent::*"/>
 
   <head>
+    <meta charset="utf-8" />
     <xsl:call-template name="head.content"/>
 
     <xsl:if test="$home">
