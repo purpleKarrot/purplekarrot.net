@@ -5,7 +5,6 @@
 
 <xsl:import href="templates/header.xsl"/>
 <xsl:import href="templates/footer.xsl"/>
-<xsl:import href="templates/sidebar.xsl"/>
 <xsl:import href="templates/chunk.xslt"/>
 <xsl:import href="templates/navigation.xsl"/>
 <xsl:import href="templates/html.head.xsl"/>
@@ -663,8 +662,6 @@
         <xsl:call-template name="purple.header"/>
         <div id="content-wrap">
           <div id="content">
-            <xsl:call-template name="purple.sidebar"/>
-            <div id="main">
 
       <xsl:call-template name="header.navigation">
         <xsl:with-param name="prev" select="$prev"/>
@@ -674,7 +671,6 @@
 
       <xsl:copy-of select="$content"/>
 
-            </div>
           </div>
         </div>
         <xsl:call-template name="purple.footer"/>

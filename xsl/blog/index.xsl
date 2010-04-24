@@ -3,6 +3,7 @@
 
   <xsl:import href="date.xsl" />
   <xsl:import href="disqus.xsl" />
+  <xsl:import href="sidebar.xsl" />
 
   <xsl:template name="blog.index">
     <xsl:param name="nodes" />

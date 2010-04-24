@@ -21,29 +21,22 @@
               <xsl:value-of select="@title" />
             </title>
             <link rel="stylesheet" href="/stylesheet.css" type="text/css" />
-            <script type="text/javascript">  var disqus_developer = true; </script> 
           </head>
           <body>
             <div id="wrap">
               <xsl:call-template name="purple.header" />
               <div id="content-wrap">
                 <div id="content">
-                  <xsl:call-template name="purple.sidebar" />
-                  <div id="main">
+                  <h1><xsl:value-of select="@title" /></h1>
 
-                    <h1>
-                      <xsl:value-of select="@title" />
-                    </h1>
+                  <xsl:copy-of select="content/*" />
 
-                    <xsl:copy-of select="content/*" />
+                  <xsl:call-template name="blog.navigation">
+                    <xsl:with-param name="prev" select="preceding-sibling::*[1]" />
+                    <xsl:with-param name="next" select="following-sibling::*[1]" />
+                  </xsl:call-template>
 
-                    <xsl:call-template name="blog.navigation">
-                      <xsl:with-param name="prev" select="preceding-sibling::*[1]" />
-                      <xsl:with-param name="next" select="following-sibling::*[1]" />
-                    </xsl:call-template>
-
-                    <xsl:call-template name="disqus.thread" />
-                  </div>
+                  <xsl:call-template name="disqus.thread" />
                 </div>
               </div>
               <xsl:call-template name="purple.footer" />

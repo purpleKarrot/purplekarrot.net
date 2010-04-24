@@ -5,7 +5,6 @@
 
   <xsl:include href="../templates/html.head.xsl" />
   <xsl:include href="../templates/header.xsl" />
-  <xsl:include href="../templates/sidebar.xsl" />
   <xsl:include href="../templates/footer.xsl" />
 
   <xsl:template match="/">
@@ -23,12 +22,9 @@
           <xsl:call-template name="purple.header" />
           <div id="content-wrap">
             <div id="content">
-              <xsl:call-template name="purple.sidebar" />
-              <div id="main">
-                <xsl:copy>
-                  <xsl:copy-of select="/html/body/*" />
-                </xsl:copy>
-              </div>
+              <xsl:copy>
+                <xsl:copy-of select="/html/body/*" />
+              </xsl:copy>
             </div>
           </div>
           <xsl:call-template name="purple.footer" />
