@@ -45,9 +45,6 @@
 <xsl:attribute-set name="preface.titlepage.recto.style"/>
 <xsl:attribute-set name="preface.titlepage.verso.style"/>
 
-<xsl:attribute-set name="chapter.titlepage.recto.style"/>
-<xsl:attribute-set name="chapter.titlepage.verso.style"/>
-
 <xsl:attribute-set name="appendix.titlepage.recto.style"/>
 <xsl:attribute-set name="appendix.titlepage.verso.style"/>
 
@@ -522,58 +519,10 @@
 </xsl:template>
 
 <xsl:template match="legalnotice" mode="titlepage.mode">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-
-  <xsl:choose>
-    <xsl:when test="$generate.legalnotice.link != 0">
-      
-      <!-- Compute name of legalnotice file -->
-      <xsl:variable name="file">
-	<xsl:call-template name="ln.or.rh.filename"/>
-      </xsl:variable>
-
-      <xsl:variable name="filename">
-        <xsl:call-template name="make-relative-filename">
-          <xsl:with-param name="base.dir" select="$base.dir"/>
-	  <xsl:with-param name="base.name" select="$file"/>
-        </xsl:call-template>
-      </xsl:variable>
-
-      <xsl:variable name="title">
-        <xsl:apply-templates select="." mode="title.markup"/>
-      </xsl:variable>
-
-      <a href="{$file}">
-        <xsl:copy-of select="$title"/>
-      </a>
-
-      <xsl:call-template name="write.chunk">
-        <xsl:with-param name="filename" select="$filename"/>
-        <xsl:with-param name="quiet" select="$chunk.quietly"/>
-        <xsl:with-param name="content">
-          <html>
-            <head>
-              <xsl:call-template name="head.content"/>
-            </head>
-            <body>
-              <xsl:call-template name="body.attributes"/>
-              <div>
-                <xsl:apply-templates select="." mode="common.html.attributes"/>
-                <xsl:apply-templates mode="titlepage.mode"/>
-              </div>
-            </body>
-          </html>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <div>
-        <xsl:apply-templates select="." mode="common.html.attributes"/>
-        <a id="{$id}"/>
-        <xsl:apply-templates mode="titlepage.mode"/>
-      </div>
-    </xsl:otherwise>
-  </xsl:choose>
+  <div>
+    <xsl:apply-templates select="." mode="common.html.attributes"/>
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </div>
 </xsl:template>
 
 <xsl:template match="legalnotice/title" mode="titlepage.mode">

@@ -9,6 +9,8 @@
   <xsl:variable name="home" select="/*[1]" />
   <xsl:variable name="up" select="parent::*" />
 
+  <xsl:if test="count($prev)>0 or count($up)>0 or $home != . or $nav.context = 'toc' or count($next)>0">
+
   <div class="navigation1">
     <!-- prev -->
     <xsl:if test="count($prev)>0">
@@ -67,6 +69,9 @@
       </a>
     </xsl:if>
   </div>
+
+  </xsl:if>
+
 </xsl:template>
 
 </xsl:stylesheet>

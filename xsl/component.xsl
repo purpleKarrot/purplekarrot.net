@@ -35,15 +35,9 @@
   <!-- Let's handle the case where a component (bibliography, for example)
        occurs inside a section; will we need parameters for this? -->
 
-  <xsl:element name="h{$level+1}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="h{$level}">
     <xsl:attribute name="class">title</xsl:attribute>
-    <xsl:if test="$generate.id.attributes = 0">
-      <xsl:call-template name="anchor">
-	<xsl:with-param name="node" select="$node"/>
-	<xsl:with-param name="conditional" select="0"/>
-      </xsl:call-template>
-    </xsl:if>
-      <xsl:apply-templates select="$node" mode="object.title.markup">
+    <xsl:apply-templates select="$node" mode="object.title.markup">
       <xsl:with-param name="allow-anchors" select="1"/>
     </xsl:apply-templates>
   </xsl:element>
