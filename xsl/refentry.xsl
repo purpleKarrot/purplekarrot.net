@@ -135,14 +135,7 @@
       <xsl:when test="preceding-sibling::refnamediv">
 	<!-- no title on secondary refnamedivs! -->
       </xsl:when>
-      <xsl:when test="$refentry.generate.name != 0">
-        <h2>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key" select="'RefName'"/>
-          </xsl:call-template>
-        </h2>
-      </xsl:when>
-      <xsl:when test="$refentry.generate.title != 0">
+      <xsl:otherwise>
         <h2>
           <xsl:choose>
             <xsl:when test="../refmeta/refentrytitle">
@@ -153,7 +146,7 @@
             </xsl:otherwise>
           </xsl:choose>
         </h2>
-      </xsl:when>
+      </xsl:otherwise>
     </xsl:choose>
 
     <p>
