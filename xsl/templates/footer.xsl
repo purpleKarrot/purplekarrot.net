@@ -4,7 +4,7 @@
 <xsl:template name="purple.footer">
 
 <div id="footer">
- <div id="footer-content">
+ <!--div id="footer-content"-->
 
   <div class="float-left">
    <p>
@@ -20,7 +20,7 @@
    </p>
   </div>
 
- </div>
+ <!--/div-->
 </div>
 
 <div id="fork-me">
