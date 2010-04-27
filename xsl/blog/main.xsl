@@ -10,7 +10,7 @@
     <xsl:variable name="nodes">
       <xsl:for-each select="chapter">
         <xsl:sort select="@last-revision" order="descending" />
-        <div>
+        <post>
           <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
           <xsl:attribute name="title"><xsl:value-of select="title" /></xsl:attribute>
           <xsl:attribute name="date"><xsl:value-of select="@last-revision" /></xsl:attribute>
@@ -20,15 +20,15 @@
           <content>
             <xsl:apply-templates />
           </content>
-        </div>
+        </post>
       </xsl:for-each>
     </xsl:variable>
 
     <xsl:call-template name="blog.index">
-      <xsl:with-param name="nodes" select="exsl:node-set($nodes)//div[position() &lt;= 10]" />
+      <xsl:with-param name="nodes" select="exsl:node-set($nodes)//post[position() &lt;= 10]" />
     </xsl:call-template>
 
-    <xsl:for-each select="exsl:node-set($nodes)//div">
+    <xsl:for-each select="exsl:node-set($nodes)//post">
       <xsl:call-template name="blog.post" />
     </xsl:for-each>
 

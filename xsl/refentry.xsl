@@ -90,9 +90,6 @@
         <hr/>
       </div>
     </xsl:if>
-    <xsl:call-template name="anchor">
-      <xsl:with-param name="conditional" select="0"/>
-    </xsl:call-template>
     <xsl:call-template name="refentry.titlepage"/>
     <xsl:apply-templates/>
     <xsl:call-template name="process.footnotes"/>
@@ -129,8 +126,6 @@
     <xsl:call-template name="common.html.attributes">
       <xsl:with-param name="inherit" select="1"/>
     </xsl:call-template>
-    <xsl:call-template name="anchor"/>
-
     <xsl:choose>
       <xsl:when test="preceding-sibling::refnamediv">
 	<!-- no title on secondary refnamedivs! -->
@@ -193,19 +188,13 @@
 
 <xsl:template match="refsynopsisdiv">
   <div>
-    <xsl:call-template name="common.html.attributes">
-      <xsl:with-param name="inherit" select="1"/>
-    </xsl:call-template>
-    <xsl:call-template name="anchor"/>
     <h2>
       <xsl:choose>
         <xsl:when test="refsynopsisdiv/title|title">
           <xsl:apply-templates select="(refsynopsisdiv/title|title)[1]" mode="titlepage.mode"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key" select="'RefSynopsisDiv'"/>
-          </xsl:call-template>
+          <xsl:text>Synopsis</xsl:text>
         </xsl:otherwise>
       </xsl:choose>
     </h2>
@@ -214,9 +203,7 @@
 </xsl:template>
 
 <xsl:template match="refsynopsisdivinfo"/>
-
-<xsl:template match="refsynopsisdiv/title">
-</xsl:template>
+<xsl:template match="refsynopsisdiv/title"/>
 
 <xsl:template match="refsynopsisdiv/title" mode="titlepage.mode">
   <xsl:apply-templates/>
@@ -224,20 +211,13 @@
 
 <xsl:template match="refsection|refsect1|refsect2|refsect3">
   <div>
-    <xsl:call-template name="common.html.attributes">
-      <xsl:with-param name="inherit" select="1"/>
-    </xsl:call-template>
-    <xsl:call-template name="anchor">
-      <xsl:with-param name="conditional" select="0"/>
-    </xsl:call-template>
-    <!-- pick up info title -->
+    <xsl:call-template name="common.html.attributes"/>
     <xsl:apply-templates select="(title|info/title)[1]"/>
     <xsl:apply-templates select="node()[not(self::title) and not(self::info)]"/>
   </div>
 </xsl:template>
 
 <xsl:template match="refsection/title|refsection/info/title">
-  <!-- the ID is output in the block.object call for refsect1 -->
   <xsl:variable name="level" select="count(ancestor-or-self::refsection)"/>
   <xsl:variable name="refsynopsisdiv">
     <xsl:text>0</xsl:text>
@@ -245,9 +225,9 @@
   </xsl:variable>
   <xsl:variable name="hlevel">
     <xsl:choose>
-      <xsl:when test="$level+$refsynopsisdiv &gt; 5">6</xsl:when>
+      <xsl:when test="$level + $refsynopsisdiv > 5">6</xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="$level+1+$refsynopsisdiv"/>
+        <xsl:value-of select="$level + 1 + $refsynopsisdiv"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -257,21 +237,18 @@
 </xsl:template>
 
 <xsl:template match="refsect1/title|refsect1/info/title">
-  <!-- the ID is output in the block.object call for refsect1 -->
   <h2>
     <xsl:apply-templates/>
   </h2>
 </xsl:template>
 
 <xsl:template match="refsect2/title|refsect2/info/title">
-  <!-- the ID is output in the block.object call for refsect2 -->
   <h3>
     <xsl:apply-templates/>
   </h3>
 </xsl:template>
 
 <xsl:template match="refsect3/title|refsect3/info/title">
-  <!-- the ID is output in the block.object call for refsect3 -->
   <h4>
     <xsl:apply-templates/>
   </h4>
@@ -281,8 +258,5 @@
 <xsl:template match="refsect1info|refsect1/info"/>
 <xsl:template match="refsect2info|refsect2/info"/>
 <xsl:template match="refsect3info|refsect3/info"/>
-
-
-<!-- ==================================================================== -->
 
 </xsl:stylesheet>

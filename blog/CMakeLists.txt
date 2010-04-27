@@ -3,7 +3,12 @@
 ################################################################################
 
 set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
-file(WRITE ${QBK_FILE} "[part Blog\n  [quickbook 1.5]\n]\n\n")
+file(WRITE ${QBK_FILE}
+  "[part Blog\n"
+  "  [quickbook 1.5]\n"
+  "  [copyright 2010 Daniel Pfeifer]\n"
+  "]\n\n"
+  )
 
 file(GLOB_RECURSE BLOG_POSTS *.qbk)
 set(DEPENDENCIES)

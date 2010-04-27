@@ -17,8 +17,9 @@
         <html>
           <head>
             <title>
-              <xsl:value-of select="purpleKarrot" />
+              <xsl:text>purpleKarrot</xsl:text>
             </title>
+            <meta charset="utf-8" />
             <link rel="stylesheet" href="/stylesheet.css" type="text/css" />
           </head>
           <body>

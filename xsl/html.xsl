@@ -165,9 +165,10 @@
       <xsl:with-param name="object" select="$node"/>
     </xsl:call-template>
   </xsl:variable>
-  <xslo:if xmlns:xslo="http://www.w3.org/1999/XSL/Transform" xmlns:saxon="http://icl.com/saxon" test="not($node[parent::blockquote])"><xsl:if test="$conditional = 0 or $node/@id or $node/@xml:id">
-    <a id="{$id}"/>
-  </xsl:if></xslo:if>
+  <xsl:if test="$conditional = 0 or $node/@id or $node/@xml:id">
+    <!-- <a id="{$id}"></a> -->
+    <xsl:text disable-output-escaping='yes'>&lt;a id="</xsl:text><xsl:copy-of select="$id"/><xsl:text disable-output-escaping='yes'>"&gt;&lt;/a&gt;</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template name="href.target.uri">
@@ -271,14 +272,9 @@
 <xsl:template match="*" mode="common.html.attributes">
   <xsl:param name="class" select="local-name(.)"/>
   <xsl:param name="inherit" select="0"/>
-  <xsl:call-template name="generate.html.lang"/>
-  <xsl:call-template name="dir">
-    <xsl:with-param name="inherit" select="$inherit"/>
-  </xsl:call-template>
   <xsl:apply-templates select="." mode="class.attribute">
     <xsl:with-param name="class" select="$class"/>
   </xsl:apply-templates>
-  <xsl:call-template name="generate.html.title"/>
 </xsl:template>
 
 <!-- Apply common attributes not including class -->
