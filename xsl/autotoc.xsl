@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <!--This file was created automatically by html2xhtml-->
 <!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- ********************************************************************
      $Id: autotoc.xsl 8315 2009-03-11 21:33:31Z bobstayton $
@@ -57,7 +57,7 @@
       <xsl:if test="$tocentry and $tocentry/*">
         <div class="toc">
           <xsl:copy-of select="$toc.title"/>
-          <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+          <xsl:element name="{$toc.list.type}">
             <xsl:call-template name="manual-toc">
               <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
             </xsl:call-template>
@@ -71,7 +71,7 @@
           <xsl:if test="$nodes.plus">
             <div class="toc">
               <xsl:copy-of select="$toc.title"/>
-              <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+              <xsl:element name="{$toc.list.type}">
                 <xsl:apply-templates select="$nodes.plus" mode="toc">
                   <xsl:with-param name="toc-context" select="$toc-context"/>
                 </xsl:apply-templates>
@@ -83,7 +83,7 @@
           <xsl:if test="$nodes">
             <div class="toc">
               <xsl:copy-of select="$toc.title"/>
-              <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+              <xsl:element name="{$toc.list.type}">
                 <xsl:apply-templates select="$nodes" mode="toc">
                   <xsl:with-param name="toc-context" select="$toc-context"/>
                 </xsl:apply-templates>
@@ -163,7 +163,7 @@
   <xsl:variable name="nodes.plus" select="$nodes | qandaset"/>
 
   <xsl:variable name="subtoc">
-    <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+    <xsl:element name="{$toc.list.type}">
       <xsl:choose>
         <xsl:when test="$qanda.in.toc != 0">
           <xsl:apply-templates mode="toc" select="$nodes.plus">
@@ -221,14 +221,14 @@
         <xsl:copy-of select="$subtoc"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:element name="{$toc.dd.type}" namespace="http://www.w3.org/1999/xhtml">
+        <xsl:element name="{$toc.dd.type}">
           <xsl:copy-of select="$subtoc"/>
         </xsl:element>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="{$toc.listitem.type}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{$toc.listitem.type}">
     <xsl:call-template name="toc.line">
       <xsl:with-param name="toc-context" select="$toc-context"/>
     </xsl:call-template>
@@ -435,7 +435,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="{$toc.listitem.type}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{$toc.listitem.type}">
     <span class="refentrytitle">
       <a>
         <xsl:attribute name="href">
@@ -480,7 +480,7 @@
   <xsl:if test="$tocentry">
     <xsl:variable name="node" select="key('id', $tocentry/@linkend)"/>
 
-    <xsl:element name="{$toc.listitem.type}" namespace="http://www.w3.org/1999/xhtml">
+    <xsl:element name="{$toc.listitem.type}">
       <xsl:variable name="label">
         <xsl:apply-templates select="$node" mode="label.markup"/>
       </xsl:variable>
@@ -500,7 +500,7 @@
     </xsl:element>
 
     <xsl:if test="$tocentry/*">
-      <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+      <xsl:element name="{$toc.list.type}">
         <xsl:call-template name="manual-toc">
           <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
         </xsl:call-template>
@@ -541,7 +541,7 @@
         </b>
       </p>
 
-      <xsl:element name="{$toc.list.type}" namespace="http://www.w3.org/1999/xhtml">
+      <xsl:element name="{$toc.list.type}">
         <xsl:apply-templates select="$nodes" mode="toc">
           <xsl:with-param name="toc-context" select="$toc-context"/>
         </xsl:apply-templates>
@@ -553,7 +553,7 @@
 <xsl:template match="figure|table|example|equation|procedure" mode="toc">
   <xsl:param name="toc-context" select="."/>
 
-  <xsl:element name="{$toc.listitem.type}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{$toc.listitem.type}">
     <xsl:variable name="label">
       <xsl:apply-templates select="." mode="label.markup"/>
     </xsl:variable>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <!--This file was created automatically by html2xhtml-->
 <!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exslt="http://exslt.org/common" xmlns="http://www.w3.org/1999/xhtml" extension-element-prefixes="exslt" exclude-result-prefixes="exslt" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exslt="http://exslt.org/common" extension-element-prefixes="exslt" exclude-result-prefixes="exslt" version="1.0">
 
 <!-- ********************************************************************
      $Id: autoidx.xsl 8399 2009-04-08 07:37:42Z bobstayton $

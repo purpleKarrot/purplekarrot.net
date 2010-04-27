@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common"
-  xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
   version="1.0" exclude-result-prefixes="cf exsl">
 
   <xsl:import href="docbook.xsl" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <!--This file was created automatically by html2xhtml-->
 <!--from the HTML stylesheets.-->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" version="1.0">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <!-- ********************************************************************
      $Id: htmltbl.xsl 8310 2009-03-11 08:29:45Z bobstayton $
@@ -16,14 +16,14 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="colgroup" mode="htmlTable">
-  <xsl:element name="{local-name()}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{local-name()}">
     <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
     <xsl:apply-templates mode="htmlTable"/>
   </xsl:element>
 </xsl:template>
 
 <xsl:template match="col" mode="htmlTable">
-  <xsl:element name="{local-name()}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{local-name()}">
     <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
   </xsl:element>
 </xsl:template>
@@ -41,14 +41,14 @@
 </xsl:template>
 
 <xsl:template match="tbody|thead|tfoot|tr" mode="htmlTable">
-  <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{local-name(.)}">
     <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
     <xsl:apply-templates mode="htmlTable"/>
   </xsl:element>
 </xsl:template>
 
 <xsl:template match="th|td" mode="htmlTable">
-  <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{local-name(.)}">
     <xsl:apply-templates select="@*" mode="htmlTableAtt"/>
     <xsl:apply-templates/> <!-- *not* mode=htmlTable -->
   </xsl:element>

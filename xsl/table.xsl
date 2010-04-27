@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://www.w3.org/1999/xhtml" version="1.0">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:include href="http://docbook.sourceforge.net/release/xsl/current/common/table.xsl"/>
 
@@ -66,7 +65,7 @@
 <xsl:template match="spanspec"/>
 
 <xsl:template match="thead|tfoot">
-  <xsl:element name="{local-name(.)}" namespace="http://www.w3.org/1999/xhtml">
+  <xsl:element name="{local-name(.)}">
     <xsl:apply-templates select="row[1]">
       <xsl:with-param name="spans">
         <xsl:call-template name="blank.spans">
@@ -212,7 +211,7 @@
     </xsl:when>
 
     <xsl:otherwise>
-      <xsl:element name="{$cellgi}" namespace="http://www.w3.org/1999/xhtml">
+      <xsl:element name="{$cellgi}">
         <xsl:if test="$entry.propagates.style != 0 and @role">
           <xsl:apply-templates select="." mode="class.attribute">
             <xsl:with-param name="class" select="@role"/>

@@ -7,7 +7,6 @@
   xmlns:cf="http://docbook.sourceforge.net/xmlns/chunkfast/1.0"
   xmlns:ng="http://docbook.org/docbook-ng"
   xmlns:db="http://docbook.org/ns/docbook"
-  xmlns="http://www.w3.org/1999/xhtml"
   exclude-result-prefixes="exsl cf ng db"
   version="1.0">
 
