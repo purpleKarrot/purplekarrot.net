@@ -342,21 +342,8 @@
 </xsl:template>
 
 <xsl:template match="copyright" mode="titlepage.mode">
-
-  <xsl:if test="generate-id() = generate-id(//refentryinfo/copyright[1])">
-    <h2>Copyright</h2>
-  </xsl:if>
-
-  <p>
-    <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:call-template name="gentext">
-      <xsl:with-param name="key" select="'Copyright'"/>
-    </xsl:call-template>
-    <xsl:call-template name="gentext.space"/>
-    <xsl:call-template name="dingbat">
-      <xsl:with-param name="dingbat">copyright</xsl:with-param>
-    </xsl:call-template>
-    <xsl:call-template name="gentext.space"/>
+  <p class="copyright">
+    <xsl:text>Copyright &#169; </xsl:text>
     <xsl:call-template name="copyright.years">
       <xsl:with-param name="years" select="year"/>
       <xsl:with-param name="print.ranges" select="$make.year.ranges"/>
@@ -368,29 +355,13 @@
 </xsl:template>
 
 <xsl:template match="year" mode="titlepage.mode">
-  <xsl:choose>
-    <xsl:when test="$show.revisionflag != 0 and @revisionflag">
-      <span class="{@revisionflag}">
-        <xsl:apply-templates mode="titlepage.mode"/>
-      </span>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates mode="titlepage.mode"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
 <xsl:template match="holder" mode="titlepage.mode">
-  <xsl:choose>
-    <xsl:when test="$show.revisionflag != 0 and @revisionflag">
-      <span class="{@revisionflag}">
-        <xsl:apply-templates mode="titlepage.mode"/>
-      </span>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:apply-templates mode="titlepage.mode"/>
-    </xsl:otherwise>
-  </xsl:choose>
+  <strong>
+    <xsl:apply-templates mode="titlepage.mode"/>
+  </strong>
   <xsl:if test="position() &lt; last()">
     <xsl:text>, </xsl:text>
   </xsl:if>
@@ -874,37 +845,8 @@
 </xsl:template>
 
 <xsl:template match="title" mode="titlepage.mode">
-  <xsl:variable name="id">
-    <xsl:choose>
-      <!-- if title is in an *info wrapper, get the grandparent -->
-      <xsl:when test="contains(local-name(..), 'info')">
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select="../.."/>
-        </xsl:call-template>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="object.id">
-          <xsl:with-param name="object" select=".."/>
-        </xsl:call-template>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
   <h1>
-    <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:if test="$generate.id.attributes = 0">
-      <a id="{$id}"/>
-    </xsl:if>
-    <xsl:choose>
-      <xsl:when test="$show.revisionflag != 0 and @revisionflag">
-	<span class="{@revisionflag}">
-	  <xsl:apply-templates mode="titlepage.mode"/>
-	</span>
-      </xsl:when>
-      <xsl:otherwise>
 	<xsl:apply-templates mode="titlepage.mode"/>
-      </xsl:otherwise>
-    </xsl:choose>
   </h1>
 </xsl:template>
 

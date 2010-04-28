@@ -42,7 +42,7 @@
 
 <xsl:template name="section.title">
   <!-- the context node should be the title of a section when called -->
-  <xsl:variable name="section" select="(ancestor::section                                         |ancestor::simplesect                                         |ancestor::sect1                                         |ancestor::sect2                                         |ancestor::sect3                                         |ancestor::sect4                                         |ancestor::sect5)[last()]"/>
+  <xsl:variable name="section" select="(ancestor::section|ancestor::simplesect|ancestor::sect1|ancestor::sect2|ancestor::sect3|ancestor::sect4|ancestor::sect5)[last()]"/>
 
   <xsl:variable name="renderas">
     <xsl:choose>
