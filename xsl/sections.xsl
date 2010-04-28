@@ -73,7 +73,7 @@
     <xsl:with-param name="level" select="$level"/>
     <xsl:with-param name="title">
       <xsl:apply-templates select="$section" mode="object.title.markup">
-        <xsl:with-param name="allow-anchors" select="1"/>
+        <xsl:with-param name="allow-anchors" select="0"/>
       </xsl:apply-templates>
     </xsl:with-param>
   </xsl:call-template>

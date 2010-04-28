@@ -35,18 +35,6 @@
 
   <xsl:variable name="nodes.plus" select="$nodes | qandaset"/>
 
-  <xsl:variable name="toc.title">
-    <xsl:if test="$toc.title.p">
-      <p>
-        <b>
-          <xsl:call-template name="gentext">
-            <xsl:with-param name="key">TableofContents</xsl:with-param>
-          </xsl:call-template>
-        </b>
-      </p>
-    </xsl:if>
-  </xsl:variable>
-
   <xsl:choose>
     <xsl:when test="$manual.toc != ''">
       <xsl:variable name="id">
@@ -70,7 +58,6 @@
         <xsl:when test="$qanda.in.toc != 0">
           <xsl:if test="$nodes.plus">
             <div class="toc">
-              <xsl:copy-of select="$toc.title"/>
               <xsl:element name="{$toc.list.type}">
                 <xsl:apply-templates select="$nodes.plus" mode="toc">
                   <xsl:with-param name="toc-context" select="$toc-context"/>
@@ -82,7 +69,6 @@
         <xsl:otherwise>
           <xsl:if test="$nodes">
             <div class="toc">
-              <xsl:copy-of select="$toc.title"/>
               <xsl:element name="{$toc.list.type}">
                 <xsl:apply-templates select="$nodes" mode="toc">
                   <xsl:with-param name="toc-context" select="$toc-context"/>

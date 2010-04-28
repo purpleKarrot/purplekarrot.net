@@ -97,7 +97,7 @@ http://docbook.sourceforge.net/release/images/annot-close.png</xsl:param>
 <xsl:param name="callout.unicode.number.limit">10</xsl:param>
 <xsl:param name="callout.unicode.start.character">10102</xsl:param>
 <xsl:param name="callouts.extension" select="1"/>
-<xsl:param name="chapter.autolabel" select="1"/>
+<xsl:param name="chapter.autolabel" select="0"/>
 <xsl:param name="chunk.first.sections" select="0"/>
 <xsl:param name="chunk.quietly" select="0"/>
 <xsl:param name="chunk.section.depth" select="1"/>
@@ -165,7 +165,7 @@ task before
 <xsl:param name="generate.legalnotice.link" select="0"/>
 <xsl:param name="generate.revhistory.link" select="0"/>
 <xsl:param name="generate.meta.abstract" select="1"/>
-<xsl:param name="generate.section.toc.level" select="0"/>
+<xsl:param name="generate.section.toc.level" select="1"/>
 <xsl:param name="generate.toc">
 appendix  toc,title
 article/appendix  nop
