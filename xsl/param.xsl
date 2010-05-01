@@ -287,7 +287,7 @@ set       toc,title
 <xsl:param name="make.graphic.viewport" select="1"/>
 <xsl:param name="make.single.year.ranges" select="0"/>
 <xsl:param name="make.valid.html" select="1"/>
-<xsl:param name="make.year.ranges" select="0"/>
+<xsl:param name="make.year.ranges" select="1"/>
     <xsl:param name="manifest">HTML.manifest</xsl:param>
     
 <xsl:param name="manifest.in.base.dir" select="0"/>

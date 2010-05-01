@@ -4,16 +4,13 @@
   <xsl:template name="blog.date">
     <xsl:param name="text" />
 
-    <!-- Remove the "$Date: " -->
-    <xsl:variable name="text.noprefix" select="substring-after($text, '$Date: ')" />
-
     <!-- Grab the year -->
-    <xsl:variable name="year" select="substring-before($text.noprefix, '/')" />
-    <xsl:variable name="text.noyear" select="substring-after($text.noprefix, '/')" />
+    <xsl:variable name="year" select="substring-before($text, '-')" />
+    <xsl:variable name="text.noyear" select="substring-after($text, '-')" />
 
     <!-- Grab the month -->
-    <xsl:variable name="month" select="substring-before($text.noyear, '/')" />
-    <xsl:variable name="text.nomonth" select="substring-after($text.noyear, '/')" />
+    <xsl:variable name="month" select="substring-before($text.noyear, '-')" />
+    <xsl:variable name="text.nomonth" select="substring-after($text.noyear, '-')" />
 
     <!-- Grab the day -->
     <xsl:variable name="day" select="substring-before($text.nomonth, ' ')" />

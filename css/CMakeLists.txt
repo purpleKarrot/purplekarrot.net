@@ -9,7 +9,7 @@ set(SASS_INPUT_FILES
   pixelGreen.sass
   admonition.sass
   navigation.sass
-  fork-me.sass
+  sidebar.sass
   disqus.sass
   code.sass
   )

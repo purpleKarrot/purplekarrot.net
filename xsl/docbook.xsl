@@ -85,10 +85,6 @@
   <xsl:value-of select="."/>
 </xsl:template>
 
-<xsl:template name="body.attributes">
-<!-- no apply-templates; make it empty -->
-</xsl:template>
-
 <xsl:template name="head.content">
   <xsl:param name="node" select="."/>
   <xsl:param name="title">

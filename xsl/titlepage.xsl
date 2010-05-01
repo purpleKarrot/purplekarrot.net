@@ -15,92 +15,6 @@
 
 <!-- ==================================================================== -->
 
-<xsl:attribute-set name="book.titlepage.recto.style"/>
-<xsl:attribute-set name="book.titlepage.verso.style"/>
-
-<xsl:attribute-set name="article.titlepage.recto.style"/>
-<xsl:attribute-set name="article.titlepage.verso.style"/>
-
-<xsl:attribute-set name="set.titlepage.recto.style"/>
-<xsl:attribute-set name="set.titlepage.verso.style"/>
-
-<xsl:attribute-set name="part.titlepage.recto.style"/>
-<xsl:attribute-set name="part.titlepage.verso.style"/>
-
-<xsl:attribute-set name="partintro.titlepage.recto.style"/>
-<xsl:attribute-set name="partintro.titlepage.verso.style"/>
-
-<xsl:attribute-set name="reference.titlepage.recto.style"/>
-<xsl:attribute-set name="reference.titlepage.verso.style"/>
-
-<xsl:attribute-set name="refentry.titlepage.recto.style"/>
-<xsl:attribute-set name="refentry.titlepage.verso.style"/>
-
-<xsl:attribute-set name="dedication.titlepage.recto.style"/>
-<xsl:attribute-set name="dedication.titlepage.verso.style"/>
-
-<xsl:attribute-set name="acknowledgements.titlepage.recto.style"/>
-<xsl:attribute-set name="acknowledgements.titlepage.verso.style"/>
-
-<xsl:attribute-set name="preface.titlepage.recto.style"/>
-<xsl:attribute-set name="preface.titlepage.verso.style"/>
-
-<xsl:attribute-set name="appendix.titlepage.recto.style"/>
-<xsl:attribute-set name="appendix.titlepage.verso.style"/>
-
-<xsl:attribute-set name="bibliography.titlepage.recto.style"/>
-<xsl:attribute-set name="bibliography.titlepage.verso.style"/>
-
-<xsl:attribute-set name="glossary.titlepage.recto.style"/>
-<xsl:attribute-set name="glossary.titlepage.verso.style"/>
-
-<xsl:attribute-set name="index.titlepage.recto.style"/>
-<xsl:attribute-set name="index.titlepage.verso.style"/>
-
-<xsl:attribute-set name="setindex.titlepage.recto.style"/>
-<xsl:attribute-set name="setindex.titlepage.verso.style"/>
-
-<xsl:attribute-set name="section.titlepage.recto.style"/>
-<xsl:attribute-set name="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="sect1.titlepage.recto.style" use-attribute-sets="section.titlepage.recto.style"/>
-<xsl:attribute-set name="sect1.titlepage.verso.style" use-attribute-sets="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="sect2.titlepage.recto.style" use-attribute-sets="section.titlepage.recto.style"/>
-<xsl:attribute-set name="sect2.titlepage.verso.style" use-attribute-sets="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="sect3.titlepage.recto.style" use-attribute-sets="section.titlepage.recto.style"/>
-<xsl:attribute-set name="sect3.titlepage.verso.style" use-attribute-sets="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="sect4.titlepage.recto.style" use-attribute-sets="section.titlepage.recto.style"/>
-<xsl:attribute-set name="sect4.titlepage.verso.style" use-attribute-sets="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="sect5.titlepage.recto.style" use-attribute-sets="section.titlepage.recto.style"/>
-<xsl:attribute-set name="sect5.titlepage.verso.style" use-attribute-sets="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="simplesect.titlepage.recto.style" use-attribute-sets="section.titlepage.recto.style"/>
-<xsl:attribute-set name="simplesect.titlepage.verso.style" use-attribute-sets="section.titlepage.verso.style"/>
-
-<xsl:attribute-set name="table.of.contents.titlepage.recto.style"/>
-<xsl:attribute-set name="table.of.contents.titlepage.verso.style"/>
-
-<xsl:attribute-set name="list.of.tables.titlepage.recto.style"/>
-<xsl:attribute-set name="list.of.tables.contents.titlepage.verso.style"/>
-
-<xsl:attribute-set name="list.of.figures.titlepage.recto.style"/>
-<xsl:attribute-set name="list.of.figures.contents.titlepage.verso.style"/>
-
-<xsl:attribute-set name="list.of.equations.titlepage.recto.style"/>
-<xsl:attribute-set name="list.of.equations.contents.titlepage.verso.style"/>
-
-<xsl:attribute-set name="list.of.examples.titlepage.recto.style"/>
-<xsl:attribute-set name="list.of.examples.contents.titlepage.verso.style"/>
-
-<xsl:attribute-set name="list.of.unknowns.titlepage.recto.style"/>
-<xsl:attribute-set name="list.of.unknowns.contents.titlepage.verso.style"/>
-
-<!-- ==================================================================== -->
-
 <xsl:template match="*" mode="titlepage.mode">
   <!-- if an element isn't found in this mode, try the default mode -->
   <xsl:apply-templates select="."/>
@@ -726,7 +640,6 @@
               </xsl:call-template>
             </head>
             <body>
-              <xsl:call-template name="body.attributes"/>
               <xsl:copy-of select="$contents"/>
             </body>
           </html>

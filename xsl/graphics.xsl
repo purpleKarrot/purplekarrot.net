@@ -1240,7 +1240,6 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
             </xsl:call-template>
           </head>
           <body>
-            <xsl:call-template name="body.attributes"/>
             <xsl:for-each select="$mediaobject/textobject[not(phrase)]">
               <xsl:apply-templates select="./*"/>
             </xsl:for-each>

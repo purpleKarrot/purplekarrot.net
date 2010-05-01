@@ -23,7 +23,6 @@ if(MSVC)
 endif(MSVC)
 
 find_package(BoostBook REQUIRED)
-include(AddExternal)
 include(AddProject)
 include(AddReference)
 include(XSLTransform)

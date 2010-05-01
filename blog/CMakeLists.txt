@@ -2,6 +2,8 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
+find_package(Git REQUIRED)
+
 set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
 file(WRITE ${QBK_FILE}
   "[part Blog\n"
@@ -14,11 +16,18 @@ file(GLOB_RECURSE BLOG_POSTS *.qbk)
 set(DEPENDENCIES)
 
 foreach(POST ${BLOG_POSTS})
+  execute_process(COMMAND ${Git_EXECUTABLE} log --pretty=format:%ai -1 ${POST}
+    OUTPUT_VARIABLE LAST_REVISION)
+
   get_filename_component(POST_NAME ${POST} NAME_WE)
-  set(POST_PATH ${CMAKE_CURRENT_BINARY_DIR}/${POST_NAME}.xml)
-  quickbook_to_boostbook(${POST_PATH} ${POST})
-  set(DEPENDENCIES ${DEPENDENCIES} ${POST_PATH})
-  file(APPEND ${QBK_FILE} "[xinclude ${POST_PATH}]\n")
+  set(POST_QBK ${CMAKE_CURRENT_BINARY_DIR}/${POST_NAME}.qbk)
+  set(POST_XML ${CMAKE_CURRENT_BINARY_DIR}/${POST_NAME}.xml)
+
+  configure_file(${POST} ${POST_QBK})
+  quickbook_to_boostbook(${POST_XML} ${POST_QBK})
+
+  set(DEPENDENCIES ${DEPENDENCIES} ${POST_XML})
+  file(APPEND ${QBK_FILE} "[xinclude ${POST_XML}]\n")
 endforeach(POST ${BLOG_POSTS})
 
 quickbook_to_docbook(blog.docbook ${QBK_FILE} ${DEPENDENCIES})

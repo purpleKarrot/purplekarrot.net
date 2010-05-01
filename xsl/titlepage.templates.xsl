@@ -160,7 +160,7 @@
   </xsl:template>
 
   <xsl:template name="part.titlepage">
-    <div xsl:use-attribute-sets="part.titlepage.recto.style">
+    <div>
       <xsl:call-template name="division.title">
         <xsl:with-param name="node" select="ancestor-or-self::part[1]" />
       </xsl:call-template>
@@ -345,7 +345,7 @@
   <xsl:template name="refentry.titlepage" />
 
   <xsl:template name="dedication.titlepage">
-    <div xsl:use-attribute-sets="dedication.titlepage.recto.style">
+    <div>
       <xsl:call-template name="component.title">
         <xsl:with-param name="node" select="ancestor-or-self::dedication[1]" />
       </xsl:call-template>
@@ -367,7 +367,7 @@
   </xsl:template>
 
   <xsl:template name="acknowledgements.titlepage">
-    <div xsl:use-attribute-sets="acknowledgements.titlepage.recto.style">
+    <div>
       <xsl:call-template name="component.title">
         <xsl:with-param name="node" select="ancestor-or-self::acknowledgements[1]" />
       </xsl:call-template>
@@ -926,7 +926,7 @@
   </xsl:template>
 
   <xsl:template name="bibliography.titlepage">
-    <div xsl:use-attribute-sets="bibliography.titlepage.recto.style">
+    <div>
       <xsl:call-template name="component.title">
         <xsl:with-param name="node" select="ancestor-or-self::bibliography[1]" />
       </xsl:call-template>
@@ -948,7 +948,7 @@
   </xsl:template>
 
   <xsl:template name="glossary.titlepage">
-    <div xsl:use-attribute-sets="glossary.titlepage.recto.style">
+    <div>
       <xsl:call-template name="component.title">
         <xsl:with-param name="node" select="ancestor-or-self::glossary[1]" />
       </xsl:call-template>
@@ -970,7 +970,7 @@
   </xsl:template>
 
   <xsl:template name="index.titlepage">
-    <div xsl:use-attribute-sets="index.titlepage.recto.style">
+    <div>
       <xsl:call-template name="component.title">
         <xsl:with-param name="node" select="ancestor-or-self::index[1]" />
       </xsl:call-template>
