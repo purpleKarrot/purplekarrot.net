@@ -2,40 +2,71 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
-set(MY_GITHUB_NAME purpleKarrot)
-set(REPOSITORIES_URL http://github.com/api/v2/xml/repos/show/${MY_GITHUB_NAME})
-set(REPOSITORIES_XML ${CMAKE_CURRENT_BINARY_DIR}/repositories.xml)
-set(REPOSITORIES_XSL ${CMAKE_SOURCE_DIR}/xsl/repositories/main.xsl)
-set(REPOSITORIES_CMK ${CMAKE_CURRENT_BINARY_DIR}/repositories.cmake)
+include(AddReference)
+include(XSLTransform)
+find_package(BoostBook)
+find_package(Git REQUIRED)
 
-file(DOWNLOAD ${REPOSITORIES_URL} ${REPOSITORIES_XML})
 
-execute_process(COMMAND ${XSLTPROC_EXECUTABLE}
-  -o ${REPOSITORIES_CMK} ${REPOSITORIES_XSL} ${REPOSITORIES_XML})
+macro(add_documentation INPUT)
 
-#set(DEPENDENCIES)
-include(${REPOSITORIES_CMK})
+  # If INPUT is not a full path, it's in the current source directory.
+  get_filename_component(INPUT_PATH ${INPUT} PATH)
+  if(INPUT_PATH STREQUAL "")
+    set(INPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/${INPUT}")
+  else(INPUT_PATH STREQUAL "")
+    set(INPUT_PATH ${INPUT})
+  endif(INPUT_PATH STREQUAL "")
 
-#set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/projects.qbk)
-#file(WRITE ${QBK_FILE}
-#  "[part Projects\n"
-#  "  [quickbook 1.5]\n"
-#  "  [id projects]\n"
-#  "  [dirname projects]\n"
-#  "]\n\n")
+  set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}.qbk)
+  set(DBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}.docbook)
 
-#foreach(DEP ${DEPENDENCIES})
-#  message(STATUS ${DEP})
-#  file(RELATIVE_PATH DEP_REL ${CMAKE_CURRENT_BINARY_DIR} ${DEP})
-#  file(APPEND ${QBK_FILE} "[xinclude ${DEP_REL}]\n")
-#endforeach(DEP ${DEPENDENCIES})
+  # copy to destination directory because quickbook screws up xinclude paths 
+  # when the output is not in the source directory
+  add_custom_command(OUTPUT ${QBK_FILE}
+    COMMAND ${CMAKE_COMMAND} -E copy ${INPUT_PATH} ${QBK_FILE}
+    DEPENDS ${INPUT_PATH})
 
-# quickbook_to_docbook(projects.docbook ${QBK_FILE})
+  quickbook_to_docbook(${DBK_FILE} ${QBK_FILE} ${ARGN})
 
-# xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/html projects.docbook
-#  STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
-#  CATALOG ${BOOSTBOOK_CATALOG}
-#  DIRECTORY index.html
-#  COMMENT "Generating Website HTML."
-#  MAKE_ALL_TARGET projects-html
-#  )
+  xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME} ${DBK_FILE}
+    STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
+    CATALOG ${BOOSTBOOK_CATALOG}
+    DIRECTORY index.html
+    MAKE_ALL_TARGET ${THIS_PROJECT_NAME}-doc
+    )
+
+  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
+    DESTINATION www/doc)
+
+endmacro(add_documentation INPUT)
+
+
+macro(add_repository NAME URL)
+
+  set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/${NAME})
+
+  if(NOT EXISTS ${PROJECT_SOURCE_DIR})
+    execute_process(COMMAND
+      ${Git_EXECUTABLE} clone ${URL} ${PROJECT_SOURCE_DIR})
+  endif(NOT EXISTS ${PROJECT_SOURCE_DIR})
+
+  add_custom_target(${NAME}-update ${Git_EXECUTABLE} pull origin master
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+  add_dependencies(update ${NAME}-update)
+
+  set(THIS_PROJECT_NAME ${NAME})
+
+  if(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/build/doc)
+  endif(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
+
+endmacro(add_repository NAME URL)
+
+
+add_custom_target(update)
+
+add_repository(async-db git://github.com/purpleKarrot/async-db.git)
+add_repository(libMaoni git://github.com/purpleKarrot/libMaoni.git)
+add_repository(shutter  git://github.com/shutter/libMaoni.git)
+add_repository(glcc     git://github.com/purpleKarrot/glcc.git)

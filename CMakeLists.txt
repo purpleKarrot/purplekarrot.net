@@ -22,11 +22,6 @@ if(MSVC)
   add_definitions(-D_SCL_SECURE_NO_WARNINGS)
 endif(MSVC)
 
-find_package(BoostBook REQUIRED)
-include(AddProject)
-include(AddReference)
-include(XSLTransform)
-
 ################################################################################
 
 add_subdirectory(blog)

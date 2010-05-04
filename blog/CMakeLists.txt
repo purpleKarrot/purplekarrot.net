@@ -2,7 +2,9 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
+include(XSLTransform)
 find_package(Git REQUIRED)
+find_package(BoostBook REQUIRED)
 
 set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
 file(WRITE ${QBK_FILE}
