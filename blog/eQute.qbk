@@ -2,7 +2,10 @@
   [quickbook 1.5]
   [last-revision ${LAST_REVISION}]
   [id eQute]
-  [purpose This article is a summary of QuickBook examples.]
+  [purpose There is no doubt that [@http://www.equalizergraphics.com/ Equalizer]
+           is a great framework. And as long as you use it how it is supposed to
+           be used, it is fairly user friendly. But as soon as you want to extend
+           it in an unconventional way, things get complicated.]
 ]
 
 There is no doubt that [@http://www.equalizergraphics.com/ Equalizer] is a great
