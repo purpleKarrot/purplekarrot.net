@@ -10,8 +10,6 @@
   exclude-result-prefixes="exsl cf ng db"
   version="1.0">
 
-<xsl:include href="blog/main.xsl"/>
-
 <!-- ********************************************************************
      $Id: chunk-code.xsl 8345 2009-03-16 06:44:07Z bobstayton $
      ********************************************************************
@@ -39,10 +37,6 @@
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
-
-<!-- xsl:template match="/">
-  <xsl:apply-templates select="part[@id='projects']" />
-</xsl:template -->
 
 <!-- ====================================================================== -->
 

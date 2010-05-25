@@ -17,19 +17,15 @@ One of these unconventional things I wanted to build upon it, was rendering
 inside my own render window, derived from [@http://qt.nokia.com/ QGLWidget]
 ([@http://www.libqglviewer.com/ QGLViewer], to be more specific).
 
-Equalizer provides the functionality to open windows with AGL, GLX and WGL and
-it should be easy to extend using other toolkits. All you have to do is inherit
-quite a lot of classes and then
-[@http://www.equalizergraphics.com/pipermail/eq-dev/2009-July/000670.html
-struggle with multithreaded event handling], ouch!
+Equalizer provides the functionality to open windows with AGL, GLX, WGL and
+it should be easy to extend using other toolkits. However, I don't want to extend
+Equalizer to support yet another windowing toolkit, where it can open its own
+windows. Instead, I want Equalizer to render inside my already existing window!
+To my knowledge, this hasn't been achieved (or even tried?) so far.
 
-However, I don't want to extend Equalizer to support yet another windowing
-toolkit, where it can open its own windows. Instead, I want Equalizer to render
-inside my already existing window! To my knowledge, this hasn't been achieved
-(or even tried?) so far.
-
-After some private mailing with Stefan Eilemann, I eventually got it working as
-I intended: On the master node the GUI with the rendering context in the center
+After some private mailing with Stefan Eilemann
+([@https://www.ohloh.net/accounts/eile kudos to him!]), I eventually got it working
+as I intended: On the master node the GUI with the rendering context in the center
 is created before Equalizer is initialized. Equalizer now uses this rendering
 context instead of opening the first window. All subsequent windows, no matter
 on which node, are created by Equalizer.
@@ -42,10 +38,9 @@ other toolkit (though not tested yet). You can have a first look at it
 
 It is used as follows:
 
-# Derive your rendering window from `eQute<T>::Proxy` where `T` is your rendering
-  window (see [@http://en.wikipedia.org/wiki/Curiously_recurring_template_pattern
-  curiously recurring template pattern]):
-  ``class RenderWindow: public QGLViewer, public eQute<RenderWindow>::Proxy
+# Derive your rendering window from `eQute<Widget>::WidgetBase` where `Widget` is
+  your rendering window.
+  ``class RenderWindow: public QGLViewer, public eQute<RenderWindow>::WidgetBase
 {
    ...
 };``

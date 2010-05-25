@@ -567,7 +567,7 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="revhistory" mode="titlepage.mode">
+<!--<xsl:template match="revhistory" mode="titlepage.mode">
   <xsl:variable name="numcols">
     <xsl:choose>
       <xsl:when test=".//authorinitials|.//author">3</xsl:when>
@@ -606,7 +606,6 @@
   <xsl:choose>
     <xsl:when test="$generate.revhistory.link != 0">
       
-      <!-- Compute name of revhistory file -->
       <xsl:variable name="file">
 	<xsl:call-template name="ln.or.rh.filename">
 	  <xsl:with-param name="is.ln" select="false()"/>
@@ -652,7 +651,7 @@
       <xsl:copy-of select="$contents"/>
     </xsl:otherwise>
   </xsl:choose>
-</xsl:template>
+</xsl:template>-->
 
 <xsl:template match="revhistory/revision" mode="titlepage.mode">
   <xsl:param name="numcols" select="'3'"/>

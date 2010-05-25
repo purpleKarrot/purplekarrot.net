@@ -495,9 +495,11 @@
     <xsl:apply-templates mode="titlepage.mode" select="chapterinfo/releaseinfo" />
     <xsl:apply-templates mode="titlepage.mode" select="docinfo/releaseinfo" />
     <xsl:apply-templates mode="titlepage.mode" select="info/releaseinfo" />
+    <!--
     <xsl:apply-templates mode="titlepage.mode" select="chapterinfo/copyright" />
     <xsl:apply-templates mode="titlepage.mode" select="docinfo/copyright" />
     <xsl:apply-templates mode="titlepage.mode" select="info/copyright" />
+    -->
     <xsl:apply-templates mode="titlepage.mode" select="chapterinfo/legalnotice" />
     <xsl:apply-templates mode="titlepage.mode" select="docinfo/legalnotice" />
     <xsl:apply-templates mode="titlepage.mode" select="info/legalnotice" />

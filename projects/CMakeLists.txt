@@ -27,9 +27,23 @@ macro(add_documentation INPUT)
     COMMAND ${CMAKE_COMMAND} -E copy ${INPUT_PATH} ${QBK_FILE}
     DEPENDS ${INPUT_PATH})
 
-  quickbook_to_docbook(${DBK_FILE} ${QBK_FILE} ${ARGN})
+  # copy all dependencies that are not built
+  set(DEPENDENCIES)
+  foreach(file ${ARGN})
+    set(srcfile ${CMAKE_CURRENT_SOURCE_DIR}/${file})
+    set(binfile ${CMAKE_CURRENT_BINARY_DIR}/${file})
+    if(EXISTS ${srcfile})
+      add_custom_command(OUTPUT ${binfile}
+        COMMAND ${CMAKE_COMMAND} -E copy ${srcfile} ${binfile}
+        DEPENDS ${srcfile})
+    endif(EXISTS ${srcfile})
+    set(DEPENDENCIES ${DEPENDENCIES} ${binfile})
+  endforeach(file ${ARGN})
 
-  xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME} ${DBK_FILE}
+  quickbook_to_docbook(${DBK_FILE} ${QBK_FILE} ${DEPENDENCIES})
+
+  xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
+    ${DBK_FILE} ${XSL_FILES}
     STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl
     CATALOG ${BOOSTBOOK_CATALOG}
     DIRECTORY index.html

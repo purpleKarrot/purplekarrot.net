@@ -209,8 +209,6 @@
 </xsl:template>
 
 <xsl:template name="dingbat.characters">
-  <!-- now that I'm using the real serializer, all that dingbat malarky -->
-  <!-- isn't necessary anymore... -->
   <xsl:param name="dingbat">bullet</xsl:param>
   <xsl:choose>
     <xsl:when test="$dingbat='bullet'">&#8226;</xsl:when>

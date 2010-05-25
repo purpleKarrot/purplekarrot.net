@@ -24,6 +24,8 @@ endif(MSVC)
 
 ################################################################################
 
+file(GLOB_RECURSE XSL_FILES xsl/*.xsl)
+
 add_subdirectory(blog)
 add_subdirectory(css)
 add_subdirectory(js)
