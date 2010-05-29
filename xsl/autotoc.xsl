@@ -29,58 +29,19 @@
 </xsl:variable>
 
 <xsl:template name="make.toc">
-  <xsl:param name="toc-context" select="."/>
-  <xsl:param name="toc.title.p" select="true()"/>
-  <xsl:param name="nodes" select="/NOT-AN-ELEMENT"/>
+  <xsl:param name="toc-context" select="." />
+  <xsl:param name="toc.title.p" select="true()" />
+  <xsl:param name="nodes" select="/NOT-AN-ELEMENT" />
 
-  <xsl:variable name="nodes.plus" select="$nodes | qandaset"/>
-
-  <xsl:choose>
-    <xsl:when test="$manual.toc != ''">
-      <xsl:variable name="id">
-        <xsl:call-template name="object.id"/>
-      </xsl:variable>
-      <xsl:variable name="toc" select="document($manual.toc, .)"/>
-      <xsl:variable name="tocentry" select="$toc//tocentry[@linkend=$id]"/>
-      <xsl:if test="$tocentry and $tocentry/*">
-        <div class="toc">
-          <xsl:copy-of select="$toc.title"/>
-          <xsl:element name="{$toc.list.type}">
-            <xsl:call-template name="manual-toc">
-              <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
-            </xsl:call-template>
-          </xsl:element>
-        </div>
-      </xsl:if>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:choose>
-        <xsl:when test="$qanda.in.toc != 0">
-          <xsl:if test="$nodes.plus">
-            <div class="toc">
-              <xsl:element name="{$toc.list.type}">
-                <xsl:apply-templates select="$nodes.plus" mode="toc">
-                  <xsl:with-param name="toc-context" select="$toc-context"/>
-                </xsl:apply-templates>
-              </xsl:element>
-            </div>
-          </xsl:if>
-        </xsl:when>
-        <xsl:otherwise>
-          <xsl:if test="$nodes">
-            <div class="toc">
-              <xsl:element name="{$toc.list.type}">
-                <xsl:apply-templates select="$nodes" mode="toc">
-                  <xsl:with-param name="toc-context" select="$toc-context"/>
-                </xsl:apply-templates>
-              </xsl:element>
-            </div>
-          </xsl:if>
-        </xsl:otherwise>
-      </xsl:choose>
-
-    </xsl:otherwise>
-  </xsl:choose>
+  <xsl:if test="$nodes">
+    <div class="toc">
+      <xsl:element name="{$toc.list.type}">
+        <xsl:apply-templates select="$nodes" mode="toc">
+          <xsl:with-param name="toc-context" select="$toc-context" />
+        </xsl:apply-templates>
+      </xsl:element>
+    </div>
+  </xsl:if>
 </xsl:template>
 
 <!-- ====================================================================== -->
@@ -103,7 +64,7 @@
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
-    <xsl:with-param name="nodes" select="part|reference                                          |preface|chapter|appendix                                          |article                                          |bibliography|glossary|index                                          |refentry                                          |bridgehead[$bridgehead.in.toc != 0]"/>
+    <xsl:with-param name="nodes" select="part|reference|preface|chapter|appendix|article|bibliography|glossary|index|refentry|bridgehead[$bridgehead.in.toc != 0]"/>
 
   </xsl:call-template>
 </xsl:template>
@@ -115,7 +76,7 @@
   <xsl:call-template name="make.toc">
     <xsl:with-param name="toc-context" select="$toc-context"/>
     <xsl:with-param name="toc.title.p" select="$toc.title.p"/>
-    <xsl:with-param name="nodes" select="section|sect1                                          |simplesect[$simplesect.in.toc != 0]                                          |refentry                                          |article|bibliography|glossary                                          |appendix|index                                          |bridgehead[not(@renderas)                                                      and $bridgehead.in.toc != 0]                                          |.//bridgehead[@renderas='sect1'                                                         and $bridgehead.in.toc != 0]"/>
+    <xsl:with-param name="nodes" select="section|sect1|simplesect[$simplesect.in.toc != 0]|refentry|article|bibliography|glossary|appendix|index|bridgehead[not(@renderas) and $bridgehead.in.toc != 0]|.//bridgehead[@renderas='sect1' and $bridgehead.in.toc != 0]"/>
   </xsl:call-template>
 </xsl:template>
 

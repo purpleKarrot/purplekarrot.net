@@ -396,7 +396,7 @@ set       toc,title
 <xsl:param name="tex.math.in.alt"/>
   <xsl:param name="textinsert.extension" select="1"/>
 <xsl:param name="toc.list.type">dl</xsl:param>
-<xsl:param name="toc.section.depth">2</xsl:param>
+<xsl:param name="toc.section.depth">1</xsl:param>
 <xsl:param name="toc.max.depth">8</xsl:param>
 <xsl:param name="ulink.target"><xsl:text/></xsl:param>
 <xsl:param name="use.embed.for.svg" select="0"/>

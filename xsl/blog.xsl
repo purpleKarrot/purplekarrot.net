@@ -6,7 +6,7 @@
   <xsl:import href="docbook.xsl" />
   <xsl:import href="chunk-common.xsl" />
   <xsl:import href="chunk-code.xsl" />
-
+  <xsl:import href="blog/main.xsl" />
 
   <xsl:param name="chunk.fast" select="1" />
 
