@@ -11,7 +11,8 @@
      See ../README or http://docbook.sf.net/release/xsl/current/ for
      copyright and other information.
 
-     ******************************************************************** -->
+     ********************************************************************
+-->
 
 <!-- ==================================================================== -->
 
@@ -80,7 +81,8 @@
     <!-- we can't just drop the anchor in since some browsers (Opera)
          get confused about line breaks if we do. So if the first child
          is a para, assume the para will put in the anchor. Otherwise,
-         put the anchor in anyway. -->
+         put the anchor in anyway.
+-->
     <xsl:if test="local-name(child::*[1]) != 'para'">
       <xsl:call-template name="anchor"/>
     </xsl:if>
@@ -173,7 +175,8 @@
     <!-- we can't just drop the anchor in since some browsers (Opera)
          get confused about line breaks if we do. So if the first child
          is a para, assume the para will put in the anchor. Otherwise,
-         put the anchor in anyway. -->
+         put the anchor in anyway.
+-->
     <xsl:if test="local-name(child::*[1]) != 'para'">
       <xsl:call-template name="anchor"/>
     </xsl:if>
@@ -310,7 +313,8 @@
 <xsl:template match="listitem/simpara" priority="2">
   <!-- If a listitem contains only a single simpara, don't output
        the <p> wrapper; this has the effect of creating an li
-       with simple text content. -->
+       with simple text content.
+-->
   <xsl:choose>
     <xsl:when test="not(preceding-sibling::*)                     and not (following-sibling::*)">
       <xsl:call-template name="anchor"/>
@@ -430,7 +434,8 @@
   <!-- we can't just drop the anchor in since some browsers (Opera)
        get confused about line breaks if we do. So if the first child
        is a para, assume the para will put in the anchor. Otherwise,
-       put the anchor in anyway. -->
+       put the anchor in anyway.
+-->
   <xsl:if test="local-name(child::*[1]) != 'para'">
     <xsl:call-template name="anchor"/>
   </xsl:if>
@@ -967,7 +972,8 @@
 <xsl:template match="callout/simpara" priority="2">
   <!-- If a callout contains only a single simpara, don't output
        the <p> wrapper; this has the effect of creating an li
-       with simple text content. -->
+       with simple text content.
+-->
   <xsl:choose>
     <xsl:when test="not(preceding-sibling::*)                     and not (following-sibling::*)">
       <xsl:call-template name="anchor"/>

@@ -62,10 +62,10 @@ macro(add_repository NAME URL)
 
   if(NOT EXISTS ${PROJECT_SOURCE_DIR})
     execute_process(COMMAND
-      ${Git_EXECUTABLE} clone ${URL} ${PROJECT_SOURCE_DIR})
+      ${GIT_EXECUTABLE} clone ${URL} ${PROJECT_SOURCE_DIR})
   endif(NOT EXISTS ${PROJECT_SOURCE_DIR})
 
-  add_custom_target(${NAME}-update ${Git_EXECUTABLE} pull origin master
+  add_custom_target(${NAME}-update ${GIT_EXECUTABLE} pull origin master
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
   add_dependencies(update ${NAME}-update)
 
@@ -81,6 +81,6 @@ endmacro(add_repository NAME URL)
 add_custom_target(update)
 
 add_repository(async-db git://github.com/purpleKarrot/async-db.git)
-add_repository(libMaoni git://github.com/purpleKarrot/libMaoni.git)
+add_repository(libMaoni git://github.com/vmml/libMaoni.git)
 add_repository(shutter  git://github.com/shutter/libMaoni.git)
 add_repository(glcc     git://github.com/purpleKarrot/glcc.git)

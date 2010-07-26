@@ -6,12 +6,7 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 project(purplekarrot.net)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
-
-set(CTOOLBOX_USE_FILE ${CMAKE_BINARY_DIR}/UseCToolBox.cmake)
-file(DOWNLOAD
-  http://github.com/purpleKarrot/CToolBox/raw/master/UseCToolBox.cmake
-  ${CTOOLBOX_USE_FILE})
-include(${CTOOLBOX_USE_FILE})
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CToolBox)
 
 set(CMAKE_INSTALL_PREFIX /var)
 

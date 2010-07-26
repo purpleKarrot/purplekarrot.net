@@ -13,34 +13,17 @@
 
      ******************************************************************** -->
 
-<xsl:variable name="toc.listitem.type">
-  <xsl:choose>
-    <xsl:when test="$toc.list.type = 'dl'">dt</xsl:when>
-    <xsl:otherwise>li</xsl:otherwise>
-  </xsl:choose>
-</xsl:variable>
-
-<!-- this is just hack because dl and ul aren't completely isomorphic -->
-<xsl:variable name="toc.dd.type">
-  <xsl:choose>
-    <xsl:when test="$toc.list.type = 'dl'">dd</xsl:when>
-    <xsl:otherwise/>
-  </xsl:choose>
-</xsl:variable>
-
 <xsl:template name="make.toc">
   <xsl:param name="toc-context" select="." />
   <xsl:param name="toc.title.p" select="true()" />
   <xsl:param name="nodes" select="/NOT-AN-ELEMENT" />
 
   <xsl:if test="$nodes">
-    <div class="toc">
-      <xsl:element name="{$toc.list.type}">
-        <xsl:apply-templates select="$nodes" mode="toc">
-          <xsl:with-param name="toc-context" select="$toc-context" />
-        </xsl:apply-templates>
-      </xsl:element>
-    </div>
+    <ul class="toc">
+      <xsl:apply-templates select="$nodes" mode="toc">
+        <xsl:with-param name="toc-context" select="$toc-context" />
+      </xsl:apply-templates>
+    </ul>
   </xsl:if>
 </xsl:template>
 
@@ -163,38 +146,23 @@
   <xsl:variable name="depth.from.context" select="count(ancestor::*)-count($toc-context/ancestor::*)"/>
 
   <xsl:variable name="subtoc.list">
-    <xsl:choose>
-      <xsl:when test="$toc.dd.type = ''">
-        <xsl:copy-of select="$subtoc"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:element name="{$toc.dd.type}">
-          <xsl:copy-of select="$subtoc"/>
-        </xsl:element>
-      </xsl:otherwise>
-    </xsl:choose>
+    <xsl:copy-of select="$subtoc" />
   </xsl:variable>
 
-  <xsl:element name="{$toc.listitem.type}">
+  <li>
     <xsl:call-template name="toc.line">
       <xsl:with-param name="toc-context" select="$toc-context"/>
     </xsl:call-template>
-    <xsl:if test="$toc.listitem.type = 'li'                   and $toc.section.depth &gt; $depth and                    ( ($qanda.in.toc = 0 and count($nodes)&gt;0) or                     ($qanda.in.toc != 0 and count($nodes.plus)&gt;0) )                   and $toc.max.depth &gt; $depth.from.context">
+    <xsl:if test="$toc.section.depth &gt; $depth and ( ($qanda.in.toc = 0 and count($nodes)&gt;0) or ($qanda.in.toc != 0 and count($nodes.plus)&gt;0) ) and $toc.max.depth &gt; $depth.from.context">
       <xsl:copy-of select="$subtoc.list"/>
     </xsl:if>
-  </xsl:element>
-  <xsl:if test="$toc.listitem.type != 'li'                 and $toc.section.depth &gt; $depth and                  ( ($qanda.in.toc = 0 and count($nodes)&gt;0) or                   ($qanda.in.toc != 0 and count($nodes.plus)&gt;0) )                 and $toc.max.depth &gt; $depth.from.context">
-    <xsl:copy-of select="$subtoc.list"/>
-  </xsl:if>
+  </li>
 </xsl:template>
 
 <xsl:template name="toc.line">
   <xsl:param name="toc-context" select="."/>
   <xsl:param name="depth" select="1"/>
   <xsl:param name="depth.from.context" select="8"/>
-
- <span>
-  <xsl:attribute name="class"><xsl:value-of select="local-name(.)"/></xsl:attribute>
 
   <!-- * if $autotoc.label.in.hyperlink is zero, then output the label -->
   <!-- * before the hyperlinked title (as the DSSSL stylesheet does) -->
@@ -230,7 +198,6 @@
 
     <xsl:apply-templates select="." mode="titleabbrev.markup"/>
   </a>
-  </span>
 </xsl:template>
 
 <xsl:template match="book" mode="toc">
@@ -382,7 +349,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:element name="{$toc.listitem.type}">
+  <li>
     <span class="refentrytitle">
       <a>
         <xsl:attribute name="href">
@@ -401,7 +368,7 @@
         <xsl:apply-templates select="refnamediv/refpurpose"/>
       </xsl:if>
     </span>
-  </xsl:element>
+  </li>
 </xsl:template>
 
 <xsl:template match="title" mode="toc">
@@ -419,44 +386,44 @@
 </xsl:template>
 
 <xsl:template name="manual-toc">
-  <xsl:param name="toc-context" select="."/>
-  <xsl:param name="tocentry"/>
+  <xsl:param name="toc-context" select="." />
+  <xsl:param name="tocentry" />
 
   <!-- be careful, we don't want to change the current document to the other tree! -->
 
   <xsl:if test="$tocentry">
-    <xsl:variable name="node" select="key('id', $tocentry/@linkend)"/>
+    <xsl:variable name="node" select="key('id', $tocentry/@linkend)" />
 
-    <xsl:element name="{$toc.listitem.type}">
+    <li>
       <xsl:variable name="label">
-        <xsl:apply-templates select="$node" mode="label.markup"/>
+        <xsl:apply-templates select="$node" mode="label.markup" />
       </xsl:variable>
-      <xsl:copy-of select="$label"/>
+      <xsl:copy-of select="$label" />
       <xsl:if test="$label != ''">
-        <xsl:value-of select="$autotoc.label.separator"/>
+        <xsl:value-of select="$autotoc.label.separator" />
       </xsl:if>
       <a>
         <xsl:attribute name="href">
           <xsl:call-template name="href.target">
-            <xsl:with-param name="object" select="$node"/>
-            <xsl:with-param name="toc-context" select="$toc-context"/>
+            <xsl:with-param name="object" select="$node" />
+            <xsl:with-param name="toc-context" select="$toc-context" />
           </xsl:call-template>
         </xsl:attribute>
-        <xsl:apply-templates select="$node" mode="titleabbrev.markup"/>
+        <xsl:apply-templates select="$node" mode="titleabbrev.markup" />
       </a>
-    </xsl:element>
+    </li>
 
     <xsl:if test="$tocentry/*">
       <xsl:element name="{$toc.list.type}">
         <xsl:call-template name="manual-toc">
-          <xsl:with-param name="tocentry" select="$tocentry/*[1]"/>
+          <xsl:with-param name="tocentry" select="$tocentry/*[1]" />
         </xsl:call-template>
       </xsl:element>
     </xsl:if>
 
     <xsl:if test="$tocentry/following-sibling::*">
       <xsl:call-template name="manual-toc">
-        <xsl:with-param name="tocentry" select="$tocentry/following-sibling::*[1]"/>
+        <xsl:with-param name="tocentry" select="$tocentry/following-sibling::*[1]" />
       </xsl:call-template>
     </xsl:if>
   </xsl:if>
@@ -498,25 +465,25 @@
 </xsl:template>
 
 <xsl:template match="figure|table|example|equation|procedure" mode="toc">
-  <xsl:param name="toc-context" select="."/>
+  <xsl:param name="toc-context" select="." />
 
-  <xsl:element name="{$toc.listitem.type}">
+  <li>
     <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="label.markup"/>
+      <xsl:apply-templates select="." mode="label.markup" />
     </xsl:variable>
-    <xsl:copy-of select="$label"/>
+    <xsl:copy-of select="$label" />
     <xsl:if test="$label != ''">
-      <xsl:value-of select="$autotoc.label.separator"/>
+      <xsl:value-of select="$autotoc.label.separator" />
     </xsl:if>
     <a>
       <xsl:attribute name="href">
         <xsl:call-template name="href.target">
-          <xsl:with-param name="toc-context" select="$toc-context"/>
+          <xsl:with-param name="toc-context" select="$toc-context" />
         </xsl:call-template>
       </xsl:attribute>
-      <xsl:apply-templates select="." mode="titleabbrev.markup"/>
+      <xsl:apply-templates select="." mode="titleabbrev.markup" />
     </a>
-  </xsl:element>
+  </li>
 </xsl:template>
 
 <!-- Used only if qanda.in.toc parameter is non-zero -->
