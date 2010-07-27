@@ -28,5 +28,6 @@ add_subdirectory(other)
 add_subdirectory(projects)
 
 install(DIRECTORY images DESTINATION www)
+install(FILES static/favicon.ico DESTINATION www)
 
 ################################################################################
