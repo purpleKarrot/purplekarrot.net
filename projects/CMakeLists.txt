@@ -2,6 +2,7 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
+include(ParseArguments)
 include(AddReference)
 include(XSLTransform)
 find_package(BoostBook)
@@ -9,6 +10,7 @@ find_package(Git REQUIRED)
 
 
 macro(add_documentation INPUT)
+  parse_arguments(DOCUMENTATION "IMAGES" "" ${ARGN})
 
   # If INPUT is not a full path, it's in the current source directory.
   get_filename_component(INPUT_PATH ${INPUT} PATH)
@@ -27,9 +29,13 @@ macro(add_documentation INPUT)
     COMMAND ${CMAKE_COMMAND} -E copy ${INPUT_PATH} ${QBK_FILE}
     DEPENDS ${INPUT_PATH})
 
+  # copy images
+  file(COPY ${DOCUMENTATION_IMAGES}
+    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME})
+
   # copy all dependencies that are not built
   set(DEPENDENCIES)
-  foreach(file ${ARGN})
+  foreach(file ${DOCUMENTATION_DEFAULT_ARGS})
     set(srcfile ${CMAKE_CURRENT_SOURCE_DIR}/${file})
     set(binfile ${CMAKE_CURRENT_BINARY_DIR}/${file})
     if(EXISTS ${srcfile})
@@ -38,7 +44,7 @@ macro(add_documentation INPUT)
         DEPENDS ${srcfile})
     endif(EXISTS ${srcfile})
     set(DEPENDENCIES ${DEPENDENCIES} ${binfile})
-  endforeach(file ${ARGN})
+  endforeach(file ${DOCUMENTATION_DEFAULT_ARGS})
 
   quickbook_to_docbook(${DBK_FILE} ${QBK_FILE} ${DEPENDENCIES})
 
@@ -81,6 +87,6 @@ endmacro(add_repository NAME URL)
 add_custom_target(update)
 
 add_repository(async-db git://github.com/purpleKarrot/async-db.git)
-add_repository(libMaoni git://github.com/vmml/libMaoni.git)
+add_repository(libMaoni git://github.com/purpleKarrot/libMaoni.git)
 add_repository(shutter  git://github.com/shutter/libMaoni.git)
 add_repository(glcc     git://github.com/purpleKarrot/glcc.git)

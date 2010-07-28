@@ -18,7 +18,7 @@ file(GLOB_RECURSE BLOG_POSTS *.qbk)
 set(DEPENDENCIES)
 
 foreach(POST ${BLOG_POSTS})
-  execute_process(COMMAND ${Git_EXECUTABLE} log --pretty=format:%ai -1 ${POST}
+  execute_process(COMMAND ${GIT_EXECUTABLE} log --pretty=format:%ai -1 ${POST}
     OUTPUT_VARIABLE LAST_REVISION)
 
   get_filename_component(POST_NAME ${POST} NAME_WE)
