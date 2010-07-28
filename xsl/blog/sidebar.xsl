@@ -23,17 +23,27 @@
         </ul>
       </div>
 
-      <!-- div class="sidebox">
-        <h1>Wise Words</h1>
-        <p>&quot;No man can live happily who regards himself alone;
-          who turns everything to his own advantage. You must live for
-          others if you wish to live for yourself.&quot;</p>
-        <p class="align-right">- Seneca</p>
-      </div -->
-
       <div class="sidebox">
         <a id="getubuntu" href="http://www.ubuntu.com/">Get Ubuntu</a>
       </div>
+
+      <canvas class="sidebox" width="226" height="226">
+        <h1 class="clear">Useful Links</h1>
+        <ul class="sidemenu">
+          <li>
+            <a href="/doc/libMaoni/">libMaoni Documentation</a>
+          </li>
+          <li>
+            <a href="/doc/shutter/">shutter's libMaoni doc</a>
+          </li>
+          <li>
+            <a href="http://cmake.org/cmake/help/cmake-2-8-docs.html">CMake 2.8 Documentation</a>
+          </li>
+          <li>
+            <a href="http://lists.boost.org/Archives/boost/">boost-dev Archives</a>
+          </li>
+        </ul>
+      </canvas>
 
     </div>
 
