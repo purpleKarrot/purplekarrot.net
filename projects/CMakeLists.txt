@@ -7,6 +7,21 @@ include(AddReference)
 include(XSLTransform)
 find_package(BoostBook)
 find_package(Git REQUIRED)
+find_package(ImageMagick COMPONENTS convert)
+
+macro(CONVERT_IMAGES OUTDIR)
+# file(MAKE_DIRECTORY ${OUTDIR})
+
+  foreach(IMAGE ${ARGN})
+    get_filename_component(NAME ${IMAGE} NAME)
+    message(STATUS "writing ${OUTDIR}/${NAME}")
+    execute_process(COMMAND ${ImageMagick_convert_EXECUTABLE} ${IMAGE}
+#       -resize 800x600 ${OUTDIR}/${NAME}
+        -resize 300x200 ${OUTDIR}/${NAME}
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      )
+  endforeach(IMAGE {ARGN})
+endmacro(CONVERT_IMAGES OUTDIR)
 
 
 macro(add_documentation INPUT)
@@ -30,8 +45,9 @@ macro(add_documentation INPUT)
     DEPENDS ${INPUT_PATH})
 
   # copy images
-  file(COPY ${DOCUMENTATION_IMAGES}
-    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME})
+  convert_images(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
+    ${DOCUMENTATION_IMAGES}
+    )
 
   # copy all dependencies that are not built
   set(DEPENDENCIES)
