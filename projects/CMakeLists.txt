@@ -10,14 +10,14 @@ find_package(Git REQUIRED)
 find_package(ImageMagick COMPONENTS convert)
 
 macro(CONVERT_IMAGES OUTDIR)
-# file(MAKE_DIRECTORY ${OUTDIR})
+  file(MAKE_DIRECTORY ${OUTDIR}/220)
 
   foreach(IMAGE ${ARGN})
     get_filename_component(NAME ${IMAGE} NAME)
     message(STATUS "writing ${OUTDIR}/${NAME}")
     execute_process(COMMAND ${ImageMagick_convert_EXECUTABLE} ${IMAGE}
 #       -resize 800x600 ${OUTDIR}/${NAME}
-        -resize 300x200 ${OUTDIR}/${NAME}
+        -resize 220x220 ${OUTDIR}/${NAME}
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
       )
   endforeach(IMAGE {ARGN})

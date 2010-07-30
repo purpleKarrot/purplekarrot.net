@@ -22,12 +22,11 @@ endif(MSVC)
 file(GLOB_RECURSE XSL_FILES xsl/*.xsl)
 
 add_subdirectory(blog)
-add_subdirectory(css)
-add_subdirectory(js)
+add_subdirectory(design)
 add_subdirectory(other)
 add_subdirectory(projects)
 
-install(DIRECTORY images DESTINATION www)
+install(DIRECTORY design/images DESTINATION www)
 install(FILES static/favicon.ico DESTINATION www)
 
 ################################################################################
