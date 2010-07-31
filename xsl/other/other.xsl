@@ -15,7 +15,7 @@
         <xsl:copy>
           <xsl:copy-of select="/html/head/*" />
         </xsl:copy>
-        <link rel="stylesheet" href="/stylesheet.css" type="text/css" />
+        <link rel="stylesheet" href="/purplekarrot.css" type="text/css" />
       </head>
       <body>
         <div id="wrap">

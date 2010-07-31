@@ -73,7 +73,7 @@ macro(add_documentation INPUT)
     )
 
   install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
-    DESTINATION www/doc)
+    DESTINATION doc)
 
 endmacro(add_documentation INPUT)
 

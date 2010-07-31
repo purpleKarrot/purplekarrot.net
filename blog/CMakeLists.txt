@@ -43,5 +43,5 @@ xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/www blog.docbook
   )
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/www
-  DESTINATION .
+  DESTINATION ..
   )

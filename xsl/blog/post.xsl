@@ -21,7 +21,7 @@
               <xsl:value-of select="@title" />
             </title>
             <meta charset="utf-8" />
-            <link rel="stylesheet" href="/stylesheet.css" type="text/css" />
+            <link rel="stylesheet" href="/purplekarrot.css" type="text/css" />
           </head>
           <body>
             <div id="wrap">

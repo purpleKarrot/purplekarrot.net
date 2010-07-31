@@ -4,21 +4,23 @@
 
 find_program(CAT cat)
 find_program(SASS sass)
+#find_program(CSSTIDY csstidy)
 find_program(YUICOMPRESSOR yui-compressor)
 
 macro(COMBINE OUTPUT)
   add_custom_command(OUTPUT ${OUTPUT}
-    COMMAND cat ${ARGN} > ${OUTPUT}
+    COMMAND ${CAT} ${ARGN} > ${OUTPUT}
     DEPENDS ${ARGN}
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     )
 endmacro(COMBINE OUTPUT)
 
-macro(COMPRESS INPUT OUTPUT)
+macro(COMPRESS OUTPUT INPUT)
   add_custom_command(OUTPUT ${OUTPUT}
     COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
     DEPENDS ${INPUT}
     )
-endmacro(COMPRESS INPUT OUTPUT)
+endmacro(COMPRESS OUTPUT INPUT)
 
 
 set(FANCYBOX_FILE_NAME jquery.fancybox-1.3.1.zip)
@@ -48,7 +50,16 @@ if(NOT EXISTS ${TAGCANVAS_FILE_PATH})
 endif(NOT EXISTS ${TAGCANVAS_FILE_PATH})
 
 
-set(SASS_INPUT_FILES
+file(READ ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.css FANCYBOX_CSS)
+string(REGEX REPLACE "/\\* IE \\*/.*" "" FANCYBOX_CSS ${FANCYBOX_CSS})
+string(REPLACE "/*" "/*!" FANCYBOX_CSS ${FANCYBOX_CSS}) # conserve copyright
+string(REPLACE "url('" "url('/images/" FANCYBOX_CSS ${FANCYBOX_CSS})
+set(FANCYBOX_CSS_FILE ${CMAKE_CURRENT_BINARY_DIR}/fancybox.css)
+file(WRITE ${FANCYBOX_CSS_FILE} ${FANCYBOX_CSS})
+
+
+set(SASS_FILE ${CMAKE_CURRENT_BINARY_DIR}/stylesheet.sass)
+combine(${SASS_FILE}
   css/pixelGreen.sass
   css/admonition.sass
   css/navigation.sass
@@ -57,45 +68,47 @@ set(SASS_INPUT_FILES
   css/code.sass
   )
 
-set(CSS_FILE  ${CMAKE_CURRENT_BINARY_DIR}/stylesheet.css)
 set(RAW_FILE  ${CMAKE_CURRENT_BINARY_DIR}/uncompressed.css)
-set(SASS_FILE ${CMAKE_CURRENT_BINARY_DIR}/stylesheet.sass)
-
-set(DEPENDENCIES)
-file(REMOVE ${SASS_FILE})
-
-foreach(FILE ${SASS_INPUT_FILES})
-  file(RELATIVE_PATH FILE ${CMAKE_CURRENT_BINARY_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/${FILE})
-  file(APPEND ${SASS_FILE} "@import ${FILE}\n")
-endforeach(FILE ${SASS_INPUT_FILES})
-
 add_custom_command(OUTPUT ${RAW_FILE}
   COMMAND ${SASS} ${SASS_FILE} ${RAW_FILE}
-  DEPENDS ${SASS_INPUT_FILES}
+  DEPENDS ${SASS_FILE}
   )
 
-
 set(COMBINED_CSS ${CMAKE_CURRENT_BINARY_DIR}/combined.css)
-
 combine(${COMBINED_CSS}
   ${RAW_FILE}
-  ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.css
+  ${FANCYBOX_CSS_FILE}
   )
 
 set(JS_UNCOMPRESSED ${CMAKE_CURRENT_BINARY_DIR}/uncompressed.js)
-set(JS_COMPRESSED   ${CMAKE_CURRENT_BINARY_DIR}/purplekarrot.js)
-
 combine(${JS_UNCOMPRESSED}
   ${JQUERY_FILE_PATH}
   ${TAGCANVAS_FILE_PATH}
   ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
   )
 
-compress(${COMBINED_CSS} ${CSS_FILE})
-compress(${JS_UNCOMPRESSED} ${JS_COMPRESSED})
+set(CSS_FILE      ${CMAKE_CURRENT_BINARY_DIR}/purplekarrot.css)
+set(JS_COMPRESSED ${CMAKE_CURRENT_BINARY_DIR}/purplekarrot.js)
+
+#add_custom_command(OUTPUT ${CSS_FILE}
+#  COMMAND ${CSSTIDY} ${COMBINED_CSS} --silent=true --template=highest ${CSS_FILE}
+#  DEPENDS ${COMBINED_CSS}
+#  )
+
+compress(${CSS_FILE} ${COMBINED_CSS})
+compress(${JS_COMPRESSED} ${JS_UNCOMPRESSED})
 
 add_custom_target(css ALL DEPENDS ${CSS_FILE})
 add_custom_target(js  ALL DEPENDS ${JS_COMPRESSED})
 
-install(FILES ${CSS_FILE} ${JS_COMPRESSED} DESTINATION www)
+install(FILES
+  ${CSS_FILE}
+  ${JS_COMPRESSED}
+  favicon.ico
+  DESTINATION .
+  )
+
+install(DIRECTORY images DESTINATION .)
+
+file(GLOB FANCYBOX_IMAGES ${FANCYBOX_DIR}/*.gif ${FANCYBOX_DIR}/*.png)
+install(FILES ${FANCYBOX_IMAGES} DESTINATION images)

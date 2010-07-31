@@ -8,7 +8,7 @@ project(purplekarrot.net)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CToolBox)
 
-set(CMAKE_INSTALL_PREFIX /var)
+set(CMAKE_INSTALL_PREFIX /var/www)
 
 if(MSVC)
   set(Boost_USE_STATIC_LIBS ON)
@@ -25,8 +25,5 @@ add_subdirectory(blog)
 add_subdirectory(design)
 add_subdirectory(other)
 add_subdirectory(projects)
-
-install(DIRECTORY design/images DESTINATION www)
-install(FILES static/favicon.ico DESTINATION www)
 
 ################################################################################
