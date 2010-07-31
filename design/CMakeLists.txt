@@ -16,8 +16,12 @@ macro(COMBINE OUTPUT)
 endmacro(COMBINE OUTPUT)
 
 macro(COMPRESS OUTPUT INPUT)
+#  add_custom_command(OUTPUT ${OUTPUT}
+#    COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
+#    DEPENDS ${INPUT}
+#    )
   add_custom_command(OUTPUT ${OUTPUT}
-    COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
+    COMMAND ${CMAKE_COMMAND} -E copy ${INPUT} ${OUTPUT} 
     DEPENDS ${INPUT}
     )
 endmacro(COMPRESS OUTPUT INPUT)
@@ -85,6 +89,7 @@ combine(${JS_UNCOMPRESSED}
   ${JQUERY_FILE_PATH}
   ${TAGCANVAS_FILE_PATH}
   ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
+  js/ready.js
   )
 
 set(CSS_FILE      ${CMAKE_CURRENT_BINARY_DIR}/purplekarrot.css)
