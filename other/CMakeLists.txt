@@ -2,7 +2,7 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
-set(OTHER_HTML 404.html about.html downloads.html projects.html search.html)
+set(OTHER_HTML 404.html about.html downloads.html projects.html forum.html)
 foreach(PAGE ${OTHER_HTML})
   xsl_transform(
     ${CMAKE_CURRENT_BINARY_DIR}/${PAGE}

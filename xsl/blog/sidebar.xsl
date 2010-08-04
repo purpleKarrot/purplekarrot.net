@@ -12,9 +12,6 @@
             <a href="/doc/libMaoni/">libMaoni Documentation</a>
           </li>
           <li>
-            <a href="/doc/shutter/">shutter's libMaoni doc</a>
-          </li>
-          <li>
             <a href="http://cmake.org/cmake/help/cmake-2-8-docs.html">CMake 2.8 Documentation</a>
           </li>
           <li>

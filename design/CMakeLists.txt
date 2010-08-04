@@ -16,14 +16,14 @@ macro(COMBINE OUTPUT)
 endmacro(COMBINE OUTPUT)
 
 macro(COMPRESS OUTPUT INPUT)
-#  add_custom_command(OUTPUT ${OUTPUT}
-#    COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
-#    DEPENDS ${INPUT}
-#    )
   add_custom_command(OUTPUT ${OUTPUT}
-    COMMAND ${CMAKE_COMMAND} -E copy ${INPUT} ${OUTPUT} 
+    COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
     DEPENDS ${INPUT}
     )
+#  add_custom_command(OUTPUT ${OUTPUT}
+#    COMMAND ${CMAKE_COMMAND} -E copy ${INPUT} ${OUTPUT} 
+#    DEPENDS ${INPUT}
+#    )
 endmacro(COMPRESS OUTPUT INPUT)
 
 
@@ -55,11 +55,11 @@ endif(NOT EXISTS ${TAGCANVAS_FILE_PATH})
 
 
 file(READ ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.css FANCYBOX_CSS)
-string(REGEX REPLACE "/\\* IE \\*/.*" "" FANCYBOX_CSS ${FANCYBOX_CSS})
-string(REPLACE "/*" "/*!" FANCYBOX_CSS ${FANCYBOX_CSS}) # conserve copyright
-string(REPLACE "url('" "url('/images/" FANCYBOX_CSS ${FANCYBOX_CSS})
+string(REGEX REPLACE "/\\* IE \\*/.*" "" FANCYBOX_CSS "${FANCYBOX_CSS}")
+string(REPLACE "/*" "/*!" FANCYBOX_CSS "${FANCYBOX_CSS}") # conserve copyright
+string(REPLACE "url('" "url('/images/" FANCYBOX_CSS "${FANCYBOX_CSS}")
 set(FANCYBOX_CSS_FILE ${CMAKE_CURRENT_BINARY_DIR}/fancybox.css)
-file(WRITE ${FANCYBOX_CSS_FILE} ${FANCYBOX_CSS})
+file(WRITE ${FANCYBOX_CSS_FILE} "${FANCYBOX_CSS}")
 
 
 set(SASS_FILE ${CMAKE_CURRENT_BINARY_DIR}/stylesheet.sass)
@@ -89,6 +89,7 @@ combine(${JS_UNCOMPRESSED}
   ${JQUERY_FILE_PATH}
   ${TAGCANVAS_FILE_PATH}
   ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
+  ${FANCYBOX_DIR}/jquery.easing-1.3.pack.js
   js/ready.js
   )
 
