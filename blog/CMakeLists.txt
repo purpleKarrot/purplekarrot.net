@@ -7,7 +7,9 @@ find_package(Git REQUIRED)
 find_package(BoostBook REQUIRED)
 
 set(QBK_FILE ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
-file(WRITE ${QBK_FILE}
+set(QBK_FILE_IN ${QBK_FILE}.in)
+
+file(WRITE ${QBK_FILE_IN}
   "[part Blog\n"
   "  [quickbook 1.5]\n"
   "  [copyright 2010 Daniel Pfeifer]\n"
@@ -29,9 +31,10 @@ foreach(POST ${BLOG_POSTS})
   quickbook_to_boostbook(${POST_XML} ${POST_QBK})
 
   set(DEPENDENCIES ${DEPENDENCIES} ${POST_XML})
-  file(APPEND ${QBK_FILE} "[xinclude ${POST_XML}]\n")
+  file(APPEND ${QBK_FILE_IN} "[xinclude ${POST_XML}]\n")
 endforeach(POST ${BLOG_POSTS})
 
+configure_file(${QBK_FILE_IN} ${QBK_FILE} COPYONLY)
 quickbook_to_docbook(blog.docbook ${QBK_FILE} ${DEPENDENCIES})
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/www blog.docbook
