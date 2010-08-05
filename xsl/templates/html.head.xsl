@@ -118,7 +118,8 @@
       </xsl:for-each>
     </xsl:if>
 
-    <link rel="stylesheet" href="/stylesheet.css" type="text/css"/>
+    <link rel="stylesheet" href="/purplekarrot.css" type="text/css"/>
+    <script src="/purplekarrot.js" type="text/javascript">;</script>
   </head>
 </xsl:template>
 

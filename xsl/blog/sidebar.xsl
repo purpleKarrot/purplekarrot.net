@@ -12,9 +12,6 @@
             <a href="/doc/libMaoni/">libMaoni Documentation</a>
           </li>
           <li>
-            <a href="/doc/shutter/">shutter's libMaoni doc</a>
-          </li>
-          <li>
             <a href="http://cmake.org/cmake/help/cmake-2-8-docs.html">CMake 2.8 Documentation</a>
           </li>
           <li>
@@ -27,20 +24,29 @@
         <a id="getubuntu" href="http://www.ubuntu.com/">Get Ubuntu</a>
       </div>
 
-      <canvas class="sidebox" width="226" height="226">
+      <canvas class="sidebox tagcanvas" width="226" height="226">
         <h1 class="clear">Useful Links</h1>
         <ul class="sidemenu">
           <li>
-            <a href="/doc/libMaoni/">libMaoni Documentation</a>
+            <a href="/doc/libMaoni/">libMaoni</a>
           </li>
           <li>
-            <a href="/doc/shutter/">shutter's libMaoni doc</a>
+            <a href="http://sourceforge.net/projects/equalizer/">Equalizer</a>
           </li>
           <li>
-            <a href="http://cmake.org/cmake/help/cmake-2-8-docs.html">CMake 2.8 Documentation</a>
+            <a href="http://cmake.org/cmake/help/cmake-2-8-docs.html">CMake</a>
           </li>
           <li>
-            <a href="http://lists.boost.org/Archives/boost/">boost-dev Archives</a>
+            <a href="http://www.revergestudios.com/boost-la/">Boost LA</a>
+          </li>
+          <li>
+            <a href="/index.html">Home</a>
+          </li>
+          <li>
+            <a href="/index.html">Home</a>
+          </li>
+          <li>
+            <a href="/index.html">Home</a>
           </li>
         </ul>
       </canvas>

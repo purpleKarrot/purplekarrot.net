@@ -73,7 +73,7 @@ macro(add_documentation INPUT)
     )
 
   install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
-    DESTINATION www/doc)
+    DESTINATION doc)
 
 endmacro(add_documentation INPUT)
 
@@ -104,5 +104,5 @@ add_custom_target(update)
 
 add_repository(async-db git://github.com/purpleKarrot/async-db.git)
 add_repository(libMaoni git://github.com/purpleKarrot/libMaoni.git)
-add_repository(shutter  git://github.com/shutter/libMaoni.git)
+add_repository(JunkLoad git://github.com/purpleKarrot/JunkLoad)
 add_repository(glcc     git://github.com/purpleKarrot/glcc.git)
