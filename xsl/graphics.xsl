@@ -1044,7 +1044,7 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
 <xsl:template match="mediaobject|mediaobjectco">
 
-  <xsl:variable name="olist" select="imageobject|imageobjectco                      |videoobject|audioobject                      |textobject"/>
+  <xsl:variable name="olist" select="imageobject|imageobjectco|videoobject|audioobject|textobject"/>
 
   <xsl:variable name="object.index">
     <xsl:call-template name="select.mediaobject.index">
@@ -1055,22 +1055,37 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
 
   <xsl:variable name="object" select="$olist[position() = $object.index]"/>
 
+  <xsl:variable name="image">
+    <xsl:value-of select="$object/descendant::imagedata[@fileref][1]/@fileref"/>
+  </xsl:variable>
+
   <xsl:variable name="align">
     <xsl:value-of select="$object/descendant::imagedata[@align][1]/@align"/>
   </xsl:variable>
 
-  <div>
-    <xsl:apply-templates select="." mode="common.html.attributes"/>
-    <xsl:if test="$align != '' ">
-      <xsl:attribute name="style"><xsl:text>text-align: </xsl:text>
-        <xsl:value-of select="$align"/>
-      </xsl:attribute>
-    </xsl:if>
-    <xsl:call-template name="anchor"/>
+  <a class="figure" rel="images">
+    <xsl:attribute name="href">
+      <xsl:value-of select="$image" />
+    </xsl:attribute>
 
-    <xsl:apply-templates select="$object"/>
-    <xsl:apply-templates select="caption"/>
-  </div>
+    <xsl:attribute name="title">
+      <xsl:apply-templates select="caption" />
+    </xsl:attribute>
+
+    <img alt="">
+      <xsl:attribute name="src">
+        <xsl:text>s_</xsl:text>
+        <xsl:value-of select="$image" />
+      </xsl:attribute>
+
+      <xsl:if test="$align != '' ">
+        <xsl:attribute name="class">
+          <xsl:text>align-</xsl:text>
+          <xsl:value-of select="$align" />
+        </xsl:attribute>
+      </xsl:if>
+    </img>
+  </a>
 </xsl:template>
 
 <xsl:template match="inlinemediaobject">
