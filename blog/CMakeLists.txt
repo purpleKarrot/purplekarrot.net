@@ -39,9 +39,9 @@ quickbook_to_docbook(blog.docbook ${QBK_FILE} ${DEPENDENCIES})
 
 xsl_transform(${CMAKE_CURRENT_BINARY_DIR}/www blog.docbook
   STYLESHEET ${CMAKE_SOURCE_DIR}/xsl/blog.xsl
+  PARAMETERS purple.part=blog
   CATALOG ${BOOSTBOOK_CATALOG}
   DIRECTORY index.html
-  COMMENT "Generating Website HTML."
   MAKE_ALL_TARGET blog
   )
 

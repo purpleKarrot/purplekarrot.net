@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-  <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
+  <xsl:output method="xml" encoding="UTF-8" indent="yes"
+    omit-xml-declaration="yes" />
 
   <xsl:include href="../templates/html.head.xsl" />
   <xsl:include href="../templates/header.xsl" />
@@ -12,8 +14,12 @@
     <html>
       <head>
         <meta charset="utf-8" />
+        <title>
+          <xsl:value-of select="/html/head/title" />
+          <xsl:text> - purpleKarrot</xsl:text>
+        </title>
         <xsl:copy>
-          <xsl:copy-of select="/html/head/*" />
+          <xsl:copy-of select="/html/head/*[not(self::title)]" />
         </xsl:copy>
         <link rel="stylesheet" href="/purplekarrot.css" type="text/css" />
         <script src="/purplekarrot.js" type="text/javascript">;</script>

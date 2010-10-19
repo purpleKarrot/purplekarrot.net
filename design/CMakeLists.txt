@@ -15,7 +15,7 @@ macro(COMBINE OUTPUT)
     )
 endmacro(COMBINE OUTPUT)
 
-option(USE_COMPRESSION "compress css and js" OFF)
+option(USE_COMPRESSION "compress css and js" ON)
 
 macro(COMPRESS OUTPUT INPUT)
   if(USE_COMPRESSION)
