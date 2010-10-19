@@ -2,6 +2,15 @@
   [quickbook 1.5]
   [last-revision ${LAST_REVISION}]
   [id dputCMake]
+  [purpose
+    CPack, the packaging system that ships with CMake, builds
+    [@http://www.itk.org/Wiki/CMake:Component_Install_With_CPack component-based
+    installers] for Mac OS X and Windows only. On Linux, the packages generated
+    by CPack are single, monolithic units. I hacked a
+    [@http://github.com/purpleKarrot/CToolBox/raw/master/UploadPPA.cmake CMake
+    script] that creates a single deb-src package, uploads it to the Launchpad
+    build service where it generates one deb package for each component.
+  ]
 ]
 
 CPack, the packaging system that ships with CMake, builds binary installers for
