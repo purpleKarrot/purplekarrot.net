@@ -93,10 +93,10 @@ combine(${COMBINED_CSS}
 
 set(JS_UNCOMPRESSED ${CMAKE_CURRENT_BINARY_DIR}/uncompressed.js)
 combine(${JS_UNCOMPRESSED}
-#  ${JQUERY_FILE_PATH}
-#  ${TAGCANVAS_FILE_PATH}
-#  ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
-#  ${FANCYBOX_DIR}/jquery.easing-1.3.pack.js
+  ${JQUERY_FILE_PATH}
+  ${TAGCANVAS_FILE_PATH}
+  ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
+  ${FANCYBOX_DIR}/jquery.easing-1.3.pack.js
   js/twitter.js
   js/search.js
   js/ready.js
