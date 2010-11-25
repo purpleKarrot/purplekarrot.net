@@ -17,7 +17,7 @@
           <a href="/downloads.html">Downloads</a>
         </li>
         <li>
-          <a href="/forum.html">Forum</a>
+          <a href="/search.html">Search</a>
         </li>
         <li>
           <a href="/about.html">About</a>

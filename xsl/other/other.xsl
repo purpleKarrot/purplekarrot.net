@@ -16,6 +16,7 @@
           <xsl:copy-of select="/html/head/*" />
         </xsl:copy>
         <link rel="stylesheet" href="/purplekarrot.css" type="text/css" />
+        <script src="https://www.google.com/jsapi" type="text/javascript">;</script>
         <script src="/purplekarrot.js" type="text/javascript">;</script>
       </head>
       <body>

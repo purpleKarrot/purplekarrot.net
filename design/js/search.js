@@ -1,5 +1,4 @@
-//google.load('search', '1', {nocss: 1});
-google.load('search', '1');
+google.load('search', '1', {nocss: 1});
 
 function OnLoad() {
   // create a search control
