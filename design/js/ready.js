@@ -1,5 +1,4 @@
 
-
 $(document).ready(function(){
 	$('.tagcanvas').tagcanvas({
 		textColour       : '#65944A',
@@ -14,6 +13,14 @@ $(document).ready(function(){
 //		'speedIn'        : 600, 
 //		'speedOut'		 : 200, 
 		'overlayShow'    : false
+	});
+
+	$('a.figure').fancybox({
+		'transitionIn'   : 'elastic',
+		'transitionOut'	 : 'elastic',
+		'titlePosition'  : 'inside',
+		'opacity'        : true,
+		'showCloseButton': false
 	});
 });
 

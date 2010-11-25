@@ -15,15 +15,18 @@ macro(COMBINE OUTPUT)
     )
 endmacro(COMBINE OUTPUT)
 
+option(USE_COMPRESSION "compress css and js" ON)
+
 macro(COMPRESS OUTPUT INPUT)
-#  add_custom_command(OUTPUT ${OUTPUT}
-#    COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
-#    DEPENDS ${INPUT}
-#    )
-  add_custom_command(OUTPUT ${OUTPUT}
-    COMMAND ${CMAKE_COMMAND} -E copy ${INPUT} ${OUTPUT} 
-    DEPENDS ${INPUT}
-    )
+  if(USE_COMPRESSION)
+    add_custom_command(OUTPUT ${OUTPUT}
+      COMMAND ${YUICOMPRESSOR} -o ${OUTPUT} ${INPUT}
+      DEPENDS ${INPUT})
+  else(USE_COMPRESSION)
+    add_custom_command(OUTPUT ${OUTPUT}
+      COMMAND ${CMAKE_COMMAND} -E copy ${INPUT} ${OUTPUT} 
+      DEPENDS ${INPUT})
+  endif(USE_COMPRESSION)
 endmacro(COMPRESS OUTPUT INPUT)
 
 
@@ -61,7 +64,8 @@ string(REGEX REPLACE "/\\* IE \\*/.*" "" FANCYBOX_CSS "${FANCYBOX_CSS}")
 string(REPLACE "/*" "/*!" FANCYBOX_CSS "${FANCYBOX_CSS}") # conserve copyright
 string(REPLACE "url('" "url('/images/" FANCYBOX_CSS "${FANCYBOX_CSS}")
 set(FANCYBOX_CSS_FILE ${CMAKE_CURRENT_BINARY_DIR}/fancybox.css)
-file(WRITE ${FANCYBOX_CSS_FILE} "${FANCYBOX_CSS}")
+file(WRITE ${FANCYBOX_CSS_FILE}.in "${FANCYBOX_CSS}")
+configure_file(${FANCYBOX_CSS_FILE}.in ${FANCYBOX_CSS_FILE} COPY_ONLY)
 
 
 set(SASS_FILE ${CMAKE_CURRENT_BINARY_DIR}/stylesheet.sass)
