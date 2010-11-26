@@ -4,7 +4,17 @@
     <title>Search</title>
   </head>
   <body>
-    <div id="search_form">Loading...</div>
-    <div id="search_results"></div>
-  </body>
+    <div id="cse" style="width: 100%;">Loading</div>
+    <script type="text/javascript" src="http://www.google.com/jsapi" >;</script>
+    <script type="text/javascript">
+      google.load('search', '1');
+      google.setOnLoadCallback(function() {
+        var customSearchControl = new google.search.CustomSearchControl('000465476430775010872:xiyliiioita');
+        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+        var options = new google.search.DrawOptions();
+        options.setAutoComplete(true);
+        customSearchControl.draw('cse', options);
+      }, true);
+      </script>
+   </body>
 </html>
