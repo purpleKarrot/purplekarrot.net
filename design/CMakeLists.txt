@@ -98,7 +98,6 @@ combine(${JS_UNCOMPRESSED}
   ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
   ${FANCYBOX_DIR}/jquery.easing-1.3.pack.js
   js/twitter.js
-  js/search.js
   js/ready.js
   )
 

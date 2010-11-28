@@ -6,7 +6,6 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 project(purplekarrot.net)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CToolBox)
 
 set(CMAKE_INSTALL_PREFIX /var/www)
 

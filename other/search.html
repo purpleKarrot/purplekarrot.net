@@ -7,7 +7,7 @@
     <div id="cse" style="width: 100%;">Loading</div>
     <script type="text/javascript" src="http://www.google.com/jsapi" >;</script>
     <script type="text/javascript">
-      google.load('search', '1');
+      google.load('search', '1', {nocss: 1});
       google.setOnLoadCallback(function() {
         var customSearchControl = new google.search.CustomSearchControl('000465476430775010872:xiyliiioita');
         customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);

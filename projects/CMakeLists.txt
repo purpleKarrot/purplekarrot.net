@@ -74,31 +74,30 @@ macro(add_documentation INPUT)
 endmacro(add_documentation INPUT)
 
 
-macro(add_repository NAME URL)
+set(PROJECTS
+# async-db
+  libMaoni
+  Equalizer
+# JunkLoad
+# glcc
+  )
 
-  set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_BINARY_DIR}/${NAME})
+foreach(PROJECT ${PROJECTS})
+  set(PROJECT_SOURCE_DIR ${CMAKE_SOURCE_DIR}/../${PROJECT})
+  set(PROJECT_BINARY_DIR ${CMAKE_BINARY_DIR}/${PROJECT})
 
-  if(NOT EXISTS ${PROJECT_SOURCE_DIR})
+  if(EXISTS ${PROJECT_SOURCE_DIR})
+    message(STATUS "${PROJECT} dir: ${PROJECT_SOURCE_DIR}")
+  elseif(NOT EXISTS ${PROJECT_BINARY_DIR}-src)
+    set(PROJECT_SOURCE_DIR ${PROJECT_BINARY_DIR}-src)
+    set(PROJECT_GIT_URL "git://github.com/purpleKarrot/${PROJECT}.git")
     execute_process(COMMAND
-      ${GIT_EXECUTABLE} clone ${URL} ${PROJECT_SOURCE_DIR})
-  endif(NOT EXISTS ${PROJECT_SOURCE_DIR})
+      ${GIT_EXECUTABLE} clone ${PROJECT_GIT_URL} ${PROJECT_SOURCE_DIR})
+  endif()
 
-  add_custom_target(${NAME}-update ${GIT_EXECUTABLE} pull origin master
-    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
-  add_dependencies(update ${NAME}-update)
-
-  set(THIS_PROJECT_NAME ${NAME})
+  set(THIS_PROJECT_NAME ${PROJECT})
 
   if(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
-    add_subdirectory(${PROJECT_SOURCE_DIR}/doc ${PROJECT_SOURCE_DIR}/build/doc)
-  endif(EXISTS ${PROJECT_SOURCE_DIR}/doc/CMakeLists.txt)
-
-endmacro(add_repository NAME URL)
-
-
-add_custom_target(update)
-
-add_repository(async-db git://github.com/purpleKarrot/async-db.git)
-add_repository(libMaoni git://github.com/purpleKarrot/libMaoni.git)
-add_repository(JunkLoad git://github.com/purpleKarrot/JunkLoad)
-add_repository(glcc     git://github.com/purpleKarrot/glcc.git)
+    add_subdirectory(${PROJECT_SOURCE_DIR} ${PROJECT_BINARY_DIR} EXCLUDE_FROM_ALL)
+  endif()
+endforeach(PROJECT)
