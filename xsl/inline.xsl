@@ -649,45 +649,18 @@
 </xsl:template>
 
 <xsl:template match="emphasis">
-  <span>
-    <xsl:choose>
-      <!-- We don't want empty @class values, so do not propagate empty @roles -->
-      <xsl:when test="@role  and                       normalize-space(@role) != '' and                       $emphasis.propagates.style != 0">
-        <xsl:apply-templates select="." mode="common.html.attributes">
-          <xsl:with-param name="class" select="@role"/>
-        </xsl:apply-templates>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:apply-templates select="." mode="common.html.attributes"/>
-      </xsl:otherwise>
-    </xsl:choose>
-    <xsl:call-template name="anchor"/>
-
-    <xsl:call-template name="simple.xlink">
-      <xsl:with-param name="content">
-        <xsl:choose>
-          <xsl:when test="@role = 'bold' or @role='strong'">
-            <!-- backwards compatibility: make bold into b elements, but -->
-            <!-- don't put bold inside figure, example, or table titles -->
-            <xsl:choose>
-              <xsl:when test="local-name(..) = 'title'                               and (local-name(../..) = 'figure'                               or local-name(../..) = 'example'                               or local-name(../..) = 'table')">
-                <xsl:apply-templates/>
-              </xsl:when>
-              <xsl:otherwise>
-                <strong><xsl:apply-templates/></strong>
-              </xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:when test="@role and $emphasis.propagates.style != 0">
-            <xsl:apply-templates/>
-          </xsl:when>
-          <xsl:otherwise>
-            <em><xsl:apply-templates/></em>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
-    </xsl:call-template>
-  </span>
+  <xsl:choose>
+    <xsl:when test="@role = 'bold' or @role='strong'">
+      <strong>
+        <xsl:apply-templates />
+      </strong>
+    </xsl:when>
+    <xsl:otherwise>
+      <em>
+        <xsl:apply-templates />
+      </em>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="foreignphrase">

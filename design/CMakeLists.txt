@@ -70,6 +70,7 @@ configure_file(${FANCYBOX_CSS_FILE}.in ${FANCYBOX_CSS_FILE} COPY_ONLY)
 
 set(SASS_FILE ${CMAKE_CURRENT_BINARY_DIR}/stylesheet.sass)
 combine(${SASS_FILE}
+  css/fonts.sass
   css/pixelGreen.sass
   css/admonition.sass
   css/navigation.sass
@@ -122,7 +123,7 @@ install(FILES
   DESTINATION .
   )
 
-install(DIRECTORY images DESTINATION .)
+install(DIRECTORY fonts images DESTINATION .)
 
 file(GLOB FANCYBOX_IMAGES ${FANCYBOX_DIR}/*.gif ${FANCYBOX_DIR}/*.png)
 install(FILES ${FANCYBOX_IMAGES} DESTINATION images)

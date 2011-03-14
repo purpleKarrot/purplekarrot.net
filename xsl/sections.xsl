@@ -17,10 +17,7 @@
 
 <xsl:template match="section">
   <xsl:variable name="depth" select="count(ancestor::section)+1"/>
-  <div>
-    <xsl:call-template name="common.html.attributes">
-      <xsl:with-param name="inherit" select="1"/>
-    </xsl:call-template>
+  <section>
     <xsl:call-template name="section.titlepage"/>
 
     <xsl:variable name="toc.params">
@@ -29,7 +26,7 @@
       </xsl:call-template>
     </xsl:variable>
 
-    <xsl:if test="contains($toc.params, 'toc')                   and $depth &lt;= $generate.section.toc.level">
+    <xsl:if test="contains($toc.params, 'toc') and $depth &lt;= $generate.section.toc.level">
       <xsl:call-template name="section.toc">
         <xsl:with-param name="toc.title.p" select="contains($toc.params, 'title')"/>
       </xsl:call-template>
@@ -37,7 +34,7 @@
     </xsl:if>
     <xsl:apply-templates/>
     <xsl:call-template name="process.chunk.footnotes"/>
-  </div>
+  </section>
 </xsl:template>
 
 <xsl:template name="section.title">

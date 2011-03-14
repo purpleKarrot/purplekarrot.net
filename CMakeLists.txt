@@ -5,6 +5,10 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 project(purplekarrot.net)
 
+set(BOOST_BUILD_DOCUMENTATION ON)
+find_package(Boost COMPONENTS boostbook quickbook NO_MODULE)
+include(${Boost_USE_FILE})
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
 set(CMAKE_INSTALL_PREFIX /var/www)
@@ -26,5 +30,3 @@ add_subdirectory(other)
 add_subdirectory(projects)
 
 ################################################################################
-
-# http://twitter.com/statuses/user_timeline/danielpfeifer.json?callback=twitter_callback2&amp;count=5

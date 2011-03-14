@@ -6,23 +6,15 @@
     Copyright &#169; 2010 <strong>Daniel Pfeifer</strong>
   </xsl:param>
 
-<div id="footer">
-
+<footer>
   <div class="float-left">
-   <p>
-     <xsl:copy-of select="$copyright"/> |
-     Design by: <a href="http://www.styleshout.com/"><strong>styleshout</strong></a>
-   </p>
+    <xsl:copy-of select="$copyright"/>
   </div>
-
   <div class="float-right">
-   <p>
     Valid <a href="http://validator.w3.org/check/referer"><strong>HTML5</strong></a> | 
     <a href="http://jigsaw.w3.org/css-validator/check/referer"><strong>CSS3</strong></a>
-   </p>
   </div>
-
-</div>
+</footer>
 
 </xsl:template>
 </xsl:stylesheet>

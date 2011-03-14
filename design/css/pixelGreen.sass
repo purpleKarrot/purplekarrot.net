@@ -2,7 +2,7 @@
 body
   :margin 0
   :padding 0
-  :font 10pt/1.4em sans-serif
+  :font 11pt DejaVuSans, sans-serif
   :color #555
   :background #FFF url(/images/bg.jpg) repeat-x
   :text-align center
@@ -14,11 +14,10 @@ body
 
 
 a
-  :color #72A545
+  :color #DD4814
   :text-decoration none
 
   &:hover
-    :color #006699
     :text-decoration underline
 
 
@@ -27,27 +26,9 @@ a.figure
   :float left
 
 
-h1
-  :font bold 1em sans-serif
-  :font-size 1.4em
-  :color #65944A
-  :margin 10px 15px
-
-
-h2
-  :font bold 1em sans-serif
-  :font-size 1.2em
-  :margin 10px 15px
-
-
-h3
-  :font bold 1em sans-serif
-  :font-size 1.2em
-  :margin 10px 15px
-
-
 p
-  :margin 10px 15px
+  :margin 10px 0
+  :text-align justify
 
 
 ul, ol
@@ -191,37 +172,33 @@ textarea
       :vertical-align top
 
 
-#header
+header
   :height 70px
   :margin 0 15px
   :position relative
 
-  h1#logo
+  h1
     :position absolute
-    :font bold 45px sans-serif
+    :top 2px
+    :left 0
+    :font-size 45px
     :letter-spacing -2px
     :color #FFF
     :margin 0
     :padding 0
-    :top 2
-    :left 0px
 
-    a
-      :text-decoration none
-      :color #FFF
+    .gray
+      :color #BFBFBF
 
-  ul
+  nav
     :position absolute
-    :right -5px
     :top 21px
-    :font bolder 15px sans-serif
+    :right 0
+    :font-weight bolder
+    :font-size 15px
     :color #FFF
-    :list-style none
     :margin 0
     :padding 0
-
-  li
-    :display inline
 
     a
       :float left
@@ -233,7 +210,8 @@ textarea
       :border-right 1px solid #272727
 
       &:hover, &#current
-        :background #65944A
+        :text-decoration none
+        :background #F07746
         :color #FFF
 
 
@@ -245,20 +223,25 @@ textarea
 
   h1
     :border-bottom 1px solid #f2f2f2
-    :font bold 14pt sans-serif
+    :font-weight bold
+    :font-size 140%
     :margin 0
 
   h2
     :border-bottom 1px solid #f2f2f2
-    :font normal 14pt sans-serif
+    :font-weight normal
+    :font-size 140%
+    :margin 0
+
+  h3
+    :border-bottom 1px solid #f2f2f2
+    :font-weight normal
+    :font-size 120%
     :margin 0
 
   ul li
     :list-style-image url(/images/bullet.gif)
     
-  p
-    :text-align justify
-
 
 #content-wrap
   :clear both
@@ -285,14 +268,16 @@ ul.toc
     :list-style none !important
 
 
-.post
+article
   :margin 0 0 10px 0
   :padding 0
   :background #FFF url(../images/gradientbg.jpg) repeat-x
   :border 1px solid #EFEDED
 
   h1
-    :font normal 14pt sans-serif !important
+    :color #DD4814
+    :font-weight normal !important
+    :font-size 120% !important
     :margin 0 0 0 10px !important
     :padding 10px 0px 0px 5px !important
 
@@ -301,7 +286,7 @@ ul.toc
     :border 1px solid #f2f2f2
     :padding 5px
     :margin-top 20px
-    :font-size 95%
+    :font-size 80%
 
     .date
       :background url(/images/clock.gif) no-repeat 0 center
@@ -319,15 +304,17 @@ ul.toc
       :margin 0 10px 0 5px
 
 
-#footer
+footer
   :border-top 1px solid #EAEAEA
-  :font 8pt sans-serif
+  :font-size 80%
   :clear both
+  :padding 10px 15px
 
   a
     :color #777
 
     &:hover
+      :text-decoration none
       :color #333
 
 
@@ -349,7 +336,3 @@ ul.toc
 
 .clear
   :clear both
-
-
-.gray
-  :color #BFBFBF

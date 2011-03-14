@@ -3,7 +3,7 @@
 
   <xsl:template name="purple.sidebar">
 
-    <div id="sidebar">
+    <aside>
 
       <div class="sidebox">
         <h1 class="clear">Sidebar Menu</h1>
@@ -57,7 +57,7 @@
         </ul>
       </canvas>
 
-    </div>
+    </aside>
 
   </xsl:template>
 </xsl:stylesheet>

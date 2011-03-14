@@ -28,7 +28,6 @@
               <xsl:call-template name="purple.header" />
               <div id="content-wrap">
                 <div id="content">
-                  <xsl:call-template name="purple.sidebar" />
                   <div id="main">
 
                     <xsl:for-each select="$nodes">
@@ -45,7 +44,7 @@
                         <xsl:text>.html#disqus_thread</xsl:text>
                       </xsl:variable>
 
-                      <div class="post">
+                      <article>
                         <h1>
                           <xsl:value-of select="@title" />
                         </h1>
@@ -62,10 +61,11 @@
                           </span>
                         </p>
 
-                      </div>
+                      </article>
                     </xsl:for-each>
 
                   </div>
+                  <xsl:call-template name="purple.sidebar" />
                 </div>
               </div>
               <xsl:call-template name="purple.footer" />

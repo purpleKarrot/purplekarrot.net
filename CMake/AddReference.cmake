@@ -1,7 +1,6 @@
 
-include(XSLTransform)
 find_package(Doxygen REQUIRED)
-find_package(BoostBook)
+include(BoostXsltproc)
 
 # Use Doxygen to parse header files and produce BoostBook output.
 #
@@ -22,7 +21,7 @@ find_package(BoostBook)
 
 macro(add_reference OUTPUT)
 
-  parse_arguments(THIS_DOXY "HEADER_PREFIX;PARAMETERS" "" ${ARGN})
+  cmake_parse_arguments(THIS_DOXY "" "" "HEADER_PREFIX;PARAMETERS" ${ARGN})
 
   # Create a Doxygen configuration file template
   get_filename_component(DOXYFILE_PATH ${OUTPUT} PATH)
@@ -67,17 +66,16 @@ macro(add_reference OUTPUT)
     ${CMAKE_CURRENT_BINARY_DIR}/xml/combine.xslt
     PROPERTIES GENERATED TRUE)
 
-  xsl_transform(
+  boost_xsltproc(
     ${CMAKE_CURRENT_BINARY_DIR}/xml/all.xml
+    ${CMAKE_CURRENT_BINARY_DIR}/xml/combine.xslt
     ${CMAKE_CURRENT_BINARY_DIR}/xml/index.xml
-    STYLESHEET ${CMAKE_CURRENT_BINARY_DIR}/xml/combine.xslt
-    COMMENT "Collecting Doxygen XML output for ${OUTPUT}.")
+    )
 
   # Transform single Doxygen XML file into BoostBook XML
-  xsl_transform(${OUTPUT}
+  boost_xsltproc(${CMAKE_CURRENT_BINARY_DIR}/${OUTPUT}
+    ${BOOSTBOOK_XSL_DIR}/doxygen/doxygen2boostbook.xsl
     ${CMAKE_CURRENT_BINARY_DIR}/xml/all.xml
-    STYLESHEET ${BOOSTBOOK_XSL_DIR}/doxygen/doxygen2boostbook.xsl
     PARAMETERS boost.doxygen.header.prefix=${THIS_DOXY_HEADER_PREFIX}
-    COMMENT "Transforming Doxygen XML into BoostBook XML for ${OUTPUT}.")
-
+    )
 endmacro(add_reference)
