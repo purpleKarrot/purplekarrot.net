@@ -1,8 +1,8 @@
 ################################################################################
-# Copyright (c) 2010 Daniel Pfeifer                                            #
+# Copyright (c) 2010-2011 Daniel Pfeifer                                       #
 ################################################################################
 
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.8.4 FATAL_ERROR)
 project(purplekarrot.net)
 
 set(BOOST_BUILD_DOCUMENTATION ON)

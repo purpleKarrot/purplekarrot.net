@@ -3,8 +3,6 @@
 ################################################################################
 
 find_package(Git REQUIRED)
-find_package(DocBook REQUIRED)
-find_package(XSLTPROC REQUIRED)
 include(BoostXsltproc)
 
 set(blog_qbk ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
@@ -46,13 +44,11 @@ add_custom_command(OUTPUT ${blog_xml}
   )
 
 boost_xsltproc(${blog_dbk} ${BOOSTBOOK_XSL_DIR}/docbook.xsl ${blog_xml}
-  CATALOGS ${BOOSTBOOK_CATALOG} ${DOCBOOK_CATALOG}
   DEPENDS ${dependencies}
   )
 
 set(blog_html ${CMAKE_CURRENT_BINARY_DIR}/www/index.html)
 boost_xsltproc(${blog_html} ${CMAKE_SOURCE_DIR}/xsl/blog.xsl ${blog_dbk}
-  CATALOGS ${BOOSTBOOK_CATALOG} ${DOCBOOK_CATALOG}
   PARAMETERS purple.part=blog
   )
 

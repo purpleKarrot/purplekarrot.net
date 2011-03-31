@@ -2,6 +2,9 @@
 # Copyright (c) 2010 Daniel Pfeifer                                            #
 ################################################################################
 
+include(BoostExtract)
+include(BoostDownload)
+
 find_program(CAT cat)
 find_program(SASS sass)
 #find_program(CSSTIDY csstidy)
@@ -29,37 +32,26 @@ macro(COMPRESS OUTPUT INPUT)
   endif(USE_COMPRESSION)
 endmacro(COMPRESS OUTPUT INPUT)
 
-
-set(FANCYBOX_FILE_NAME jquery.fancybox-1.3.1.zip)
-set(FANCYBOX_FILE_PATH ${CMAKE_CURRENT_BINARY_DIR}/${FANCYBOX_FILE_NAME})
-if(NOT EXISTS ${FANCYBOX_FILE_PATH})
-  file(DOWNLOAD http://fancybox.googlecode.com/files/${FANCYBOX_FILE_NAME}
-    ${FANCYBOX_FILE_PATH})
-endif(NOT EXISTS ${FANCYBOX_FILE_PATH})
-
-set(FANCYBOX_DIR ${CMAKE_CURRENT_BINARY_DIR}/jquery.fancybox-1.3.1/fancybox)
-
-if(NOT EXISTS ${FANCYBOX_DIR})
-  include(Extract)
-  extract(${FANCYBOX_FILE_PATH} ${CMAKE_CURRENT_BINARY_DIR})
-endif(NOT EXISTS ${FANCYBOX_DIR})
-
-
-set(JQUERY_FILE_NAME jquery-1.4.2.js)
-set(JQUERY_FILE_PATH ${CMAKE_CURRENT_BINARY_DIR}/${JQUERY_FILE_NAME})
-if(NOT EXISTS ${JQUERY_FILE_PATH})
-  file(DOWNLOAD http://code.jquery.com/${JQUERY_FILE_NAME} ${JQUERY_FILE_PATH})
-endif(NOT EXISTS ${JQUERY_FILE_PATH})
+boost_download(jquery.js
+  http://code.jquery.com/jquery-1.5.1.js
+  f2402f0e7b549caae013bc3c05b3a161
+  )
 
 #http://www.goat1000.com/tagcanvas.php
-set(TAGCANVAS_FILE_NAME jquery.tagcanvas.js)
-set(TAGCANVAS_FILE_PATH ${CMAKE_CURRENT_BINARY_DIR}/${TAGCANVAS_FILE_NAME})
-if(NOT EXISTS ${TAGCANVAS_FILE_PATH})
-  file(DOWNLOAD http://www.goat1000.com/${TAGCANVAS_FILE_NAME} ${TAGCANVAS_FILE_PATH})
-endif(NOT EXISTS ${TAGCANVAS_FILE_PATH})
+boost_download(tagcanvas.js
+  http://www.goat1000.com/jquery.tagcanvas.js
+  df9535413be23c73b0ba84ec58891c7e
+  )
 
+boost_download(fancybox.zip
+  http://fancybox.googlecode.com/files/jquery.fancybox-1.3.4.zip
+  f964f34f37237a33f62188cebbbb927a
+  )
 
-file(READ ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.css FANCYBOX_CSS)
+set(FANCYBOX_DIR "${CMAKE_CURRENT_BINARY_DIR}/fancybox")
+boost_extract(fancybox.zip "${FANCYBOX_DIR}")
+
+file(READ ${FANCYBOX_DIR}/fancybox/jquery.fancybox-1.3.4.css FANCYBOX_CSS)
 string(REGEX REPLACE "/\\* IE \\*/.*" "" FANCYBOX_CSS "${FANCYBOX_CSS}")
 string(REPLACE "/*" "/*!" FANCYBOX_CSS "${FANCYBOX_CSS}") # conserve copyright
 string(REPLACE "url('" "url('/images/" FANCYBOX_CSS "${FANCYBOX_CSS}")
@@ -94,10 +86,10 @@ combine(${COMBINED_CSS}
 
 set(JS_UNCOMPRESSED ${CMAKE_CURRENT_BINARY_DIR}/uncompressed.js)
 combine(${JS_UNCOMPRESSED}
-  ${JQUERY_FILE_PATH}
-  ${TAGCANVAS_FILE_PATH}
-  ${FANCYBOX_DIR}/jquery.fancybox-1.3.1.js
-  ${FANCYBOX_DIR}/jquery.easing-1.3.pack.js
+  "${CMAKE_CURRENT_BINARY_DIR}/jquery.js"
+  "${CMAKE_CURRENT_BINARY_DIR}/tagcanvas.js"
+  ${FANCYBOX_DIR}/fancybox/jquery.fancybox-1.3.4.js
+  ${FANCYBOX_DIR}/fancybox/jquery.easing-1.3.pack.js
   js/twitter.js
   js/ready.js
   )
