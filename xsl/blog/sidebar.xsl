@@ -9,13 +9,16 @@
         <h1 class="clear">Sidebar Menu</h1>
         <ul class="sidemenu">
           <li>
-            <a href="/doc/libMaoni/">libMaoni Documentation</a>
+            <a href="/doc/Boost.CMake/">Boost.CMake</a>
           </li>
           <li>
-            <a href="http://cmake.org/cmake/help/cmake-2-8-docs.html">CMake 2.8 Documentation</a>
+            <a href="/doc/Boost.CMake/boost_cmake.boost_defrag.html">Boost.Defrag</a>
           </li>
           <li>
-            <a href="http://lists.boost.org/Archives/boost/">boost-dev Archives</a>
+            <a href="http://www.equalizergraphics.com/">Equalizer</a>
+          </li>
+          <li>
+            <a href="/doc/libMaoni/">libMaoni</a>
           </li>
         </ul>
       </div>

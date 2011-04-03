@@ -1,0 +1,55 @@
+[article Boost.CMake status update
+  [quickbook 1.5]
+  [last-revision ${LAST_REVISION}]
+  [id BoostCMake]
+  [purpose
+    I guess it is the right time to give a little status update of my
+    approach to a modularized build of the Boost C++ Libraries with CMake.
+  ]
+]
+
+I guess it is the right time to give a little status update of my
+approach to a modularized build of the Boost C++ Libraries with CMake
+(see [@http://lists.boost.org/Archives/boost/2011/01/176154.php
+Boost mailing list archive from January 2011]).
+
+The approach consists of two parts:
+
+# [@/doc/Boost.CMake/ Boost.CMake]
+  is a collection of CMake modules to simplify the use and
+  development of Boost libraries (at least for the subset of users and
+  developers that like CMake).
+
+# [@/doc/Boost.CMake/boost_cmake.boost_defrag.html Boost.Defrag]
+  is an aggregator that can collect the Boost libraries
+  and tools from their individual repositories (cvs, svn, git, etc) and
+  package them to a monolithic release.
+
+Example source packages and binary installers for Darwin and Windows are
+available in the [@https://github.com/purpleKarrot/Boost.CMake/downloads
+Downloads section].
+
+Packages for Ubuntu are built on Launchpad an can be installed via
+[@https://launchpad.net/~purplekarrot/+archive/ppa my Personal Packaging
+Archive].
+
+All these packages have been created with Boost.CMake and Boost.Defrag.
+
+[warning
+  DO NOT USE THESE PACKAGES FOR PRODUCTIVE USE!
+
+  But feel free to try the installers.
+]
+
+Generated packages are completely modular, they contain over 200 (TWO
+HUNDRED!!) components. Dependencies are handled (dependencies may be
+incorrect, but the build system can handle them). Both debug and release
+libraries are included (multiple configs? no problem).
+
+When Boost is installed with an installer that was built with
+Boost.CMake, it gets installed as a ["CMake Package] and can be found by
+the [@http://www.cmake.org/cmake/help/cmake-2-8-docs.html#command:find_package
+`find_package()`] command in ["config mode].
+
+Any feedback is welcome, either here or in the
+[@https://github.com/purpleKarrot/Boost.CMake/issues issue tracker] on github.

@@ -43,9 +43,9 @@
                     <xsl:with-param name="prev" select="following-sibling::*[1]" />
                     <xsl:with-param name="next" select="preceding-sibling::*[1]" />
                   </xsl:call-template>
-                  <xsl:call-template name="disqus.thread" />
                 </div>
               </div>
+              <xsl:call-template name="disqus.thread" />
               <xsl:call-template name="purple.footer" />
             </div>
           </body>

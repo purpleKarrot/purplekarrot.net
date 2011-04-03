@@ -50,6 +50,7 @@ boost_xsltproc(${blog_dbk} ${BOOSTBOOK_XSL_DIR}/docbook.xsl ${blog_xml}
 set(blog_html ${CMAKE_CURRENT_BINARY_DIR}/www/index.html)
 boost_xsltproc(${blog_html} ${CMAKE_SOURCE_DIR}/xsl/blog.xsl ${blog_dbk}
   PARAMETERS purple.part=blog
+  DEPENDS ${XSL_FILES}
   )
 
 add_custom_target(blog ALL DEPENDS ${blog_html})

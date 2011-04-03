@@ -48,10 +48,10 @@ boost_download(fancybox.zip
   f964f34f37237a33f62188cebbbb927a
   )
 
-set(FANCYBOX_DIR "${CMAKE_CURRENT_BINARY_DIR}/fancybox")
-boost_extract(fancybox.zip "${FANCYBOX_DIR}")
+boost_extract(fancybox.zip "${CMAKE_CURRENT_BINARY_DIR}/fancybox")
+set(FANCYBOX_DIR "${CMAKE_CURRENT_BINARY_DIR}/fancybox/fancybox")
 
-file(READ ${FANCYBOX_DIR}/fancybox/jquery.fancybox-1.3.4.css FANCYBOX_CSS)
+file(READ ${FANCYBOX_DIR}/jquery.fancybox-1.3.4.css FANCYBOX_CSS)
 string(REGEX REPLACE "/\\* IE \\*/.*" "" FANCYBOX_CSS "${FANCYBOX_CSS}")
 string(REPLACE "/*" "/*!" FANCYBOX_CSS "${FANCYBOX_CSS}") # conserve copyright
 string(REPLACE "url('" "url('/images/" FANCYBOX_CSS "${FANCYBOX_CSS}")
@@ -88,8 +88,8 @@ set(JS_UNCOMPRESSED ${CMAKE_CURRENT_BINARY_DIR}/uncompressed.js)
 combine(${JS_UNCOMPRESSED}
   "${CMAKE_CURRENT_BINARY_DIR}/jquery.js"
   "${CMAKE_CURRENT_BINARY_DIR}/tagcanvas.js"
-  ${FANCYBOX_DIR}/fancybox/jquery.fancybox-1.3.4.js
-  ${FANCYBOX_DIR}/fancybox/jquery.easing-1.3.pack.js
+  ${FANCYBOX_DIR}/jquery.fancybox-1.3.4.js
+  ${FANCYBOX_DIR}/jquery.easing-1.3.pack.js
   js/twitter.js
   js/ready.js
   )

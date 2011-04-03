@@ -3,7 +3,7 @@
 
 <xsl:template name="purple.footer">
   <xsl:param name="copyright">
-    Copyright &#169; 2010 <strong>Daniel Pfeifer</strong>
+    Copyright &#169; 2010, 2011 <strong>Daniel Pfeifer</strong>
   </xsl:param>
 
 <footer>
