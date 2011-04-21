@@ -52,4 +52,4 @@ the [@http://www.cmake.org/cmake/help/cmake-2-8-docs.html#command:find_package
 `find_package()`] command in ["config mode].
 
 Any feedback is welcome, either here or in the
-[@https://github.com/purpleKarrot/Boost.CMake/issues issue tracker] on github.
+[@https://github.com/ryppl/Boost.CMake/issues issue tracker] on github.
