@@ -1,6 +1,6 @@
 [article Creating Debian source packages with CMake
   [quickbook 1.5]
-  [last-revision ${LAST_REVISION}]
+  [last-revision 2010-10-19 22:42:06 +0200]
   [id dputCMake]
   [purpose
     CPack, the packaging system that ships with CMake, builds

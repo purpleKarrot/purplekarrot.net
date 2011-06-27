@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common">
 
-  <xsl:include href="summary.xsl" />
   <xsl:include href="index.xsl" />
   <xsl:include href="post.xsl" />
 
@@ -9,13 +8,20 @@
 
     <xsl:variable name="nodes">
       <xsl:for-each select="chapter">
-        <xsl:sort select="@last-revision" order="descending" />
+        <xsl:sort select="@last-revision|chapterinfo/date" order="descending" />
         <post>
-          <xsl:attribute name="id"><xsl:value-of select="@id" /></xsl:attribute>
-          <xsl:attribute name="title"><xsl:value-of select="title" /></xsl:attribute>
-          <xsl:attribute name="date"><xsl:value-of select="@last-revision" /></xsl:attribute>
+          <xsl:attribute name="id">
+            <xsl:call-template name="blog.post.id" />
+            <!-- <xsl:value-of select="@id" /> -->
+          </xsl:attribute>
+          <xsl:attribute name="title">
+            <xsl:value-of select="title|chapterinfo/title" />
+          </xsl:attribute>
+          <xsl:attribute name="date">
+            <xsl:value-of select="@last-revision|chapterinfo/date" />
+          </xsl:attribute>
           <summary>
-            <xsl:call-template name="blog.summary" />
+            <xsl:apply-templates select="(para|simpara)[1]" />
           </summary>
           <content>
             <xsl:apply-templates />

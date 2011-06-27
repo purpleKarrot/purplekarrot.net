@@ -1,0 +1,213 @@
+Effective 'find_package()'
+==========================
+Daniel Pfeifer <daniel@pfeifer-mail.de>
+2011-06-27 20:09:42 +0200
+
+[abstract]
+--
+Everybody who has used third party libraries in CMake, will probably know the
+*find_package* command and
+http://www.cmake.org/Wiki/CMake:How_To_Find_Libraries[how to use it].
+Actually this command is very important for library maintainers too.
+--
+
+I will start with some recap:
+
+  add_library(foo foo.cpp)
+  add_library(bar bar.cpp)
+  add_executable(baz baz.cpp)
+  target_link_libraries(baz foo bar)
+
+The above CMake code creates the three targets foo, bar, and baz. The executable
+baz is linked against the libraries foo and bar. Note that the names of the
+targets are used for linking.
+
+  find_package(FOOBAR COMPONENTS foo bar)
+  include_directories(${FOOBAR_INCLUDE_DIRS}
+
+  add_executable(baz baz.cpp)
+  target_link_libraries(baz ${FOOBAR_LIBRARIES})
+
+In this case, CMake creates only the executable target baz, while the components
+foo and bar are provided from a third party package called FOOBAR. Instead of
+using the names foo and bar, the variable FOOBAR_LIBRARIES is used for linking.
+This variable and some others are set by the call to find_package(FOOBAR).
+
+So far for theory. In practice, there is no support for a FOOBAR package in
+CMake. So if you want to use the above CMake code like this, you need to write
+a FindFOOBAR.cmake module and set the CMAKE_MODULE_PATH variable to its
+containing folder.
+
+The maintainer of the FOOBAR package now might think it would be a good idea to
+provide this module alongside the package. This approach however is not how
+CMake packages are meant to be used. Project maintainers wishing to provide a
+package to be found by *find_package* are encouraged to read the documentation
+of this command; especially the part after the sentence "Project maintainers
+wishing to provide a package to be found by this command are encouraged to read
+on."
+
+After reading the documentation of *find_package*, you will know in detail how
+this command works. You will realize, that instead of providing
+FindFOOBAR.cmake, you should provide foobar-config.cmake and
+foobar-config-version.cmake. You will learn about the install(EXPORT) command
+and you will import the exported configuration from foobar-config.cmake.
+Everything is cool. Until it comes to modularization...
+
+Say you want to export the targets foo and bar as individual components. The
+target bar is linked against the foo library. In other words: the component bar
+depends on the component foo. Implementing the foobar-config.cmake such that it
+loads the components requested by the user is straight-forward:
+
+  set(FOOBAR_FOUND TRUE)
+  foreach(component ${FOOBAR_FIND_COMPONENTS})
+    set(component_file "${component}.cmake")
+    if(EXISTS "${component_file}")
+      include("${component_file}")
+      set(FOOBAR_${component}_FOUND TRUE)
+    else()
+      set(FOOBAR_${component}_FOUND FALSE)
+      set(FOOBAR_FOUND FALSE)
+    endif()
+  endforeach(component)
+
+In the project's CMakeLists.txt file, you will create two libraries, add them to
+their export set, and then install the libraries as well as the export sets. 
+
+  cmake_minimum_required(VERSION 2.8)
+  project(FooBar C)
+
+  add_library(foo foo.c)
+  install(TARGETS foo EXPORT foo
+    DESTINATION lib COMPONENT foo
+    )
+  install(EXPORT foo
+    DESTINATION share/FooBar/CMake COMPONENT foo
+    )
+
+  add_library(bar bar.c)
+  target_link_libraries(bar foo)
+  install(TARGETS bar EXPORT bar
+    DESTINATION lib COMPONENT bar
+    )
+  install(EXPORT bar
+    DESTINATION share/FooBar/CMake COMPONENT bar
+    )
+
+  set(CPACK_COMPONENTS_ALL foo bar)
+  set(CPACK_COMPONENT_BAR_DEPENDS foo)
+
+  install(FILES foobar-config.cmake
+    DESTINATION share/FooBar
+    )
+
+But then CMake strikes you with the following error message:
+
+  CMake Error: INSTALL(EXPORT "bar" ...) includes target "bar" which requires target "foo" that is not in the export set.
+
+Every target is exactly in the export set where it belongs to. Why is this an
+error?
+
+If you are on Windows, CMake may have even struck you before: The only thing
+CMake exports, is the TARGET_FILE property. In case of a shared library this
+happens to be the name of the .dll file, which of course is completely useless
+for linking.
+
+Either way, it turns out that install(EXPORT) is not really useful in its
+current form.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The CMake command `find_package()' has two modes by which it searches for
+packages: "Module" mode and "Config" mode.
+
+In "Module" mode, CMake searches for a file called `Find<Package>.cmake' in the
+CMAKE_MODULE_PATH followed by the CMake installation. If the file is found, it
+is processed. The file `Find<Package>.cmake' usually is comprised by invocations
+of `find_path()' and `find_library()', each of which creates an entry in the
+CMake cache.
+
+If the file `Find<Package>.cmake' was not found (or if NO_MODULE was explicitly
+given), "Config" mode is performed: CMake searches for <Package>Config.cmake or
+<lowercase-package>-config.cmake. If such a file is found, it is processed by
+CMake and a cache entry called <Project>_DIR is created. The list of locations
+where CMake searches for the config file is platform dependent. It first checks
+the previously set value of <Project>_DIR followed by some default settings. If
+the package is installed to `C:\Program Files', `/usr', `/usr/local' etc, CMake
+will probably find it. If you install the package to a non-default location like
+some path inside your home directory, you may need to manually set the
+<Project>_DIR variable.
+
+The installers generated by Boost.CMake install the file boost-config.cmake.
+However, CMake provides a FindBoost.cmake module, so `find_package(Boost)' will
+always succeed in "Module" mode and never perform "Config" mode unless NO_MODULE
+is given as in `find_package(Boost NO_MODULE)'.
+
+The Boost project also has support for component and version checking. Please
+see http://cmake.org/cmake/help/cmake-2-8-docs.html#command:find_package for the
+full signature of the find_package command and how to use these features.
+
+Now to the way Rypplite works: Rypplite simply mimics the Boost package. It
+seams to provide exactly the same features as the real Boost package, but
+instead of checking for components, it actually clones their git repository and
+then descends into the component, adding it to the build.
+
+Using Rypplite works the same way as using Boost. Either you install it to the
+default location (as if it were Boost) or you set the Boost_DIR variable to the
+directory of Rypplite. Configuring should be successful, building however will
+most likely fail. Rypplite will recursively retrieve all components that are
+checked with `find_package(Boost COMPONENTS ... NO_MODULE)', the problem is that
+most Boost components do not check their dependencies yet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,6 @@
 [article Getting Equalizer to render in your Window
   [quickbook 1.5]
-  [last-revision ${LAST_REVISION}]
+  [last-revision 2010-05-25 20:09:42 +0200]
   [id eQute]
   [purpose There is no doubt that [@http://www.equalizergraphics.com/ Equalizer]
            is a great framework. And as long as you use it how it is supposed to

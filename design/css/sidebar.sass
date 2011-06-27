@@ -1,9 +1,9 @@
 
 aside
-  :float right
-  :width 30%
-  :margin 0 0 10px 0
-  :padding 0
+  float: right
+  width: 234px
+  margin: 15px 0
+  padding: 0
 
   h1
     :color #DD4814
@@ -14,47 +14,41 @@ aside
 
   ul.sidemenu
     :list-style none
-    :margin 10px 0 15px 0
+    :margin 0 0 10px 0
     :padding 0
     :background #F2F2F2
 
     li
-      :padding 0px 10px
+      :margin 0px 10px
       :list-style none !important
-
-    a
-      :display block
-      :font-weight normal
-      :color #333
-      :height 1.5em
-      :padding .3em 0 .3em 15px
-      :line-height 1.5em
+      :padding .3em 0 .3em 10px
       :border-bottom 1px dashed #D4D4D4
-      :text-decoration none
 
       &.top
         :border-top 1px dashed #D4D4D4
 
       &:hover
-        :padding .3em 0 .3em 13px
+        :padding .3em 0 .3em 8px
         :border-left 2px solid  #DD4814
+
+    a
+      :color #333
+
+      &:hover
         :color #DD4814
 
 
 .sidebox
   :background #F5F5F5
   :border 1px solid #EFEDED
-  :margin-bottom 10px
+  :margin-bottom 15px
+  border-radius: 5px
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3)
 
-  a#getubuntu
-    :display block
-    :overflow hidden
-    :text-indent -9999px
-    :background-image url(http://picomol.de/counter/i.png)
-    :width  200px
-    :height 200px
-    :margin 13px
-    //:background-image url(http://www.ubuntu.com/countdown/banner1.png)
-    //:width  180px
-    //:height 150px
-    //:margin 23px
+a#getubuntu
+  :display block
+  :overflow hidden
+  :text-indent -9999px
+  :background-image url(http://picomol.de/ubuntu-oneiric-counter/234.png)
+  :height 60px
+  :margin-bottom 15px

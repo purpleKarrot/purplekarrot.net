@@ -35,4 +35,18 @@
     <xsl:value-of select="concat($month.name, ' ', $day, ', ', $year)" />
   </xsl:template>
 
+  <xsl:template name="blog.post.id">
+    <xsl:choose>
+      <xsl:when test="@id">
+        <xsl:value-of select="@id" />
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:variable name="ok" select="'__abcdefghijklmnopqrstuvwxyz'" />
+        <xsl:variable name="no" select="' .ABCDEFGHIJKLMNOPQRSTUVWXYZ()'" />
+        <xsl:variable name="title" select="title|chapterinfo/title" />
+        <xsl:value-of select="translate($title, $no, $ok)" />
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
 </xsl:stylesheet>

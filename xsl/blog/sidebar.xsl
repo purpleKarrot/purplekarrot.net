@@ -12,9 +12,6 @@
             <a href="/doc/Boost.CMake/">Boost.CMake</a>
           </li>
           <li>
-            <a href="/doc/Boost.CMake/boost_cmake.boost_defrag.html">Boost.Defrag</a>
-          </li>
-          <li>
             <a href="http://www.equalizergraphics.com/">Equalizer</a>
           </li>
           <li>
@@ -29,11 +26,9 @@
         <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/danielpfeifer.json?callback=twitter_callback&amp;count=5">;</script>
       </div>
 
-      <div class="sidebox">
-        <a id="getubuntu" href="http://www.ubuntu.com/">Get Ubuntu</a>
-      </div>
+      <a id="getubuntu" href="http://www.ubuntu.com/">Get Ubuntu</a>
 
-      <canvas class="sidebox tagcanvas" width="226" height="226">
+      <canvas class="sidebox tagcanvas" width="231" height="231">
         <h1 class="clear">Useful Links</h1>
         <ul class="sidemenu">
           <li>

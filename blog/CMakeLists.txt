@@ -2,8 +2,12 @@
 # Copyright (c) 2010-2011 Daniel Pfeifer                                       #
 ################################################################################
 
-find_package(Git REQUIRED)
 include(BoostXsltproc)
+find_package(AsciiDoc REQUIRED)
+
+
+function(ascii_to_docbook output input)
+endfunction(ascii_to_docbook)
 
 set(blog_qbk ${CMAKE_CURRENT_BINARY_DIR}/blog.qbk)
 set(blog_xml ${CMAKE_CURRENT_BINARY_DIR}/blog.xml)
@@ -16,24 +20,45 @@ file(WRITE ${blog_qbk}.in
   "]\n\n"
   )
 
-file(GLOB_RECURSE blog_posts *.qbk)
 set(dependencies)
+set(blog_posts
+  effective_find_package.txt
+  BoostCMake.qbk
+  dputCMake.qbk
+  eQute.qbk
+  first.qbk
+  )
 
 foreach(post ${blog_posts})
-  execute_process(COMMAND ${GIT_EXECUTABLE} log --pretty=format:%ai -1 ${post}
-    OUTPUT_VARIABLE LAST_REVISION
-    )
-  get_filename_component(post_name ${post} NAME_WE)
-  set(post_qbk ${CMAKE_CURRENT_BINARY_DIR}/${post_name}.qbk)
-  set(post_xml ${CMAKE_CURRENT_BINARY_DIR}/${post_name}.xml)
+  get_filename_component(input "${post}" ABSOLUTE)
+  get_filename_component(name  "${post}" NAME_WE)
+  get_filename_component(ext   "${post}" EXT)
 
-  configure_file(${post} ${post_qbk})
-  add_custom_command(OUTPUT ${post_xml}
-    COMMAND $<TARGET_FILE:quickbook> "--output-file=${post_xml}" ${post_qbk}
-    DEPENDS ${post_qbk}
-    )
-  list(APPEND dependencies ${post_xml})
-  file(APPEND ${blog_qbk}.in "[xinclude ${post_xml}]\n")
+  set(output "${CMAKE_CURRENT_BINARY_DIR}/${name}.xml")
+
+  if(ext STREQUAL ".txt")
+    add_custom_command(OUTPUT "${output}"
+      COMMAND
+        ${ASCIIDOC_EXECUTABLE}
+        "--backend=docbook"
+        "--out-file=${output}"
+        "${input}"
+      DEPENDS
+        "${input}"
+      )
+  elseif(ext STREQUAL ".qbk")
+    add_custom_command(OUTPUT "${output}"
+      COMMAND
+        $<TARGET_FILE:quickbook>
+        "--output-file=${output}"
+        "${input}"
+      DEPENDS
+        "${input}"
+      )
+  endif()
+
+  list(APPEND dependencies ${output})
+  file(APPEND ${blog_qbk}.in "[xinclude ${output}]\n")
 endforeach(post)
 
 configure_file(${blog_qbk}.in ${blog_qbk} COPYONLY)

@@ -3,12 +3,31 @@
 ################################################################################
 
 include(BoostExtract)
-include(BoostDownload)
 
 find_program(CAT cat)
 find_program(SASS sass)
 #find_program(CSSTIDY csstidy)
 find_program(YUICOMPRESSOR yui-compressor)
+
+
+function(file_download file url md5)
+  if(NOT IS_ABSOLUTE "${file}")
+    set(file "${CMAKE_CURRENT_BINARY_DIR}/${file}")
+  endif()
+
+  if(EXISTS "${file}")
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E md5sum "${file}"
+      OUTPUT_VARIABLE output
+      )
+    if("${output}" MATCHES "^${md5} ")
+      return()
+    endif()
+  endif()
+
+  message(STATUS "Downloading '${url}'")
+  file(DOWNLOAD "${url}" "${file}" SHOW_PROGRESS EXPECTED_MD5 "${md5}")
+endfunction(file_download)
+
 
 macro(COMBINE OUTPUT)
   add_custom_command(OUTPUT ${OUTPUT}
@@ -32,23 +51,22 @@ macro(COMPRESS OUTPUT INPUT)
   endif(USE_COMPRESSION)
 endmacro(COMPRESS OUTPUT INPUT)
 
-boost_download(jquery.js
-  http://code.jquery.com/jquery-1.5.1.js
-  f2402f0e7b549caae013bc3c05b3a161
+file_download(jquery.js
+  http://code.jquery.com/jquery-1.6.1.js
+  137d4b8b58f69c747fed3415894e73f4
   )
 
 #http://www.goat1000.com/tagcanvas.php
-boost_download(tagcanvas.js
+file_download(tagcanvas.js
   http://www.goat1000.com/jquery.tagcanvas.js
-  df9535413be23c73b0ba84ec58891c7e
+  e04a1ced02b00ece17b098bbe26fd048
   )
 
-boost_download(fancybox.zip
+boost_extract(fancybox DOWNLOAD
   http://fancybox.googlecode.com/files/jquery.fancybox-1.3.4.zip
   f964f34f37237a33f62188cebbbb927a
   )
 
-boost_extract(fancybox.zip "${CMAKE_CURRENT_BINARY_DIR}/fancybox")
 set(FANCYBOX_DIR "${CMAKE_CURRENT_BINARY_DIR}/fancybox/fancybox")
 
 file(READ ${FANCYBOX_DIR}/jquery.fancybox-1.3.4.css FANCYBOX_CSS)
