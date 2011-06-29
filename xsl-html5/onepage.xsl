@@ -4,6 +4,7 @@
   <xsl:import href="templates/unmatched.xsl" />
   <xsl:import href="templates/admonition.xsl" />
   <xsl:import href="templates/text_level.xsl" />
+  <xsl:import href="templates/footnote.xsl" />
 
   <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
 
