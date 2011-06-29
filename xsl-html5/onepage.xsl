@@ -5,8 +5,11 @@
   <xsl:import href="templates/admonition.xsl" />
   <xsl:import href="templates/text_level.xsl" />
   <xsl:import href="templates/footnote.xsl" />
+  <xsl:import href="templates/refentry.xsl" />
+  <xsl:import href="templates/lists.xsl" />
 
-  <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
+  <xsl:output method="xml" encoding="UTF-8" indent="yes"
+    omit-xml-declaration="yes" />
 
   <xsl:template match="/">
     <xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html&gt;&#10;</xsl:text>
@@ -39,18 +42,6 @@
     </p>
   </xsl:template>
 
-  <xsl:template match="itemizedlist">
-    <ul>
-      <xsl:apply-templates />
-    </ul>
-  </xsl:template>
-
-  <xsl:template match="listitem">
-    <li>
-      <xsl:apply-templates />
-    </li>
-  </xsl:template>
-
   <xsl:template match="phrase">
     <span>
       <xsl:attribute name="class"><xsl:value-of select="@role" /></xsl:attribute>
@@ -58,7 +49,7 @@
     </span>
   </xsl:template>
 
-  <xsl:template match="programlisting">
+  <xsl:template match="programlisting|synopsis">
     <pre>
       <xsl:apply-templates />
     </pre>
@@ -70,8 +61,71 @@
     </h2>
   </xsl:template>
 
-  <xsl:template match="link">
+  <xsl:template match="link|anchor">
     <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="informalfigure">
+    <figure>
+      <xsl:apply-templates />
+    </figure>
+  </xsl:template>
+
+  <xsl:template match="mediaobject">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="caption">
+    <figcaption>
+      <xsl:apply-templates />
+    </figcaption>
+  </xsl:template>
+
+  <xsl:template match="imageobject">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="imagedata">
+    <img>
+      <xsl:attribute name="src">
+        <xsl:text>s_</xsl:text>
+        <xsl:value-of select="@fileref" />
+      </xsl:attribute>
+    </img>
+  </xsl:template>
+
+  <xsl:template match="table|informaltable">
+    <table>
+      <xsl:apply-templates />
+    </table>
+  </xsl:template>
+
+  <xsl:template match="tgroup">
+    <xsl:apply-templates />
+  </xsl:template>
+
+  <xsl:template match="thead">
+    <thead>
+      <xsl:apply-templates />
+    </thead>
+  </xsl:template>
+
+  <xsl:template match="tbody">
+    <tbody>
+      <xsl:apply-templates />
+    </tbody>
+  </xsl:template>
+
+  <xsl:template match="row">
+    <tr>
+      <xsl:apply-templates />
+    </tr>
+  </xsl:template>
+
+  <xsl:template match="entry">
+    <td>
+      <xsl:apply-templates />
+    </td>
   </xsl:template>
 
 </xsl:stylesheet>

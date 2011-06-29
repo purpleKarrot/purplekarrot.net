@@ -14,7 +14,7 @@
     </em>
   </xsl:template>
 
-  <xsl:template match="computeroutput">
+  <xsl:template match="computeroutput|literallayout">
     <code>
       <xsl:apply-templates />
     </code>
