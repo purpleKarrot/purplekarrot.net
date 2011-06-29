@@ -63,13 +63,17 @@ function(add_documentation INPUT)
     DEPENDS ${QBK_FILE} ${DEPENDENCIES}
     )
   boost_xsltproc(${DBK_FILE} ${BOOSTBOOK_XSL_DIR}/docbook.xsl ${XML_FILE}
-    CATALOGS ${BOOSTBOOK_CATALOG} ${DOCBOOK_CATALOG}
-    DEPENDS ${DEPENDENCIES}
+    CATALOGS
+      ${BOOSTBOOK_CATALOG}
+    DEPENDS
+      ${DEPENDENCIES}
     )
   boost_xsltproc(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}/index.html
-    ${CMAKE_SOURCE_DIR}/xsl/chunk.xsl ${DBK_FILE}
-    CATALOGS ${BOOSTBOOK_CATALOG} ${DOCBOOK_CATALOG}
-    DEPENDS ${XSL_FILES}
+    ${CMAKE_SOURCE_DIR}/xsl-html5/main.xsl ${DBK_FILE}
+    CATALOGS
+      ${BOOSTBOOK_CATALOG}
+    DEPENDS
+      ${XSL_FILES}
     )
   add_custom_target(${THIS_PROJECT_NAME}-doc ALL DEPENDS
     ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}/index.html
