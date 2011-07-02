@@ -31,7 +31,7 @@ function(add_documentation INPUT)
   set(DEPENDENCIES)
 
   # copy images
-  set(IMGDIR ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME})
+  set(IMGDIR ${CMAKE_CURRENT_BINARY_DIR}/www/images)
   file(MAKE_DIRECTORY ${IMGDIR})
   foreach(IMAGE ${DOCUMENTATION_IMAGES})
     get_filename_component(NAME ${IMAGE} NAME)
@@ -68,7 +68,7 @@ function(add_documentation INPUT)
     DEPENDS
       ${DEPENDENCIES}
     )
-  boost_xsltproc(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}/index.html
+  boost_xsltproc(${CMAKE_CURRENT_BINARY_DIR}/www/index.html
     ${CMAKE_SOURCE_DIR}/xsl-html5/chunked.xsl ${DBK_FILE}
     CATALOGS
       ${BOOSTBOOK_CATALOG}
@@ -76,9 +76,9 @@ function(add_documentation INPUT)
       ${XSL_FILES}
     )
   add_custom_target(${THIS_PROJECT_NAME}-doc ALL DEPENDS
-    ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}/index.html
+    ${CMAKE_CURRENT_BINARY_DIR}/www/index.html
     )
-  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}
+  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/www/
     DESTINATION doc
     )
 endfunction(add_documentation INPUT)

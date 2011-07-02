@@ -23,7 +23,7 @@
       <div class="sidebox">
         <h1 class="clear">twitter</h1>
         <ul class="sidemenu" id="twitter_update_list"></ul>
-        <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/danielpfeifer.json?callback=twitter_callback&amp;count=5">;</script>
+        <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/danielpfeifer.json?callback=twitter_callback&amp;count=5">/**/</script>
       </div>
 
       <a id="getubuntu" href="http://www.ubuntu.com/">Get Ubuntu</a>

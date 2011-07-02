@@ -22,7 +22,7 @@ endif(MSVC)
 
 ################################################################################
 
-file(GLOB_RECURSE XSL_FILES xsl-html5/*.xsl)
+file(GLOB_RECURSE XSL_FILES xsl/*.xsl xsl-html5/*.xsl)
 
 add_subdirectory(blog)
 add_subdirectory(design)

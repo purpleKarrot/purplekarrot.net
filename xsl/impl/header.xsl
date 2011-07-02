@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
   <xsl:param name="purple.part" select="''" />
 
   <xsl:template name="purple.header">
     <header>
-      <h1>purple<span class="gray">Karrot</span></h1>
+      <h1>
+        <xsl:text>purple</xsl:text>
+        <span class="gray">Karrot</span>
+      </h1>
       <nav>
         <a href="/index.html">
           <xsl:if test="$purple.part = 'blog'">

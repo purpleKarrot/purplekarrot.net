@@ -12,7 +12,7 @@ foreach(page ${other_html})
   set(output ${CMAKE_CURRENT_BINARY_DIR}/${page})
   get_filename_component(part ${page} NAME_WE)
 
-  boost_xsltproc(${output} ${CMAKE_SOURCE_DIR}/xsl/other/other.xsl ${input}
+  boost_xsltproc(${output} ${CMAKE_SOURCE_DIR}/xsl/other.xsl ${input}
     PARAMETERS purple.part=${part}
     )
 
