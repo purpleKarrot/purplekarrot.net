@@ -69,7 +69,7 @@ function(add_documentation INPUT)
       ${DEPENDENCIES}
     )
   boost_xsltproc(${CMAKE_CURRENT_BINARY_DIR}/${THIS_PROJECT_NAME}/index.html
-    ${CMAKE_SOURCE_DIR}/xsl-html5/onepage.xsl ${DBK_FILE}
+    ${CMAKE_SOURCE_DIR}/xsl-html5/chunked.xsl ${DBK_FILE}
     CATALOGS
       ${BOOSTBOOK_CATALOG}
     DEPENDS
