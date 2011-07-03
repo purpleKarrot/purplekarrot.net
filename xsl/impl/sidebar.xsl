@@ -9,13 +9,13 @@
         <h1 class="clear">Sidebar Menu</h1>
         <ul class="sidemenu">
           <li>
-            <a href="/doc/Boost.CMake/">Boost.CMake</a>
+            <a href="/doc/boost_cmake.html">Boost.CMake</a>
           </li>
           <li>
             <a href="http://www.equalizergraphics.com/">Equalizer</a>
           </li>
           <li>
-            <a href="/doc/libMaoni/">libMaoni</a>
+            <a href="/doc/libmaoni.html">libMaoni</a>
           </li>
         </ul>
       </div>

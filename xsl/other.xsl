@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-  <xsl:output method="xml" encoding="UTF-8" indent="yes"
-    omit-xml-declaration="yes" />
+  <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="yes" />
 
   <xsl:include href="impl/header.xsl" />
   <xsl:include href="impl/footer.xsl" />
@@ -19,6 +18,7 @@
         <xsl:copy>
           <xsl:copy-of select="/html/head/*[not(self::title)]" />
         </xsl:copy>
+        <link rel="shortcut icon" href="/favicon.png" />
         <link rel="stylesheet" href="/purplekarrot.css" type="text/css" />
         <script src="/purplekarrot.js" type="text/javascript">/**/</script>
       </head>

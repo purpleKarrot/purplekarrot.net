@@ -80,6 +80,6 @@ boost_xsltproc(${blog_html} ${CMAKE_SOURCE_DIR}/xsl/blog.xsl ${blog_dbk}
 
 add_custom_target(blog ALL DEPENDS ${blog_html})
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/www
-  DESTINATION ..
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/www/
+  DESTINATION .
   )

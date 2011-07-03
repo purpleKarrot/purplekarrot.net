@@ -129,7 +129,7 @@ add_custom_target(js  ALL DEPENDS ${JS_COMPRESSED})
 install(FILES
   ${CSS_FILE}
   ${JS_COMPRESSED}
-  favicon.ico
+  favicon.png
   DESTINATION .
   )
 

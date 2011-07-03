@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-  <xsl:import href="common.xsl" />
+  <xsl:import href="../xsl-html5/chunked.xsl" />
+  <xsl:include href="impl/header.xsl" />
+  <xsl:include href="impl/footer.xsl" />
 
-  <xsl:output method="xml" encoding="UTF-8" indent="yes"
-    omit-xml-declaration="yes" />
+  <xsl:template name="html.head">
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/purplekarrot.css" type="text/css" />
+    <script src="/purplekarrot.js" type="text/javascript">/**/</script>
+  </xsl:template>
 
-  <xsl:template match="/">
-    <xsl:text disable-output-escaping='yes'>&lt;!doctype html&gt;&#10;</xsl:text>
-    <html lang="en">
-      <head>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <!-- <xsl:call-template name="head.content" /> -->
-      </head>
-      <body>
-        <xsl:apply-templates />
-      </body>
-    </html>
+  <xsl:template name="page.wrap">
+    <xsl:param name="content" />
+    <div id="wrap">
+      <xsl:call-template name="purple.header" />
+      <div id="content-wrap">
+        <div id="content">
+          <xsl:copy-of select="$content" />
+        </div>
+      </div>
+      <xsl:call-template name="purple.footer" />
+    </div>
   </xsl:template>
 
 </xsl:stylesheet>

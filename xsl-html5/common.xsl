@@ -8,10 +8,16 @@
   <xsl:import href="templates/refentry.xsl" />
   <xsl:import href="templates/lists.xsl" />
 
+  <xsl:template name="html.head" />
+  <xsl:template name="page.wrap">
+    <xsl:param name="content" />
+    <xsl:copy-of select="$content" />
+  </xsl:template>
+
   <xsl:template match="chapter">
-    <article>
+    <div class="chapter">
       <xsl:apply-templates />
-    </article>
+    </div>
   </xsl:template>
 
   <xsl:template match="section">

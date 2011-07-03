@@ -4,6 +4,7 @@
   extension-element-prefixes="exsl str">
 
   <xsl:import href="common.xsl" />
+  <xsl:import href="templates/navigation.xsl" />
 
   <xsl:param name="chunk.depth" select="1" />
 
@@ -16,8 +17,7 @@
 
   <xsl:template match="*" mode="is_chunk" />
 
-  <xsl:template
-    match="set|book|part|preface|chapter|appendix|article|reference|refentry"
+  <xsl:template match="set|book|part|preface|chapter|appendix|article|reference|refentry"
     mode="is_chunk">
     <xsl:text>1</xsl:text>
   </xsl:template>
@@ -77,24 +77,29 @@
       <xsl:text>.html</xsl:text>
     </xsl:variable>
 
-    <exsl:document href="{$filename}" method="xml" indent="yes"
-      omit-xml-declaration="yes">
+    <exsl:document href="{$filename}" method="xml" indent="yes" omit-xml-declaration="yes">
       <xsl:text disable-output-escaping='yes'>&lt;!doctype html&gt;&#10;</xsl:text>
       <html>
         <head>
           <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-          <!-- <xsl:call-template name="head.content" /> -->
+          <xsl:call-template name="html.head" />
         </head>
         <body>
-          <xsl:apply-imports />
+          <xsl:call-template name="page.wrap">
+            <xsl:with-param name="content">
+            <xsl:call-template name="navigation">
+              <xsl:with-param name="prev" select="$prev_chunk" />
+              <xsl:with-param name="next" select="$next_chunk" />
+            </xsl:call-template>
+              <xsl:apply-imports />
+            </xsl:with-param>
+          </xsl:call-template>
         </body>
       </html>
     </exsl:document>
   </xsl:template>
 
-
-  <xsl:template
-    match="set|book|part|preface|chapter|appendix|article|reference|refentry">
+  <xsl:template match="set|book|part|preface|chapter|appendix|article|reference|refentry">
     <xsl:call-template name="process-chunk-element" />
   </xsl:template>
 
