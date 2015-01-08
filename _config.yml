@@ -1,0 +1,22 @@
+title:         'purpleKarrot'
+tagline:       'Gedankenexperimente'
+url:           'http://purplekarrot.net'
+
+author:        'Daniel Pfeifer'
+copyright:     '2015'
+
+pingback:      'https://webmention.io/purplekarrot.net/xmlrpc'
+webmention:    'https://webmention.io/purplekarrot.net/webmention'
+
+email:         'daniel@pfeifer-mail.de'
+github:        'https://github.com/purplekarrot'
+googleplus:    'https://plus.google.com/+DanielPfeifer'
+linkedin:      'https://linkedin.com/in/purplekarrot'
+xing:          'https://www.xing.com/profile/Daniel_Pfeifer22'
+
+paginate:      3
+paginate_path: '/index:num.html'
+permalink:     '/blog/:title.html'
+
+sass:
+  style:       :compact
