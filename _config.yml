@@ -10,6 +10,7 @@ token_endpoint:         'https://tokens.indieauth.com/token'
 
 pingback:      'https://webmention.io/purplekarrot.net/xmlrpc'
 webmention:    'https://webmention.io/purplekarrot.net/webmention'
+micropub:      'http://indigo.purplekarrot.net:8080/micropub'
 microsub:      'https://aperture.p3k.io/microsub/542'
 
 email:         'daniel@pfeifer-mail.de'
