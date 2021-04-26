@@ -5,8 +5,8 @@ url:           'http://purplekarrot.net'
 author:        'Daniel Pfeifer'
 copyright:     '2015'
 
-authorization_endpoint: 'http://indigo.purplekarrot.net:8080/auth'
-token_endpoint:         'http://indigo.purplekarrot.net:8080/auth/token'
+authorization_endpoint: 'https://indieauth.com/auth'
+token_endpoint:         'https://tokens.indieauth.com/token'
 
 pingback:      'https://webmention.io/purplekarrot.net/xmlrpc'
 webmention:    'https://webmention.io/purplekarrot.net/webmention'
