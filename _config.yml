@@ -21,6 +21,7 @@ xing:          'https://www.xing.com/profile/Daniel_Pfeifer22'
 paginate:      3
 paginate_path: '/index:num.html'
 permalink:     '/blog/:title.html'
+include:       ['.well-known']
 
 sass:
   style:       :compact
