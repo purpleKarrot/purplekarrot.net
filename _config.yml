@@ -3,20 +3,11 @@ tagline:       'Gedankenexperimente'
 url:           'http://purplekarrot.net'
 
 author:        'Daniel Pfeifer'
-copyright:     '2015'
-
-authorization_endpoint: 'https://indieauth.com/auth'
-token_endpoint:         'https://tokens.indieauth.com/token'
-
-pingback:      'https://webmention.io/purplekarrot.net/xmlrpc'
-webmention:    'https://webmention.io/purplekarrot.net/webmention'
-micropub:      'http://indigo.purplekarrot.net:8080/micropub'
-microsub:      'https://aperture.p3k.io/microsub/542'
+copyright:     '2024'
 
 email:         'daniel@pfeifer-mail.de'
 github:        'https://github.com/purplekarrot'
 linkedin:      'https://linkedin.com/in/purplekarrot'
-xing:          'https://www.xing.com/profile/Daniel_Pfeifer22'
 
 paginate:      3
 paginate_path: '/index:num.html'
@@ -26,5 +17,5 @@ include:       ['.well-known']
 sass:
   style:       :compact
 
-gems:
+plugins:
   - jekyll-feed
