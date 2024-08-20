@@ -9,7 +9,7 @@ email:         'daniel@pfeifer-mail.de'
 github:        'https://github.com/purplekarrot'
 linkedin:      'https://linkedin.com/in/purplekarrot'
 
-paginate:      3
+paginate:      30
 paginate_path: '/index:num.html'
 permalink:     '/blog/:title.html'
 include:       ['.well-known']
