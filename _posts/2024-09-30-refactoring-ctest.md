@@ -112,7 +112,7 @@ to map "CMake variables" into "CTest configurations". Instead, the CMake
 variables are used directly, which reduces the dependency to the `cmCTest`
 instance.
 
-Once a `cmCTest*Command`s is stateless and independent of `cmCTest`, its
+Once a `cmCTest*Command` is stateless and independent of `cmCTest`, its
 implementation can be turned into a free function, like all the CMake commands
 already are. Once that is done, the classes `cmCommand` and
 `cmLegacyCommandWrapper` can finally be removed.
