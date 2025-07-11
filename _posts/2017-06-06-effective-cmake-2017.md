@@ -1,6 +1,6 @@
 ---
-layout: post
 title: "C++Now 2017: Effective CMake"
+tags: [cmake, presentation]
 ---
 
 My presentation at C++Now 2017 won the "Most Educational Session" award.

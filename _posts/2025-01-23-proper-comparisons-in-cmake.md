@@ -1,5 +1,6 @@
 ---
 title: Proper Comparisons in CMake
+tags: [cmake]
 ---
 
 It really saddens me whenever I see code like this:

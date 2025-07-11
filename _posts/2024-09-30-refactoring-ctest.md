@@ -1,5 +1,6 @@
 ---
 title: Refactoring CTest
+tags: [cmake, ctest]
 ---
 
 Previously, I wrote about the four different ways of configuring a dashboard

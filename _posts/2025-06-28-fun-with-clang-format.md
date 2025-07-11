@@ -1,5 +1,6 @@
 ---
 title: Fun with clang-format
+tags: [clang-format]
 ---
 
 There are formatting options that are a matter of taste and there are formatting

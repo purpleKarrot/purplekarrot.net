@@ -8,7 +8,9 @@ import subprocess
 import sys
 from datetime import datetime
 
+import bs4
 import frontmatter
+import markdown_it
 import mdformat
 import yaml
 
@@ -78,14 +80,11 @@ def publish_relays(config):
 def extract_summary(content):
     summary = content.split("\n\n", 1)[0]
     summary = summary.split("<!--more-->")[0]
-    # Remove image links: ![alt](url)
-    summary = re.sub(r"!\[.*?\]\(.*?\)", "", summary)
-    # Remove normal links but keep the text: [text](url)
-    summary = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", summary)
-    # Remove Markdown formatting characters: *, _, `, #, >
-    summary = re.sub(r"[*_`>#]", "", summary)
-    # Replace trailing punctuation with period
+    summary = mdformat.text(summary, options={"wrap": "no"})
     summary = re.sub(r"[,;:]$", ".", summary)
+    html = markdown_it.MarkdownIt().render(summary)
+    soup = bs4.BeautifulSoup(html, "html.parser")
+    summary = soup.get_text(separator=" ", strip=True)
     return summary
 
 
