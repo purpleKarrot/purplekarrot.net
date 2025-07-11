@@ -119,5 +119,5 @@ add_test_suite(foobar
   )
 ```
 
-And a sad running joke: For Boost.Test it would be possible to, [but only with
-the version on trunk](http://stackoverflow.com/a/10746477/269803).
+And a sad running joke: For Boost.Test it would be possible to,
+[but only with the version on trunk](http://stackoverflow.com/a/10746477/269803).

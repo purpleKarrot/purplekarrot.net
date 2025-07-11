@@ -2,7 +2,8 @@
 title: CMake Presentation
 ---
 
-Slides of a presentation I gave 21 May 2015 for the [C++ user group meeting](http://www.meetup.com/MUCplusplus/events/222396899/).
+Slides of a presentation I gave 21 May 2015 for the
+[C++ user group meeting](http://www.meetup.com/MUCplusplus/events/222396899/).
 
 <iframe
   src="//www.slideshare.net/slideshow/embed_code/key/8ArXI0cb8eaBHu"

@@ -15,7 +15,8 @@ endif()
 Imagine you run this code on Windows and you get the output "System is Darwin".
 How is this possible?
 
-Let's have a look at the [documentation of the `if` command](https://cmake.org/cmake/help/latest/command/if.html):
+Let's have a look at the
+[documentation of the `if` command](https://cmake.org/cmake/help/latest/command/if.html):
 
 > ```cmake
 > if(<variable|string> STREQUAL <variable|string>)
@@ -25,13 +26,13 @@ Let's have a look at the [documentation of the `if` command](https://cmake.org/c
 > string or variable on the right.
 
 Both operands are interpreted as a variable when it is defined and as a string
-literal when it is not.  Depending on whether there is a variable with the name
+literal when it is not. Depending on whether there is a variable with the name
 `Darwin` defined, the second operand is evaluated to the value of that variable
 or as the string literal `"Darwin"`.
 
 The first operand is expanded explicitly by the `${}` syntax, so what the `if()`
 command sees are the arguments `Windows STREQUAL Darwin` and it will treat the
-first argument exaclty like the second one:  Depending on whether there is a
+first argument exaclty like the second one: Depending on whether there is a
 variable with the name `Windows` defined, the operand is evaluated to the value
 of that variable or as the string literal `"Windows"`.
 
@@ -60,7 +61,8 @@ same problem.
 
 ### How to properly compare strings:
 
-1. Make sure that [policy `CMP0054`](https://cmake.org/cmake/help/latest/policy/CMP0054.html)
+1. Make sure that
+   [policy `CMP0054`](https://cmake.org/cmake/help/latest/policy/CMP0054.html)
    is set to `NEW`, for example by setting the minimum required CMake version to
    3.1 or higher.
 
@@ -81,5 +83,5 @@ else()
 endif()
 ```
 
-Now test your own CMake files.  If you find a match for `if($`, then you most
+Now test your own CMake files. If you find a match for `if($`, then you most
 likely have a bug.

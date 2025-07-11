@@ -9,24 +9,34 @@ import sys
 from datetime import datetime
 
 import frontmatter
+import mdformat
 import yaml
 
 CONFIG = "config.yml"
+
 
 def usage():
     print("Usage: publish [profile|relays|blog|post <filename>]")
     sys.exit(1)
 
+
 def run(cmd):
     """Run a shell command and return its output (stripped)."""
     return subprocess.check_output(cmd, shell=True, text=True).strip()
+
 
 def load_config():
     with open(CONFIG, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
+
 def get_write_relays(config):
-    return [relay["url"] for relay in config.get("relays", []) if relay.get("write", True)]
+    return [
+        relay["url"]
+        for relay in config.get("relays", [])
+        if relay.get("write", True)
+    ]
+
 
 def publish_profile(config):
     profile = config.get("profile", {})
@@ -37,9 +47,19 @@ def publish_profile(config):
     args += get_write_relays(config)
     subprocess.run(args, stdout=subprocess.DEVNULL)
 
+
 def publish_relays(config):
     created_at = run(f"git log -1 --format=%ct -- {CONFIG}")
-    args = ["nak", "event", "--kind", "10002", "--created-at", created_at, "--content", ""]
+    args = [
+        "nak",
+        "event",
+        "--kind",
+        "10002",
+        "--created-at",
+        created_at,
+        "--content",
+        "",
+    ]
     for relay in config.get("relays", []):
         url = relay.get("url")
         read = relay.get("read", True)
@@ -54,9 +74,10 @@ def publish_relays(config):
     args += get_write_relays(config)
     subprocess.run(args, stdout=subprocess.DEVNULL)
 
+
 def extract_summary(content):
-    summary = content.split('\n\n', 1)[0]
-    summary = summary.split('<!--more-->')[0]
+    summary = content.split("\n\n", 1)[0]
+    summary = summary.split("<!--more-->")[0]
     # Remove image links: ![alt](url)
     summary = re.sub(r"!\[.*?\]\(.*?\)", "", summary)
     # Remove normal links but keep the text: [text](url)
@@ -67,9 +88,10 @@ def extract_summary(content):
     summary = re.sub(r"[,;:]$", ".", summary)
     return summary
 
+
 def publish_blog_post(file, config):
-    filename = os.path.basename(file).replace('.md', '')
-    assert len(filename) >= 11 and filename[10] == '-'
+    filename = os.path.basename(file).replace(".md", "")
+    assert len(filename) >= 11 and filename[10] == "-"
     id = filename[11:]
     date_str = filename[:10]
     published_at = int(datetime.strptime(date_str, "%Y-%m-%d").timestamp())
@@ -77,34 +99,42 @@ def publish_blog_post(file, config):
 
     post = frontmatter.load(file)
     meta = post.metadata
-    content = re.sub(r'\s*<!--more-->\s*', ' ', post.content)
+    content = mdformat.text(
+        post.content.replace("<!--more-->", " "), options={"wrap": "no"}
+    )
 
     args = [
-        "nak", "event",
-        "--kind", "30023",
-        "--created-at", modified_at,
-        "--content", content,
+        "nak",
+        "event",
+        "--kind",
+        "30023",
+        "--created-at",
+        modified_at,
+        "--content",
+        content,
         f"--tag=d={id}",
-        f"--tag=title={meta["title"]}",
+        f"--tag=title={meta['title']}",
         f"--tag=published_at={published_at}",
     ]
 
-    if (image := meta.get("image")):
+    if image := meta.get("image"):
         args.append(f"--tag=image={image}")
 
-    if (summary := meta.get("summary") or extract_summary(post.content)):
+    if summary := meta.get("summary") or extract_summary(post.content):
         args.append(f"--tag=summary={summary}")
 
-    if (tags := meta.get("tags")):
+    if tags := meta.get("tags"):
         assert isinstance(tags, list)
         args += [f"--tag=t={tag}" for tag in tags]
 
     args += get_write_relays(config)
     subprocess.run(args, stdout=subprocess.DEVNULL)
 
+
 def publish_blog(config):
     for file in glob.glob("_posts/*.md"):
         publish_blog_post(file, config)
+
 
 if __name__ == "__main__":
     if "NOSTR_SECRET_KEY" not in os.environ:
