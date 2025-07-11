@@ -11,55 +11,83 @@
 
   <link href="https://fonts.cdnfonts.com/css/fantasque-sans-mono" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Fantasque Sans Mono', sans-serif;
+    :root {
+      --orange: #FF9900;
+      --purple: #8e30eb;
     }
     body {
-      background: #282828;
+      background:
+        linear-gradient(to bottom, black 0%, transparent 100%),
+        linear-gradient(to right,
+          color-mix(in srgb, var(--purple) 42%, black) 0%,
+          color-mix(in srgb, var(--orange) 63%, black) 100%
+        );
+      box-sizing: border-box;
       color: #ebdbb2;
-      min-height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      font-family: 'Fantasque Sans Mono', sans-serif;
       justify-content: center;
-    }
-    main {
+      margin: 0;
+      min-height: 100vh;
+      padding: 0;
       text-align: center;
-      width: 100%;
+      &::selection {
+        background: rgba(235, 219, 178, 0.07);
+      }
     }
     .intro {
       font-size: 3.75em;
       font-weight: 600;
+      .orange {
+        color: var(--orange);
+        text-shadow:
+           0 8px 63px color-mix(in srgb, var(--orange) 63%, black),
+           0 3px 0 #0008,
+           0 1px 0 #fff4;
+        &::selection {
+          background: rgba(255, 153, 0, 0.07);
+        }
+      }
+      .purple {
+        color: var(--purple);
+        text-shadow:
+            0 8px 63px color-mix(in srgb, var(--purple) 84%, black),
+            0 3px 0 #0008,
+            0 1px 0 #fff4;
+        &::selection {
+          background: rgba(142, 48, 235, 0.07);
+        }
+      }
     }
     .tagline {
-      font-size: 1.5rem;
-      margin: 1.5rem 0;
+      font-size: 2.1rem;
+      margin: 1.05rem 0;
       font-weight: 100;
+      line-height: 1.6;
     }
-    .icons-links a {
-      color: #ebdbb2;
-    }
-    .icon-svg {
-      width: 48px;
-      height: 48px;
-      margin: 0 15px;
-      vertical-align: middle;
-      filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(10deg);
+    .icons-links {
+      background: transparent;
+      user-select: none;
+      img {
+        width: 48px;
+        height: 48px;
+        margin: 0 15px;
+        vertical-align: middle;
+        filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(10deg);
+      }
     }
   </style>
 </head>
 <body>
   <main>
-    <div class="intro"><span style="color: #FF9900;">purple</span><span style="color: #8e30eb;">Karrot</span></div>
-    <div class="tagline">executive high priest of blowing your mind</div>
+    <div class="intro"><span class="orange">purple</span><span class="purple">Karrot</span></div>
+    <div class="tagline">executive&nbsp;high&nbsp;priest of&nbsp;blowing&nbsp;your&nbsp;mind</div>
     <div class="icons-links">
-      <a target="_blank" href="https://github.com/purpleKarrot"><img src="images/github.svg" alt="GitHub" class="icon-svg" /></a>
-      <a target="_blank" href="https://njump.me/npub1purple8xs539qf6w60tcvav3dqmxc6suhhquctdm944qa9zvmv4s9majf8"><img src="images/nostr.svg" alt="Nostr" class="icon-svg" /></a>
-      <a target="_blank" href="https://linkedin.com/in/purplekarrot"><img src="images/linkedin.svg" alt="LinkedIn" class="icon-svg" /></a>
-      <a href="pgp_keys.asc" download="purplekarrot.asc"><img src="images/key.svg" alt="PGP Key" class="icon-svg" /></a>
+      <a target="_blank" href="https://github.com/purpleKarrot"><img src="images/github.svg" alt="GitHub"/></a>
+      <a target="_blank" href="https://habla.news/u/purplekarrot.net"><img src="images/nostr.svg" alt="Nostr"/></a>
+      <a target="_blank" href="https://linkedin.com/in/purplekarrot"><img src="images/linkedin.svg" alt="LinkedIn"/></a>
+      <a href="pgp_keys.asc" download="purplekarrot.asc"><img src="images/key.svg" alt="PGP Key"/></a>
     </div>
   </main>
 </body>
