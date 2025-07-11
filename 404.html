@@ -1,10 +1,28 @@
----
-layout: page
-title: "404: Page not found"
----
-
-<p class="lead">
-  Sorry, we've misplaced that URL or it's pointing to something that doesn't
-  exist. <a href="/">Head back home</a> to try finding it again.
-</p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog posts have moved!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    .lead { font-size: 1.2em; margin-top: 2em; }
+  </style>
+  <script>
+    var path = window.location.pathname;
+    var blogMatch = path.match(/^\/blog\/([a-zA-Z0-9\-]+)\.html$/);
+    if (blogMatch) {
+      var slug = blogMatch[1];
+      var target = "https://habla.news/u/purplekarrot.net/" + slug;
+      window.location.replace(target);
+    }
+  </script>
+</head>
+<body>
+  <div class="lead">
+    Blog posts have moved!<br />
+    You can find them at
+    <a href="https://habla.news/u/purplekarrot.net/">https://habla.news/u/purplekarrot.net/</a>
+  </div>
+</body>
+</html>

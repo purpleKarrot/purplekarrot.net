@@ -1,35 +1,64 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
-    <span class="post-date">{{ post.date | date_to_string }}</span>
-    {{ post.excerpt }}
-  </div>
-  {% endfor %}
-</div>
+  <title>purpleKarrot</title>
 
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="/index{{paginator.next_page}}.html">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="/">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="/index{{paginator.previous_page}}.html">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
+  <link rel="icon" href="favicon.ico" type="image/png" />
+
+  <link href="https://fonts.cdnfonts.com/css/fantasque-sans-mono" rel="stylesheet">
+  <link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/Lukas-W/font-logos@v0.11/assets/font-logos.css" rel="stylesheet" />
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Fantasque Sans Mono', sans-serif;
+    }
+    body {
+      background: #282828;
+      color: #ebdbb2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    main {
+      text-align: center;
+      width: 100%;
+    }
+    .intro {
+      font-size: 3.75em;
+      font-weight: 600;
+    }
+    .tagline {
+      font-size: 1.5rem;
+      margin: 1.5rem 0;
+      font-weight: 100;
+    }
+    .icons-links i {
+      font-size: 3em;
+      padding: 15px;
+      color: #ebdbb2;
+    }
+    .icons-links a {
+      color: #ebdbb2;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="intro"><span style="color: #FF9900;">purple</span><span style="color: #8e30eb;">Karrot</span></div>
+    <div class="tagline">executive high priest of blowing your mind</div>
+    <div class="icons-links">
+      <a target="_blank" href="https://github.com/purpleKarrot"><i class="fab fa-github"></i></a>
+      <a target="_blank" href="https://linkedin.com/in/purplekarrot"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </main>
+</body>
+</html>
