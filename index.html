@@ -10,8 +10,6 @@
   <link rel="icon" href="favicon.ico" type="image/png" />
 
   <link href="https://fonts.cdnfonts.com/css/fantasque-sans-mono" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/gh/Lukas-W/font-logos@v0.11/assets/font-logos.css" rel="stylesheet" />
   <style>
     html, body {
       height: 100%;
@@ -41,13 +39,15 @@
       margin: 1.5rem 0;
       font-weight: 100;
     }
-    .icons-links i {
-      font-size: 3em;
-      padding: 15px;
-      color: #ebdbb2;
-    }
     .icons-links a {
       color: #ebdbb2;
+    }
+    .icon-svg {
+      width: 48px;
+      height: 48px;
+      margin: 0 15px;
+      vertical-align: middle;
+      filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(10deg);
     }
   </style>
 </head>
@@ -56,8 +56,9 @@
     <div class="intro"><span style="color: #FF9900;">purple</span><span style="color: #8e30eb;">Karrot</span></div>
     <div class="tagline">executive high priest of blowing your mind</div>
     <div class="icons-links">
-      <a target="_blank" href="https://github.com/purpleKarrot"><i class="fab fa-github"></i></a>
-      <a target="_blank" href="https://linkedin.com/in/purplekarrot"><i class="fab fa-linkedin"></i></a>
+      <a target="_blank" href="https://github.com/purpleKarrot"><img src="images/github.svg" alt="GitHub" class="icon-svg" /></a>
+      <a target="_blank" href="https://linkedin.com/in/purplekarrot"><img src="images/linkedin.svg" alt="LinkedIn" class="icon-svg" /></a>
+      <a href="pgp_keys.asc" download="purplekarrot.asc"><img src="images/key.svg" alt="PGP Key" class="icon-svg" /></a>
     </div>
   </main>
 </body>
