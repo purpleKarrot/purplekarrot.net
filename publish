@@ -107,6 +107,9 @@ def publish_blog(config):
         publish_blog_post(file, config)
 
 if __name__ == "__main__":
+    if "NOSTR_SECRET_KEY" not in os.environ:
+        print("Error: NOSTR_SECRET_KEY environment variable is not defined.")
+        sys.exit(1)
     if len(sys.argv) < 2:
         usage()
     config = load_config()
