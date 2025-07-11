@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Building and Testing with CMake
 ---
 
@@ -16,32 +15,32 @@ control systems, the CMake command line, the actual build system, and more.
 Looking at the commands that actually perform the steps for configuring,
 building, and testing, it is very likely that you see those:
 
-{% highlight bash %}
+```bash
 mkdir -p $build_dir
 cd $build_dir
 cmake -G Ninja $source_dir
 ninja
 ninja test
-{% endhighlight %}
+```
 
 I assume you know that CMake can create the build directory and provides an
 abstraction for invoking the actual build system.  You should also know that the
 `test` target essentially just runs `ctest`.  So you could simplify and
 generalize the above commands to this:
 
-{% highlight bash %}
+```bash
 cmake -G Ninja -S $source_dir -B $build_dir
 cmake --build $build_dir
 ctest --test-dir $build_dir
-{% endhighlight %}
+```
 
 But did you know that CTest already provides a command line abstraction to
 execute the three steps?
 
-{% highlight bash %}
+```bash
 ctest --build-and-test $source_dir $build_dir \
   --build-generator Ninja --test-command ctest
-{% endhighlight %}
+```
 
 Don't ask me why the above command stops after the build step when
 `--test-command ctest` is omitted. After all, this mode is called
@@ -66,24 +65,24 @@ working directory.
 
 Note that the documentation claims that this approach works in an
 already-generated build tree.  This is not true in all cases.
-What is definitely needed, is that the source repository is already checked out.  
+What is definitely needed, is that the source repository is already checked out.
 While the source directory can be updated, it cannot be initialized with this
 approach.  We will get back to those details later.
 For now, copy the following content into a file called `DartConfiguration.tcl`:
 
-{% highlight tcl %}
+```tcl
 SourceDirectory: Example
 BuildDirectory: Example-build
 UpdateCommand: git
 ConfigureCommand: cmake -G Ninja -DCMAKE_C_FLAGS_INIT=--coverage ..
 CoverageCommand:gcov
 MemoryCheckCommand: valgrind
-{% endhighlight %}
+```
 
 Make sure that `Example` is a directory next to the `DartConfiguration.tcl`
 file and contains a local clone of a git repository. Then execute the following:
 
-{% highlight bash %}
+```bash
 ctest -M Experimental \
   -T Start \
   -T Update \
@@ -92,7 +91,7 @@ ctest -M Experimental \
   -T Test \
   -T Coverage \
   -T MemCheck
-{% endhighlight %}
+```
 
 Observe in the output that ctest updates the repository to the latest revision,
 configures the project, builds it, runs the tests, analyzes the coverage, and
@@ -103,20 +102,20 @@ finds some memory leaks.
 In the second approach, the `DartConfiguration.tcl` file is replaced with a file
 written in the CMake syntax:
 
-{% highlight bash %}
+```bash
 set(CTEST_SOURCE_DIRECTORY "/home/dpfeifer/Example")
 set(CTEST_BINARY_DIRECTORY "/home/dpfeifer/Example-build")
 set(CTEST_COMMAND "ctest")
 set(CTEST_CMAKE_COMMAND "cmake")
 set(CTEST_CVS_CHECKOUT "gh repo clone Example")
-{% endhighlight %}
+```
 
 The name of the file does not really matter.  I use the name `CTestScript.cmake`
 and invoke ctest like this:
 
-{% highlight bash %}
+```bash
 ctest --script CTestScript.cmake --verbose
-{% endhighlight %}
+```
 
 Remember that, with the previous approach, it was impossible to initialize the
 source directory?  With this approach, it is possible via the
@@ -152,7 +151,7 @@ like `ExperimentalCoverage` that will execute `ctest -D ExperimentalCoverage`.
 The last approach uses the same file and command-line as the second one.
 The difference is that the build-and-test logic is scripted with CTest commands:
 
-{% highlight bash %}
+```bash
 cmake_minimum_required(VERSION 3.14)
 
 set(CTEST_SOURCE_DIRECTORY "/home/dpfeifer/Example")
@@ -175,7 +174,7 @@ ctest_build(PARALLEL_LEVEL ${NPROC})
 ctest_test(PARALLEL_LEVEL ${NPROC})
 ctest_coverage()
 ctest_memcheck(PARALLEL_LEVEL ${NPROC})
-{% endhighlight %}
+```
 
 This is the only approach that can both initialize *and* update the source
 directory.  It is also the only approach that allows you to execute the same

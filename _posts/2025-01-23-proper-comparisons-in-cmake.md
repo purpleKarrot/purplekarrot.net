@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Proper Comparisons in CMake
 ---
 

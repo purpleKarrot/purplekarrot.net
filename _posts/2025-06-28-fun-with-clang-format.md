@@ -1,7 +1,5 @@
 ---
-layout: post
 title: Fun with clang-format
-excerpt_separator: <!--more-->
 ---
 
 There are formatting options that are a matter of taste and there are
@@ -9,7 +7,7 @@ formatting options that severely affect readability and maintenance.
 <!--more-->
 Consider this code:
 
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(
     int arrrrrrrrrrrrrrrrrrrrrg1,
     int arrrrrrrrrrrrrrrrrrrrrg2,
@@ -29,7 +27,7 @@ void Fooooooooooooooooooooo::Baz(int arg) {
         break;
     }
 }
-{% endhighlight %}
+```
 
 In the first example, it is hard to distinguish between the initializer list
 and the function body. In the second function, it is hard to spot the end of
@@ -39,7 +37,7 @@ But how does the formatting change if we run this through `clang-format` with
 the built-in presets?
 
 LLVM:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(int arrrrrrrrrrrrrrrrrrrrrg1,
                                                int arrrrrrrrrrrrrrrrrrrrrg2,
                                                int arrrrrrrrrrrrrrrrrrrrrg3)
@@ -57,10 +55,10 @@ void Fooooooooooooooooooooo::Baz(int arg) {
     break;
   }
 }
-{% endhighlight %}
+```
 
 GNU:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo (int arrrrrrrrrrrrrrrrrrrrrg1,
                                                 int arrrrrrrrrrrrrrrrrrrrrg2,
                                                 int arrrrrrrrrrrrrrrrrrrrrg3)
@@ -83,10 +81,10 @@ Fooooooooooooooooooooo::Baz (int arg)
       break;
     }
 }
-{% endhighlight %}
+```
 
 Google:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(int arrrrrrrrrrrrrrrrrrrrrg1,
                                                int arrrrrrrrrrrrrrrrrrrrrg2,
                                                int arrrrrrrrrrrrrrrrrrrrrg3)
@@ -104,10 +102,10 @@ void Fooooooooooooooooooooo::Baz(int arg) {
       break;
   }
 }
-{% endhighlight %}
+```
 
 Chromium:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(int arrrrrrrrrrrrrrrrrrrrrg1,
                                                int arrrrrrrrrrrrrrrrrrrrrg2,
                                                int arrrrrrrrrrrrrrrrrrrrrg3)
@@ -125,10 +123,10 @@ void Fooooooooooooooooooooo::Baz(int arg) {
       break;
   }
 }
-{% endhighlight %}
+```
 
 Microsoft:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(int arrrrrrrrrrrrrrrrrrrrrg1, int arrrrrrrrrrrrrrrrrrrrrg2,
                                                int arrrrrrrrrrrrrrrrrrrrrg3)
     : Foo(arrrrrrrrrrrrrrrrrrrrrg1), Bar(arrrrrrrrrrrrrrrrrrrrrg2)
@@ -148,10 +146,10 @@ void Fooooooooooooooooooooo::Baz(int arg)
         break;
     }
 }
-{% endhighlight %}
+```
 
 Mozilla:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(int arrrrrrrrrrrrrrrrrrrrrg1,
                                                int arrrrrrrrrrrrrrrrrrrrrg2,
                                                int arrrrrrrrrrrrrrrrrrrrrg3)
@@ -173,10 +171,10 @@ Fooooooooooooooooooooo::Baz(int arg)
       break;
   }
 }
-{% endhighlight %}
+```
 
 WebKit:
-{% highlight cpp %}
+```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(
     int arrrrrrrrrrrrrrrrrrrrrg1,
     int arrrrrrrrrrrrrrrrrrrrrg2,
@@ -198,7 +196,7 @@ void Fooooooooooooooooooooo::Baz(int arg)
         break;
     }
 }
-{% endhighlight %}
+```
 
 Having the opening brace for functions on a separate line really helps finding
 the beginning of the function body of a constructor.
