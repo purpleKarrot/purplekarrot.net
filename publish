@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+
+import glob
+import json
+import os
+import re
+import subprocess
+import sys
+from datetime import datetime
+
+import frontmatter
+import yaml
+
+CONFIG = "config.yml"
+
+def usage():
+    print("Usage: publish [profile|relays|blog|post <filename>]")
+    sys.exit(1)
+
+def run(cmd):
+    """Run a shell command and return its output (stripped)."""
+    return subprocess.check_output(cmd, shell=True, text=True).strip()
+
+def load_config():
+    with open(CONFIG, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+def get_write_relays(config):
+    return [relay["url"] for relay in config.get("relays", []) if relay.get("write", True)]
+
+def publish_profile(config):
+    profile = config.get("profile", {})
+    created_at = run(f"git log -1 --format=%ct -- {CONFIG}")
+    args = ["nak", "event", "--kind", "0", "--created-at", created_at]
+    args.extend(["--content", json.dumps(profile, separators=(",", ":"))])
+
+    args += get_write_relays(config)
+    subprocess.run(args, stdout=subprocess.DEVNULL)
+
+def publish_relays(config):
+    created_at = run(f"git log -1 --format=%ct -- {CONFIG}")
+    args = ["nak", "event", "--kind", "10002", "--created-at", created_at, "--content", ""]
+    for relay in config.get("relays", []):
+        url = relay.get("url")
+        read = relay.get("read", True)
+        write = relay.get("write", True)
+        if read and write:
+            args.append(f"--tag=r={url}")
+        elif read:
+            args.append(f"--tag=r={url}=read")
+        elif write:
+            args.append(f"--tag=r={url}=write")
+
+    args += get_write_relays(config)
+    subprocess.run(args, stdout=subprocess.DEVNULL)
+
+def extract_summary(content):
+    summary = content.split('\n\n', 1)[0]
+    summary = summary.split('<!--more-->')[0]
+    # Remove image links: ![alt](url)
+    summary = re.sub(r"!\[.*?\]\(.*?\)", "", summary)
+    # Remove normal links but keep the text: [text](url)
+    summary = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", summary)
+    # Remove Markdown formatting characters: *, _, `, #, >
+    summary = re.sub(r"[*_`>#]", "", summary)
+    # Replace trailing punctuation with period
+    summary = re.sub(r"[,;:]$", ".", summary)
+    return summary
+
+def publish_blog_post(file, config):
+    filename = os.path.basename(file).replace('.md', '')
+    assert len(filename) >= 11 and filename[10] == '-'
+    id = filename[11:]
+    date_str = filename[:10]
+    published_at = int(datetime.strptime(date_str, "%Y-%m-%d").timestamp())
+    modified_at = run(f"git log -1 --format=%ct -- {file}")
+
+    post = frontmatter.load(file)
+    meta = post.metadata
+    content = re.sub(r'\s*<!--more-->\s*', ' ', post.content)
+
+    args = [
+        "nak", "event",
+        "--kind", "30023",
+        "--created-at", modified_at,
+        "--content", content,
+        f"--tag=d={id}",
+        f"--tag=title={meta["title"]}",
+        f"--tag=published_at={published_at}",
+    ]
+
+    if (image := meta.get("image")):
+        args.append(f"--tag=image={image}")
+
+    if (summary := meta.get("summary") or extract_summary(post.content)):
+        args.append(f"--tag=summary={summary}")
+
+    if (tags := meta.get("tags")):
+        assert isinstance(tags, list)
+        args += [f"--tag=t={tag}" for tag in tags]
+
+    args += get_write_relays(config)
+    subprocess.run(args, stdout=subprocess.DEVNULL)
+
+def publish_blog(config):
+    for file in glob.glob("_posts/*.md"):
+        publish_blog_post(file, config)
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        usage()
+    config = load_config()
+    match sys.argv[1]:
+        case "profile":
+            publish_profile(config)
+        case "relays":
+            publish_relays(config)
+        case "blog":
+            publish_blog(config)
+        case "post":
+            publish_blog_post(sys.argv[2], config)
+        case _:
+            usage()

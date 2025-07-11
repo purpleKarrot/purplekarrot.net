@@ -1,0 +1,13 @@
+profile:
+  name: purpleKarrot
+  display_name: Daniel Pfeifer
+  about: executive high priest of blowing your mind
+  picture: https://avatars.githubusercontent.com/u/185240
+  website: https://purplekarrot.net
+  lud16: purplekarrot@walletofsatoshi.com
+  nip05: _@purplekarrot.net
+
+relays:
+  - url: wss://nos.lol
+  - url: wss://nostr.einundzwanzig.space
+  - url: wss://relay.damus.io
