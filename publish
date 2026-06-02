@@ -3,14 +3,11 @@
 import glob
 import json
 import os
-import re
 import subprocess
 import sys
 from datetime import datetime
 
-import bs4
 import frontmatter
-import markdown_it
 import mdformat
 import yaml
 
@@ -77,17 +74,6 @@ def publish_relays(config):
     subprocess.run(args, stdout=subprocess.DEVNULL)
 
 
-def extract_summary(content):
-    summary = content.split("\n\n", 1)[0]
-    summary = summary.split("<!--more-->")[0]
-    summary = mdformat.text(summary, options={"wrap": "no"})
-    summary = re.sub(r"[,;:]$", ".", summary)
-    html = markdown_it.MarkdownIt().render(summary)
-    soup = bs4.BeautifulSoup(html, "html.parser")
-    summary = soup.get_text(separator=" ", strip=True)
-    return summary
-
-
 def publish_blog_post(file, config):
     filename = os.path.basename(file).replace(".md", "")
     assert len(filename) >= 11 and filename[10] == "-"
@@ -98,9 +84,7 @@ def publish_blog_post(file, config):
 
     post = frontmatter.load(file)
     meta = post.metadata
-    content = mdformat.text(
-        post.content.replace("<!--more-->", " "), options={"wrap": "no"}
-    )
+    content = mdformat.text(post.content, options={"wrap": "no"})
 
     args = [
         "nak",
@@ -119,7 +103,7 @@ def publish_blog_post(file, config):
     if image := meta.get("image"):
         args.append(f"--tag=image={image}")
 
-    if summary := meta.get("summary") or extract_summary(post.content):
+    if summary := meta.get("summary"):
         args.append(f"--tag=summary={summary}")
 
     if tags := meta.get("tags"):

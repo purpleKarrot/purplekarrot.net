@@ -1,6 +1,8 @@
 ---
 title: My review of the proposed C header for the Bitcoin Core Kernel API
-summary: Ranges, ranges everywhere. Or why I should definitely meet TheCharlatan on a regular basis.
+summary: >-
+  Ranges, ranges everywhere. Or why I should definitely meet TheCharlatan on a
+  regular basis.
 tags: [api, bitcoin]
 ---
 

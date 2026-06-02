@@ -1,11 +1,13 @@
 ---
 title: Fun with clang-format
+summary: >-
+  There are formatting options that are a matter of taste and there are
+  formatting options that severely affect readability and maintenance. 
 tags: [clang-format]
 ---
 
 There are formatting options that are a matter of taste and there are formatting
-options that severely affect readability and maintenance. <!--more--> Consider
-this code:
+options that severely affect readability and maintenance. Consider this code:
 
 ```cpp
 Fooooooooooooooooooooo::Fooooooooooooooooooooo(

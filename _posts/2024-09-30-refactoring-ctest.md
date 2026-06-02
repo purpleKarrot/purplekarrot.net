@@ -1,5 +1,8 @@
 ---
 title: Refactoring CTest
+summary: >-
+  Previously, I wrote about the four different ways of configuring a dashboard
+  client script with CTest.
 tags: [cmake, ctest]
 ---
 

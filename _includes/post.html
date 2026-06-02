@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<div class="post">
+  <h1 class="post-title">{{ title }}</h1>
+  <span class="post-date">
+    Published {{ page.date | date: "%d %b %Y" }}
+    {% if updated %}
+      · Updated {{ updated | date: "%d %b %Y" }}
+    {% endif %}
+  </span>
+  {{ content }}
+</div>

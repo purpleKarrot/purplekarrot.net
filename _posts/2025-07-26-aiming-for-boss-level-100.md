@@ -1,5 +1,9 @@
 ---
 title: Aiming for ₿OSS Level 100
+summary: >-
+  As a student, I wanted to become a game programmer. I learned C++ with the
+  goal of writing a computer game. My vision was to create something like a
+  decentralized version of "Ultima Online."
 tags: [Boost, CMake, Git, Bitcoin, "Open Source"]
 ---
 

@@ -1,0 +1,176 @@
+.container {
+    max-width: 38rem;
+    margin-inline: auto;
+}
+
+a {
+    color: #268bd2;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.masthead {
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #eee;
+}
+.masthead-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: #505050;
+    a {
+        color: #505050;
+    }
+    small {
+        font-size: 75%;
+        font-weight: 400;
+        color: #c0c0c0;
+        letter-spacing: 0;
+    }
+
+    @media (max-width: 48em) {
+        text-align: center;
+        small {
+            display: none;
+        }
+    }
+}
+
+.page,
+.post {
+    margin-bottom: 4em;
+}
+
+.page-title,
+.post-title,
+.post-title a {
+    color: #303030;
+}
+.page-title,
+.post-title {
+    margin-top: 0;
+}
+
+.post-date {
+    display: block;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+    color: #9a9a9a;
+}
+
+body > footer {
+    font-size: 16px;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid #eee;
+    color: #999;
+    strong {
+        color: #999;
+    }
+    .copyright {
+        float: left !important;
+    }
+    .social {
+        float: right !important;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        a img {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: block;
+            opacity: 0.5;
+
+            &:hover,
+            &:focus {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+/**
+ * Prism
+ */
+
+.token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+        color: slategray;
+    }
+
+    &.operator,
+    &.punctuation {
+        color: #999;
+    }
+
+    &.namespace {
+        opacity: 0.7;
+    }
+
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.constant,
+    &.symbol,
+    &.deleted {
+        color: #905;
+    }
+
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.char,
+    &.builtin,
+    &.inserted {
+        color: #690;
+    }
+
+    &.entity,
+    &.url,
+    .language-css &.string,
+    .style &.string {
+        color: #9a6e3a;
+    }
+
+    &.atrule,
+    &.attr-value,
+    &.keyword {
+        color: #07a;
+    }
+
+    &.function,
+    &.class-name {
+        color: #dd4a68;
+    }
+
+    &.regex,
+    &.important,
+    &.variable {
+        color: #e90;
+    }
+
+    &.important,
+    &.bold {
+        font-weight: bold;
+    }
+    &.italic {
+        font-style: italic;
+    }
+
+    &.entity {
+        cursor: help;
+    }
+}

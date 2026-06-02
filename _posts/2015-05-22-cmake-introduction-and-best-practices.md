@@ -1,5 +1,7 @@
 ---
 title: CMake Presentation
+summary: >-
+  Slides of a presentation I gave 21 May 2015 for the C++ user group meeting.
 tags: [cmake, slides]
 ---
 

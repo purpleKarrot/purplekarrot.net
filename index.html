@@ -1,94 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+---
+layout: default
+title: Home
+---
 
-  <title>purpleKarrot</title>
-
-  <link rel="icon" href="favicon.ico" type="image/png" />
-
-  <link href="https://fonts.cdnfonts.com/css/fantasque-sans-mono" rel="stylesheet">
-  <style>
-    :root {
-      --orange: #FF9900;
-      --purple: #8e30eb;
-    }
-    body {
-      background:
-        linear-gradient(to bottom, black 0%, transparent 100%),
-        linear-gradient(to right,
-          color-mix(in srgb, var(--purple) 42%, black) 0%,
-          color-mix(in srgb, var(--orange) 63%, black) 100%
-        );
-      box-sizing: border-box;
-      color: #ebdbb2;
-      display: flex;
-      flex-direction: column;
-      font-family: 'Fantasque Sans Mono', sans-serif;
-      justify-content: center;
-      margin: 0;
-      min-height: 100vh;
-      padding: 0;
-      text-align: center;
-      &::selection {
-        background: rgba(235, 219, 178, 0.07);
-      }
-    }
-    .intro {
-      font-size: 3.75em;
-      font-weight: 600;
-      .orange {
-        color: var(--orange);
-        text-shadow:
-           0 8px 63px color-mix(in srgb, var(--orange) 63%, black),
-           0 3px 0 #0008,
-           0 1px 0 #fff4;
-        &::selection {
-          background: rgba(255, 153, 0, 0.07);
-        }
-      }
-      .purple {
-        color: var(--purple);
-        text-shadow:
-            0 8px 63px color-mix(in srgb, var(--purple) 84%, black),
-            0 3px 0 #0008,
-            0 1px 0 #fff4;
-        &::selection {
-          background: rgba(142, 48, 235, 0.07);
-        }
-      }
-    }
-    .tagline {
-      font-size: 2.1rem;
-      margin: 1.05rem 0;
-      font-weight: 100;
-      line-height: 1.6;
-    }
-    .icons-links {
-      background: transparent;
-      user-select: none;
-      img {
-        width: 48px;
-        height: 48px;
-        margin: 0 15px;
-        vertical-align: middle;
-        filter: invert(90%) sepia(10%) saturate(500%) hue-rotate(10deg);
-      }
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="intro"><span class="orange">purple</span><span class="purple">Karrot</span></div>
-    <div class="tagline">executive&nbsp;high&nbsp;priest of&nbsp;blowing&nbsp;your&nbsp;mind</div>
-    <div class="icons-links">
-      <a target="_blank" href="https://github.com/purpleKarrot"><img src="images/github.svg" alt="GitHub"/></a>
-      <a target="_blank" href="https://habla.news/u/purplekarrot.net"><img src="images/nostr.svg" alt="Nostr"/></a>
-      <a target="_blank" href="https://linkedin.com/in/purplekarrot"><img src="images/linkedin.svg" alt="LinkedIn"/></a>
-      <a href="pgp_keys.asc" download="purplekarrot.asc"><img src="images/key.svg" alt="PGP Key"/></a>
-    </div>
-  </main>
-</body>
-</html>
+{% assign posts = collections.posts | reverse %}
+<div class="posts">
+  {% for post in posts %}
+  <div class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url }}">
+        {{ post.data.title }}
+      </a>
+    </h1>
+    <p>{{ post.data.summary }}</p>
+  </div>
+  {% endfor %}
+</div>

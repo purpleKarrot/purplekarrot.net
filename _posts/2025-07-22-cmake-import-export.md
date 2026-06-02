@@ -1,12 +1,16 @@
 ---
 title: CMake Import/Export
+summary: >-
+  In the following, I will try to address all your questions regarding
+  import/export with CMake. To aid in this task, I have set up four example
+  projects, which form a so-called diamond of death dependency graph.
 tags: [cmake]
 ---
 
 In the following, I will try to address all your questions regarding
 import/export with CMake. To aid in this task, I have set up four example
 projects, which form a so-called *diamond of death* dependency graph:
-<!--more--> [Foo](https://github.com/purpleKarrot/foo) depends on both
+[Foo](https://github.com/purpleKarrot/foo) depends on both
 [Bar](https://github.com/purpleKarrot/bar) and
 [Baz](https://github.com/purpleKarrot/baz), which both depend on different
 versions of [Qux](https://github.com/purpleKarrot/qux). As I walk you through

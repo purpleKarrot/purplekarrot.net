@@ -1,5 +1,10 @@
 ---
 title: Building and Testing with CMake
+summary: >-
+  There are too many ways to build and test a project with CMake. On the other
+  hand, there is too little knowledge out there about those ways. As a
+  consequence, people wrap the CMake invocation in custom scripts written in
+  Bash, Python, TypeScript, etc.
 tags: [cmake, ctest]
 ---
 
