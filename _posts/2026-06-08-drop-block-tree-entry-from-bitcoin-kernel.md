@@ -23,8 +23,9 @@ Second, the API leaks details of the current implementation through its
 traversal interface:
 
 ```c
-const btck_BlockTreeEntry* btck_block_tree_entry_get_previous(
-    const btck_BlockTreeEntry* block_tree_entry);
+const btck_BlockTreeEntry*
+  btck_block_tree_entry_get_previous(
+    const btck_BlockTreeEntry* self);
 ```
 
 This function exposes the predecessor relationship as a property of an
@@ -69,7 +70,8 @@ class ChainMan
 {
 public:
   Chain ActiveChain() const;
-  std::optional<Chain::iterator> Find(BlockHash const& hash) const; // ???
+  std::optional<Chain::iterator>    // ???
+    Find(BlockHash const& hash) const;
 };
 ```
 
