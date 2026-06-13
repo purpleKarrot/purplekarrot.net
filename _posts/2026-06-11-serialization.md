@@ -1,9 +1,9 @@
 ---
 title: Serialization
 summary: >-
-  A deep dive into rethinking Bitcoin Bitcoin serialization from first
-  principles: ditching overloaded C++ machinery in favor of explicit, composable
-  encoders that make every byte intentional, visible, and consensus-safe.
+  A deep dive into rethinking Bitcoin serialization from first principles:
+  ditching overloaded C++ machinery in favor of explicit, composable encoders
+  that make every byte intentional, visible, and consensus-safe.
 tags: [api, bitcoin]
 ---
 
@@ -29,7 +29,7 @@ overloads of the `Serialize` function - for builtin types and for standard
 containers (heck, it even has a special case for `std::vector<bool>`!) - as well
 as an overload that invokes a `Serialize` member function on the object.
 Consequently, something as seemingly simple as `stream << object` forces the
-compiler to go through **mulptiple** phases of overload resolution.
+compiler to go through **multiple** phases of overload resolution.
 
 This design has a significant impact on build times. Note that `serialize.h`
 pulls the headers of all containers of the standard library for all the function
