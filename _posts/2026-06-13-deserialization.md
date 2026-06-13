@@ -266,16 +266,15 @@ inline constexpr auto decode_txout = [](auto& r, CTxOut& out) {
 
 inline constexpr auto decode_tx = [](witness wmode) {
   return [=](auto& r, CTransaction& tx) {
-    bool has_witness = false;
-
     decode_u32(r, tx.version);
     decode_range(r, tx.vin, decode_txin);
-
-    if (tx.vin.empty() && wmode == witness::allow) {
+    if (!tx.vin.empty() || wmode != witness::allow) {
+      decode_range(r, tx.vout, decode_txout);
+    }
+    else {
       auto flags = std::uint8_t{};
       decode_u8(r, flags);
       if (flags == 1) {
-        has_witness = true;
         decode_range(r, tx.vin, decode_txin);
         decode_range(r, tx.vout, decode_txout);
       }
@@ -285,21 +284,13 @@ inline constexpr auto decode_tx = [](witness wmode) {
       else {
         r.fail();
       }
-    }
-    else {
-      decode_range(r, tx.vout, decode_txout);
-    }
-
-    if (has_witness) {
       for (auto& in : tx.vin) {
         decode_range(r, in.scriptWitness.stack, decode_bytes);
       }
-
       if (!tx.HasWitness()) {
         r.fail();
       }
     }
-
     decode_u32(r, tx.nLockTime);
   };
 };
