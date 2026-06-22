@@ -85,11 +85,8 @@ validation library itself. For example:
 ```cpp
 auto median_time_past(chain_view auto chain) {
   assert(!chain.empty());
-  auto get_time = [](block_header const& header) {
-    return header.time();
-  };
   auto times = chain
-    | std::views::transform(get_time)
+    | std::views::transform(&block_header::time)
     | std::views::reverse
     | std::views::take(11)
     | std::ranges::to<std::vector>();
@@ -104,8 +101,8 @@ The `coin_index` abstraction, in turn, is simply a **partial mapping** from
 
 ```cpp
 template <typename T>
-concept coin_index = requires (T const& lookup, outpoint p) {
-  { lookup(p) } -> std::convertible_to<std::optional<coin>>;
+concept coin_index = requires (T const& m, outpoint p) {
+  { m.lookup(p) } -> std::convertible_to<std::optional<coin>>;
 };
 ```
 
