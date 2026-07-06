@@ -70,8 +70,8 @@ The first step is to add the following observer functions to `CTransaction`:
 
 ```cpp
 auto GetVersion() const -> uint32_t { return version; }
-auto GetInputs() const -> const std::vector<CTxIn>& { return vin; }
-auto GetOutputs() const -> const std::vector<CTxOut>& { return vout; }
+auto GetInputs() const -> std::vector<CTxIn> const& { return vin; }
+auto GetOutputs() const -> std::vector<CTxOut> const& { return vout; }
 auto GetLockTime() const -> uint32_t { return nLockTime; }
 ```
 
@@ -157,8 +157,8 @@ could go wrong? It is totally expected that clients use operators `*` and `->`,
 but it is possible to overload them in `CTransaction`:
 
 ```cpp
-auto operator*() const -> const CTransaction& { return *this; }
-auto operator->() const -> const CTransaction* { return this; }
+auto operator*() const -> CTransaction const& { return *this; }
+auto operator->() const -> CTransaction const* { return this; }
 ```
 
 Writing a clang-tidy plugin that removes the now-redundant operator `*` and

@@ -64,8 +64,8 @@ class verifier
 public:
   constexpr explicit verifier(consensus_parameters const& params);
 
-  auto operator()(const block&, ...) const;
-  auto operator()(const transaction&, ...) const;
+  auto operator()(block const&, ...) const;
+  auto operator()(transaction const&, ...) const;
   // ...
 
 private:
@@ -255,7 +255,7 @@ struct assumevalid_script_cache {
     return true;
   }
 
-  void insert(const script_cache_key&) {}
+  void insert(script_cache_key const&) {}
 };
 ```
 

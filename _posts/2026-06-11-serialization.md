@@ -79,7 +79,7 @@ accepts a sequence of bytes:
 
 ```cpp
 template <typename T>
-concept Writer = requires (T& w, std::span<const std::byte> bytes) {
+concept Writer = requires (T& w, std::span<std::byte const> bytes) {
   { w.write(bytes) };
 };
 ```
@@ -143,7 +143,7 @@ selecting how values are written.
 
 ```cpp
 inline constexpr auto encode_bytes = [](
-    auto& w, std::span<const std::byte> bytes) {
+    auto& w, std::span<std::byte const> bytes) {
   encode_size(w, bytes.size());
   w.write(bytes);
 };
