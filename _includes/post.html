@@ -2,13 +2,13 @@
 layout: default
 ---
 
-<div class="post">
-  <h1 class="post-title">{{ title }}</h1>
-  <span class="post-date">
-    Published {{ page.date | date: "%d %b %Y" }}
+<article>
+  <h1>{{ title }}</h1>
+  <p class="post-date">
+    Published <time datetime="{{ page.date | date: "%Y-%m-%d" }}">{{ page.date | date: "%d %b %Y" }}</time>
     {% if updated %}
-      · Updated {{ updated | date: "%d %b %Y" }}
+      · Updated <time datetime="{{ updated | date: "%Y-%m-%d" }}">{{ updated | date: "%d %b %Y" }}</time>
     {% endif %}
-  </span>
+  </p>
   {{ content }}
-</div>
+</article>
