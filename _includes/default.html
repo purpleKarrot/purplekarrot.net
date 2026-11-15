@@ -5,29 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ title }} · {{ metadata.title }}</title>
+  <title>{{ title }} · {{ config.profile.name }}</title>
   <style>{% include "style.css" %}</style>
   <style>{% getBundle "css" %}</style>
 
 </head>
 <body>
   <header>
-    <a href="/" title="Home">{{ metadata.title }}</a>
-    <small>{{ metadata.tagline }}</small>
+    <a href="/" title="Home">{{ config.profile.name }}</a>
+    <small>{{ config.site.tagline }}</small>
   </header>
   <main>
     {{ content }}
   </main>
   <footer>
-    <small>Copyright © {{ "now" | date: "%Y" }} <strong>{{ metadata.author }}</strong></small>
+    <small>Copyright © {{ "now" | date: "%Y" }} <strong>{{ config.profile.display_name }}</strong></small>
     <nav aria-label="Social profiles">
-      <a rel="me" href="https://github.com/{{ metadata.github }}" aria-label="GitHub" title="GitHub">
+      <a rel="me" href="https://github.com/{{ config.site.github }}" aria-label="GitHub" title="GitHub">
         <img src="/images/github.svg" alt="" width="16" height="16">
       </a>
-      <a rel="me" href="https://njump.me/{{ metadata.nip05 }}" aria-label="Nostr" title="Nostr">
+      <a rel="me" href="https://njump.me/{{ config.profile.nip05 | remove_first: "_@" }}" aria-label="Nostr" title="Nostr">
         <img src="/images/nostr.svg" alt="" width="16" height="16">
       </a>
-      <a rel="me" href="https://linkedin.com/in/{{ metadata.linkedin }}" aria-label="LinkedIn" title="LinkedIn">
+      <a rel="me" href="https://linkedin.com/in/{{ config.site.linkedin }}" aria-label="LinkedIn" title="LinkedIn">
         <img src="/images/linkedin.svg" alt="" width="16" height="16">
       </a>
     </nav>
