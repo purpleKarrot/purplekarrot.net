@@ -49,7 +49,7 @@ def publish_profile(config):
     args.extend(["--content", json.dumps(profile, separators=(",", ":"))])
 
     args += get_write_relays(config)
-    subprocess.run(args, stdout=subprocess.DEVNULL)
+    subprocess.run(args, stdout=subprocess.DEVNULL, check=True)
 
 
 def publish_relays(config):
@@ -76,7 +76,7 @@ def publish_relays(config):
             args.append(f"--tag=r={url}=write")
 
     args += get_write_relays(config)
-    subprocess.run(args, stdout=subprocess.DEVNULL)
+    subprocess.run(args, stdout=subprocess.DEVNULL, check=True)
 
 
 def event_pointer(entry):
@@ -176,7 +176,7 @@ def publish_blog_post(file, config):
         args += [f"--tag=t={tag}" for tag in tags]
 
     args += get_write_relays(config)
-    subprocess.run(args, stdout=subprocess.DEVNULL)
+    subprocess.run(args, stdout=subprocess.DEVNULL, check=True)
 
 
 def publish_blog(config):
