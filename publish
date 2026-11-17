@@ -14,6 +14,7 @@ from urllib.request import urlopen
 
 import frontmatter
 from markdown_it import MarkdownIt
+from markdown_it.token import Token
 from mdformat.renderer import MDRenderer
 
 CONFIG = "_data/config.json"
@@ -135,8 +136,61 @@ def format_article(content):
                 if target != href:
                     token.attrSet("href", target)
                     token.meta.pop("label", None)
+        children = block.children or []
+        for index in reversed(range(len(children))):
+            token = children[index]
+            if token.type != "link_open":
+                continue
+            target = token.attrGet("href") or ""
+            if target.startswith(("nostr:npub1", "nostr:nprofile1")):
+                end = next(i for i in range(index + 1, len(children))
+                           if children[i].type == "link_close")
+                mention = Token("text", "", 0)
+                mention.content = target
+                children[index:end + 1] = [mention]
     formatted = parser.renderer.render(tokens, parser.options, env)
     return parser.render(formatted)
+
+
+def reference_tag(reference):
+    """Decode a NIP-19 reference with nak into a profile or quote tag."""
+    decoded = subprocess.check_output(["nak", "decode", reference], text=True).strip()
+    if reference.startswith("npub1"):
+        return ["p", decoded]
+    if reference.startswith("note1"):
+        return ["q", decoded, ""]
+    pointer = json.loads(decoded)
+    relay = next(iter(pointer.get("relays", [])), "")
+    if reference.startswith("nprofile1"):
+        return ["p", pointer["pubkey"], relay] if relay else ["p", pointer["pubkey"]]
+    if reference.startswith("naddr1"):
+        return ["q", f"{pointer['kind']}:{pointer['pubkey']}:{pointer['identifier']}", relay]
+    tag = ["q", pointer["id"], relay]
+    if pointer.get("author"):
+        tag.append(pointer["author"])
+    return tag
+
+
+def reference_tags(content):
+    """Extract unique NIP-27 profile and quote tags outside Markdown code."""
+    references = set()
+    for block in MarkdownIt().parse(content):
+        for token in block.children or ():
+            if token.type == "link_open":
+                text = token.attrGet("href") or ""
+            elif token.type == "text":
+                text = token.content
+            else:
+                continue
+            references.update(re.findall(
+                r"nostr:((?:npub|nprofile|note|nevent|naddr)1[0-9a-zA-Z]+)", text
+            ))
+    tags = []
+    for reference in sorted(references):
+        tag = reference_tag(reference)
+        if tag not in tags:
+            tags.append(tag)
+    return tags
 
 
 def publish_blog_post(file, config):
@@ -150,33 +204,35 @@ def publish_blog_post(file, config):
     post = frontmatter.load(file)
     meta = post.metadata
     content = format_article(post.content)
-
-    args = [
-        "nak",
-        "event",
-        "--kind",
-        "30023",
-        "--created-at",
-        modified_at,
-        "--content",
-        content,
-        f"--tag=d={id}",
-        f"--tag=title={meta['title']}",
-        f"--tag=published_at={published_at}",
+    tags = [
+        ["d", id],
+        ["title", meta["title"]],
+        ["published_at", str(published_at)],
     ]
 
     if image := meta.get("image"):
-        args.append(f"--tag=image={image}")
+        tags.append(["image", image])
 
     if summary := meta.get("summary"):
-        args.append(f"--tag=summary={summary}")
+        tags.append(["summary", summary])
 
-    if tags := meta.get("tags"):
-        assert isinstance(tags, list)
-        args += [f"--tag=t={tag}" for tag in tags]
+    if topics := meta.get("tags"):
+        assert isinstance(topics, list)
+        tags += [["t", topic] for topic in topics]
 
-    args += get_write_relays(config)
-    subprocess.run(args, stdout=subprocess.DEVNULL, check=True)
+    tags += reference_tags(content)
+    event = {
+        "kind": 30023,
+        "created_at": int(modified_at),
+        "content": content,
+        "tags": tags,
+    }
+
+    subprocess.run(
+        ["nak", "event", *get_write_relays(config)],
+        input=json.dumps(event), text=True,
+        stdout=subprocess.DEVNULL, check=True,
+    )
 
 
 def publish_blog(config):
