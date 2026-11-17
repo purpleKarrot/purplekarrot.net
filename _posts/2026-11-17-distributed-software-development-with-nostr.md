@@ -14,7 +14,7 @@ build and testing infrastructure. The paper
 published in 2001, describes how automated testing across different hardware and
 operating systems became an integral part of its development process.
 
-CTest, which ships with CMake, has traditionally distinguished three testing
+CTest, which ships with CMake, has traditionally distinguished among three testing
 models: Experimental, Continuous, and Nightly. The
 [CMake development workflow](https://gitlab.kitware.com/cmake/cmake/-/blob/master/Help/dev/review.rst)
 builds upon these models to integrate contributions and test them across a wide
@@ -72,7 +72,7 @@ The bot will also publish a NIP-34 repository state announcement (kind 30618),
 identifying the current revision of the main development branch.
 
 Developers, testers, and other services can discover projects through Nostr
-without integrating the APIs of individual Git hosting providers.
+without integrating with the APIs of individual Git hosting providers.
 
 ## Submitting a Contribution
 
@@ -330,9 +330,6 @@ testing sites.
 The dashboard is an observer of the development process. It does not control the
 testing infrastructure or the integration of contributions.
 
-Other dashboards can participate in the same workflow without requiring changes
-to the integration bot or the collaboration protocol.
-
 ## Merging
 
 When a contribution has been sufficiently reviewed and tested, a lead maintainer
@@ -425,7 +422,7 @@ made by its maintainers.
 CTest provides a common mechanism for collecting and submitting structured build
 and test results.
 
-Dashboards aggregate those results and make them accessible to developers.
+A Dashboard aggregates those results and makes them accessible to developers.
 
 None of these components needs to assume responsibility for the others.
 
