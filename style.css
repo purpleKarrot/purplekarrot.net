@@ -96,7 +96,37 @@ main > h1, article > h1:first-child, .posts h2 {
 }
 
 .posts p, .lead { margin: 0; color: var(--muted); }
-.post-date { margin-block: 0 2rem; }
+.post-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-block: 0 2rem;
+}
+.post-metadata {
+    margin-inline-start: auto;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover { text-decoration: none; }
+    > span { display: inline-block; vertical-align: middle; }
+}
+.post-reactions {
+    padding-inline-end: 0.3em;
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.8em;
+        height: 1.8em;
+        border: 2px solid var(--paper);
+        border-radius: 50%;
+        background: var(--line);
+        margin-inline-end: -0.75em;
+    }
+}
 
 blockquote {
     margin-inline: 0;

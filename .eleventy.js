@@ -16,6 +16,9 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "_public/": "/" });
   eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/nostr-tools/lib/nostr.bundle.js": "nostr-tools.js",
+  });
 
   eleventyConfig.addWatchTarget("**/*.css");
   eleventyConfig.addBundle("css", {
