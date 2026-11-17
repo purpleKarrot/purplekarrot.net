@@ -25,7 +25,7 @@ advocated for a separation of responsibilities between project maintainers and
 build pipeline maintainers.
 
 In
-[Redistributing Git with Nostr](nostr:naddr1qvzqqqr4gupzqwlsccluhy6xxsr6l9a9uhhxf75g85g8a709tprjcn4e42h053vaqqyrsdmpxgcrsepet58tmp),
+[Redistributing Git with Nostr](nostr:naddr1qvzqqqr4gupzqwlsccluhy6xxsr6l9a9uhhxf75g85g8a709tprjcn4e42h053vaqy2hwumn8ghj7cnpwdehq6tnw3hkctn0wfnj7qg6waehxw309ac8junpd45kgtnxd9shg6npvchxxmmd9uqqsvfcvenr2dp3xc4n5kfx),
 [fiatjaf](nostr:npub180cvv07tjdrrgpa0j7j7tmnyl2yr6yr7l8j4s3evf6u64th6gkwsyjh6w6)
 discusses how Nostr can remove the network effect that drives open-source
 projects towards centralized development platforms, despite Git itself being
