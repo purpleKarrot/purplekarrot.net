@@ -14,7 +14,6 @@ from urllib.request import urlopen
 
 import frontmatter
 from markdown_it import MarkdownIt
-from markdown_it.token import Token
 from mdformat.renderer import MDRenderer
 
 CONFIG = "_data/config.json"
@@ -136,18 +135,6 @@ def format_article(content):
                 if target != href:
                     token.attrSet("href", target)
                     token.meta.pop("label", None)
-        children = block.children or []
-        for index in reversed(range(len(children))):
-            token = children[index]
-            if token.type != "link_open":
-                continue
-            target = token.attrGet("href") or ""
-            if target.startswith(("nostr:npub1", "nostr:nprofile1")):
-                end = next(i for i in range(index + 1, len(children))
-                           if children[i].type == "link_close")
-                mention = Token("text", "", 0)
-                mention.content = target
-                children[index:end + 1] = [mention]
     formatted = parser.renderer.render(tokens, parser.options, env)
     return parser.render(formatted)
 
