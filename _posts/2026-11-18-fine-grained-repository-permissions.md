@@ -61,9 +61,9 @@ describes ref tags as `refs/<heads|tags>/<branch-or-tag-name>`. My workflow also
 uses refs such as `refs/stage/master/head` and
 `refs/stage/master/nightly/latest`.
 
-Independent testers need to discover those commits to build staged work or a
-shared nightly snapshot. The state-announcement format needs to carry those
-refs, and clients need to know who is authorized to publish them.
+There is no reason for the protocol to restrict announcements to branch and
+tag refs. Removing that restriction would let projects advertise integration
+refs too, giving testers more opportunities to discover work they could build.
 
 ### Projects need tags in separate dimensions
 
@@ -114,13 +114,16 @@ Repeated grants are additive; there are no deny rules or inherited roles.
 
 The initial vocabulary would be small:
 
-| Operation | Scope | Authority |
-| --- | --- | --- |
-| `update-ref` | An exact Git ref or a ref glob | Modify and publish state for the matching refs |
-| `update-pr` | `*` | Publish revisions of PRs belonging to this repository |
-| `set-status` | `lifecycle` | Change Open, Applied, Closed, or Draft status |
-| `set-tag` | A project-defined dimension, such as `workflow` or `priority` | Assign or clear a tag in that dimension |
-| `*` | `*` | Exercise all operational permissions defined by this extension |
+- `update-ref` modifies and publishes state for refs matching its scope. The
+  scope is an exact Git ref or a ref glob.
+- `update-pr` publishes revisions of PRs belonging to the repository. Its scope
+  is `*`.
+- `set-status` changes the lifecycle status: Open, Applied, Closed, or Draft.
+  Its scope is `lifecycle`.
+- `set-tag` assigns or clears a tag in a project-defined dimension. Its scope is
+  the dimension name, such as `workflow` or `priority`.
+- `*` with scope `*` grants all operational permissions defined by this
+  extension.
 
 Ref globs would match the entire ref name. A single `*` matches zero or more
 characters within one path component, but never `/`. A double `**` matches zero
@@ -223,11 +226,9 @@ A scoped tag consists of a dimension and a value. Projects choose both; the
 protocol does not reserve `workflow` or define a fixed set of dimensions. For
 example, one PR could have these assignments at the same time:
 
-| Dimension | Value |
-| --- | --- |
-| `workflow` | `under-review` |
-| `priority` | `high` |
-| `component` | `api` |
+- `workflow`: `under-review`
+- `priority`: `high`
+- `component`: `api`
 
 [NIP-32](https://github.com/nostr-protocol/nips/blob/master/32.md) already
 provides labeling events. I propose a repository-scoped convention for kind
