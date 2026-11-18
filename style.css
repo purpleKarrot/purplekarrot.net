@@ -121,7 +121,7 @@ main > h1, article > h1:first-child, .posts h2 {
         justify-content: center;
         width: 1.8em;
         height: 1.8em;
-        border: 2px solid var(--paper);
+        border: 1px solid var(--paper);
         border-radius: 50%;
         background: var(--line);
         margin-inline-end: -0.75em;
